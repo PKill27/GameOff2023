@@ -14,5 +14,6 @@ jobs:
 
       - uses: actions/upload-artifact@v2
         with:
+          unityVersion: "2023.1.13f1"
           name: Manual Activation File
           path: ${{ steps.getManualLicenseFile.outputs.filePath }}
