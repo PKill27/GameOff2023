@@ -1,5 +1,10 @@
 name: Build Project and Publish to itch.io
-on: [push]
+
+on:
+  push:
+    branches:
+      - main
+
 jobs:
   build:
     name: Build Project and Publish to itch.io ✨
@@ -31,12 +36,12 @@ jobs:
           # UNITY_SERIAL: ${{ secrets.UNITY_SERIAL }}
         with:
           targetPlatform: WebGL
-       # Return License (Un-Comment if you're using a pro license)
-       #- name: Return license
-       #  uses: game-ci/unity-return-license@v1
-       #  if: always()
-       # Output
-       - uses: actions/upload-artifact@v2
-         with:
-           name: Build
-           path: build
+      # Return License (Un-Comment if you're using a pro license)
+      #- name: Return license
+      #  uses: game-ci/unity-return-license@v1
+      #  if: always()
+      # Output
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Build
+          path: build
