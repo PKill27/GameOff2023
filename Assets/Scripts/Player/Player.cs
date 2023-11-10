@@ -6,26 +6,34 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     public float currTemp;
-    public float dashForce = 10f; 
-    public float dashDuration = 0.2f; 
-    public float dashCooldown = .1f; 
-
-    private Rigidbody2D rb;
-    public bool isDashing = false;
-    public int maxNumDashes = 2;
-    private int numDashes = 2;
+   
+    public Rigidbody2D rb;
     public float speed = 1f;
     public float jumpPower = 1f;
     public bool isGrounded;
 
-    public static float temp;
+    public float temp;
     public float freezeTemp;
     public float freezeRate;
     public Image tempBar;
+    public Image foodBar;
+
+    public float hunger;
+    public float maxHunger;
+    public float hungerRate;
+
     public static Player instance;
+    public bool isFacingRight;
 
     public LayerMask platformLayer;
+    public LayerMask treeLayer;
     public Sprite sprite;
+    public Transform groundCheckPos;
+    public float groundCheckRadius;
+    public bool isJumping;
+    public bool canJump;
+
+    public Animator animator;
     private void Awake()
     {
         instance = this;
@@ -33,86 +41,91 @@ public class Player : MonoBehaviour
     private void Update()
     {
         AddFreeze();
-        UpdateFreezeBar();
+        IncreaseHunger();
         SetGrounded();
     }
-    private void Start()
+
+private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        numDashes = maxNumDashes;
+ 
         sprite = GetComponent<SpriteRenderer>().sprite;
+        animator = GetComponent<Animator>();
     }
     
     public void Move(Vector2 movement)
     {
-        if (!isDashing)
-        {
-            rb.velocity = new Vector2(movement.x * speed, rb.velocity.y);
-        }
+        SetGrounded();
         
+        animator.SetBool("isWalking", true);
+        rb.velocity = new Vector2(movement.x * speed, rb.velocity.y);
+        UpdateAngle();
     }
 
-    public void Dash(Vector2 direction)
+    private void UpdateAngle()
     {
-        if (numDashes > 0)
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, .1f);
+
+        if (hit.collider != null)
         {
-            StartCoroutine(DashCor(direction));
+            Debug.DrawRay(hit.point, hit.normal, Color.red);
+
         }
     }
-   
+
     public void Jump()
     {
         rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
+        isGrounded = false;
+        canJump = false;
+        isJumping = true;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    
+    public void IncreaseHunger()
     {
-        numDashes = maxNumDashes;
+        hunger = hunger + Time.deltaTime * hungerRate;
+        float amount = ((maxHunger - hunger) / maxHunger);
+        float clampedFillAmount = Mathf.Clamp(amount, 0f, 1f);
+
+        foodBar.fillAmount = clampedFillAmount;
     }
-
-    IEnumerator DashCor(Vector2 dashDirection)
-    {
-        numDashes = numDashes - 1;
-        isDashing = true;
-        rb.AddForce(dashDirection * dashForce, ForceMode2D.Impulse);
-
-        yield return new WaitForSeconds(dashDuration);
-
-        rb.velocity = Vector2.zero;
-        isDashing = false;
-    }
-
     public void AddFreeze()
     {
         temp = temp + Time.deltaTime * freezeRate;
-    }
-
-    public static void HitProjectile(float freezeAmount)
-    {
-        temp = temp + freezeAmount;
-    }
-
-    private void UpdateFreezeBar()
-    {
         float amount = 1 - ((freezeTemp - temp) / freezeTemp);
         float clampedFillAmount = Mathf.Clamp(amount, 0f, 1f);
 
         tempBar.fillAmount = clampedFillAmount;
     }
-    void SetGrounded()
+
+    public void HitProjectile(float freezeAmount)
     {
-        // Perform a downward raycast to check if the player is above a platform
-        float raycastDistance = 0.2f; // Adjust this based on your platform's thickness
-        RaycastHit2D hit =  Physics2D.Raycast(transform.position, Vector3.down, raycastDistance, platformLayer);
-        if (hit.collider!=null)
-        {
-            isGrounded = true;
-            //rb.velocity = new Vector2(rb.velocity.x, 0);
-        }
-        else
-        {
-            isGrounded = false;
-        }
+        temp = temp + freezeAmount;
+
     }
 
+    void SetGrounded()
+    {
+        isGrounded = Physics2D.OverlapCircle(groundCheckPos.position, groundCheckRadius, platformLayer);
+        
+        if (rb.velocity.y <= 0.0f)
+        {
+            isJumping = false;
+        }
+
+        if (isGrounded && !isJumping )
+        {
+            canJump = true;
+        }
+    }
+    public void Eat()
+    {
+        hunger = Mathf.Max(hunger - 10, 0);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(groundCheckPos.position, groundCheckRadius);
+    }
 }

@@ -29,7 +29,7 @@ public class SnowBall : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Player.HitProjectile(10);
+            Player.instance.HitProjectile(10);
             Explode();
         }
     }

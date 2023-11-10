@@ -5,7 +5,7 @@ using UnityEngine;
 public class InputManager : MonoBehaviour
 {
     public InputManager instance;
-    public Player player;
+    public RedPanda player;
     public Camera mainCamera;
     void Awake()
     {
@@ -15,34 +15,41 @@ public class InputManager : MonoBehaviour
     
     void Update()
     {
-        if (!player.isDashing)
+        
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (player.canJump)
             {
-                if (player.isGrounded)
-                {
-                    player.Jump();
-                }
-                else
-                {
-                    /**Vector3 mousePosition = mainCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, mainCamera.transform.position.y));
-                    Vector3 directionToMouse = mousePosition - transform.position;
-                    directionToMouse.Normalize();
-                    player.Dash(directionToMouse);**/
-
-                    player.Dash(new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")).normalized);
-                }
-               
+                player.Jump();
             }
-            
         }
         if (Input.GetKey(KeyCode.A))
         {
+            
+            
             player.Move(Vector2.left);
+            if (player.isFacingRight)
+            {
+                player.transform.localScale = new Vector2(-1 * player.transform.localScale.x, player.transform.localScale.y);
+            }
+            
+            player.isFacingRight = false;
         }
-        if (Input.GetKey(KeyCode.D))
+        else if (Input.GetKey(KeyCode.D))
         {
+
+            if (!player.isFacingRight)
+            {
+                player.transform.localScale = new Vector2(-1 * player.transform.localScale.x, player.transform.localScale.y);
+            }
             player.Move(Vector2.right);
+            player.isFacingRight = true;
+        }
+        else
+        {
+            player.animator.SetBool("isWalking", false);
+
+
         }
         
     }
