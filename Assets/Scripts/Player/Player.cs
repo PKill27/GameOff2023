@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    public float currTemp;
-   
     public Rigidbody2D rb;
     public float speed = 1f;
     public float jumpPower = 1f;
@@ -28,57 +26,232 @@ public class Player : MonoBehaviour
     public LayerMask platformLayer;
     public LayerMask treeLayer;
     public Sprite sprite;
+    public SpriteRenderer spriteRender;
     public Transform groundCheckPos;
     public float groundCheckRadius;
+    private Vector2 forwardVector;
     public bool isJumping;
     public bool canJump;
-
+    public bool isOnSlope;
+    public bool isWalking;
+    private float slopeAngle;
+    private float prevSlopeAngle;
+    private float sideAngle;
     public Animator animator;
+    public bool hasStartedEndGame;
+    private float rotationResetimer;
+    public PhysicsMaterial2D highFriction;
+    public PhysicsMaterial2D regularFriction;
+    public Image[] freezeOverlay;
+    public Transform[] checkpoints;
+    private bool aboutToJump;
+    public bool isGameOver = false;
+    public GameObject gameOverPanel;
+    public float freezeOverlayMultiplier = 1;
+    public bool isTalking = false;
+    public GameObject deadPlayer;
+    public Material deadMat;
     private void Awake()
     {
         instance = this;
     }
+
     private void Update()
     {
-        AddFreeze();
-        IncreaseHunger();
-        SetGrounded();
+        if (!isTalking)
+        {
+            AddFreeze();
+            IncreaseHunger();
+            SetGrounded();
+            CheckFrontAngles();
+            UpdateAngle();
+            CheckEndGame();
+        }
+        
     }
 
-private void Start()
+   private void CheckEndGame()
     {
+        if (temp > freezeTemp || hunger > maxHunger)
+        {
+            if (isGrounded && !hasStartedEndGame)
+            {
+                isGameOver = true;
+                hasStartedEndGame = true;
+                animator.SetBool("isDead", true);
+                StartCoroutine(WaitForDeath());
+                
+            }   
+        }
+    }
+
+    IEnumerator WaitForDeath()
+    {
+        yield return new WaitForSeconds(4f);
+        //gameOverPanel.SetActive(true);
+        temp = 0;
+        hunger = 0;
+        GameObject obj = Instantiate(deadPlayer,transform);
+        obj.transform.parent = transform.parent;
+        spriteRender.material = deadMat;
+        isGameOver = false;
+        animator.SetBool("isDead", false);
+        hasStartedEndGame = false;
+
+    }
+
+    private void Start()
+    {
+        transform.position = GetCheckPointandPos();
         rb = GetComponent<Rigidbody2D>();
- 
+        
         sprite = GetComponent<SpriteRenderer>().sprite;
         animator = GetComponent<Animator>();
+        spriteRender = GetComponent<SpriteRenderer>();
     }
-    
+
+    public Vector2 GetCheckPointandPos()
+    {
+        return checkpoints[MainManager.instance.checkPoint].position;
+    }
+
     public void Move(Vector2 movement)
     {
-        SetGrounded();
-        
-        animator.SetBool("isWalking", true);
-        rb.velocity = new Vector2(movement.x * speed, rb.velocity.y);
-        UpdateAngle();
-    }
+        if (!isGameOver&& !isTalking)
+        {
+            SetGrounded();
+            if(movement == Vector2.left)
+            {
+                if (isFacingRight)
+                {
+                    transform.localScale = new Vector2(-1 * transform.localScale.x, transform.localScale.y);
+                }
+                isFacingRight = false;
 
+            }else if(movement == Vector2.right)
+            {
+                if (!isFacingRight)
+                {
+                    transform.localScale = new Vector2(-1 * transform.localScale.x, transform.localScale.y);
+                }
+                isFacingRight = true;
+            }
+            animator.SetBool("isWalking", true);
+
+            if (isGrounded && !isOnSlope)
+            {
+                rb.velocity = new Vector2((movement.x * speed), rb.velocity.y);
+            }
+            else if (canJump && isOnSlope)
+            {
+                rb.velocity = -1 * new Vector2(speed * forwardVector.x * movement.x, speed * forwardVector.y * movement.x);
+            }
+            else if (!isGrounded)
+            {
+                rb.velocity = new Vector2((movement.x * speed), rb.velocity.y);
+            }
+        }
+    }
+    private void CheckFrontAngles()
+    {
+        RaycastHit2D slopeHitFront = Physics2D.Raycast(groundCheckPos.position, Vector2.right, .5f, platformLayer);
+        RaycastHit2D slopeHitBack = Physics2D.Raycast(groundCheckPos.position, -Vector2.right, .5f, platformLayer);
+        Debug.DrawRay(groundCheckPos.position, transform.right, Color.green);
+        if (slopeHitFront)
+        {
+            isOnSlope = true;
+            sideAngle = Vector2.Angle(slopeHitFront.normal, Vector2.up);
+
+        }
+        else if (slopeHitBack)
+        {
+            isOnSlope = true;
+            sideAngle = Vector2.Angle(slopeHitBack.normal, Vector2.up);
+        }
+        else
+        {
+            sideAngle = 0.0f;
+            isOnSlope = false;
+        }
+    }
     private void UpdateAngle()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, .1f);
+        //need to check vec2.down also cause if chr pointing up it doesnt know what to do
+        rotationResetimer += Time.deltaTime;
+        RaycastHit2D hit = Physics2D.Raycast(groundCheckPos.position, -transform.up, .5f,platformLayer);
 
-        if (hit.collider != null)
+        RaycastHit2D hitTrueDown = Physics2D.Raycast(groundCheckPos.position, Vector2.down, .5f, platformLayer);
+        
+        if (hit)
         {
-            Debug.DrawRay(hit.point, hit.normal, Color.red);
+            forwardVector = Vector2.Perpendicular(hit.normal).normalized;
 
+            slopeAngle = Vector2.Angle(hit.normal, Vector2.up);
+
+            if (slopeAngle != prevSlopeAngle)
+            {
+                isOnSlope = true;
+            }
+
+            prevSlopeAngle = slopeAngle;
+
+            if (rotationResetimer >= .15)
+            {
+                rb.rotation = -Vector2.SignedAngle(hit.normal, Vector2.up);
+                rotationResetimer = 0;
+            }
+
+        }else if (hitTrueDown)
+        {
+            forwardVector = Vector2.Perpendicular(hitTrueDown.normal).normalized;
+
+            slopeAngle = Vector2.Angle(hitTrueDown.normal, Vector2.up);
+
+            if (slopeAngle != prevSlopeAngle)
+            {
+                isOnSlope = true;
+            }
+
+            prevSlopeAngle = slopeAngle;
+
+            if (rotationResetimer >= .15)
+            {
+                rb.rotation = -Vector2.SignedAngle(hitTrueDown.normal, Vector2.up);
+                rotationResetimer = 0;
+            }
+        }
+        if(isOnSlope && !isWalking)
+        {
+            rb.sharedMaterial = highFriction;
+        }
+        if (!isWalking)
+        {
+            rb.sharedMaterial = highFriction;
+        }
+        else
+        {
+            rb.sharedMaterial = regularFriction;
         }
     }
 
     public void Jump()
     {
+        if (!aboutToJump&& !isTalking && !isGameOver)
+        {
+            animator.SetBool("isJumping", true);
+            animator.SetBool("landed", false);
+            StartCoroutine(DelayJump());
+        }
+    }
+    IEnumerator DelayJump()
+    {
+        aboutToJump =  true;
+        yield return new WaitForSeconds(.2f);
         rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
         isGrounded = false;
         canJump = false;
         isJumping = true;
+        aboutToJump = false;
     }
 
     
@@ -97,6 +270,65 @@ private void Start()
         float clampedFillAmount = Mathf.Clamp(amount, 0f, 1f);
 
         tempBar.fillAmount = clampedFillAmount;
+
+        SetOverlays();
+        
+        
+    }
+    public void SetOverlays()
+    {
+        SetOverlayAlpha();
+      
+    }
+    void SetOverlayAlpha()
+    { 
+        float[] alpha = GetAlpha();
+
+        Color overlayColor = freezeOverlay[0].color;
+        print(alpha[1]);
+        overlayColor.a = alpha[0];
+        freezeOverlay[0].color = overlayColor;
+
+        Color overlayColor1 = freezeOverlay[1].color;
+        overlayColor1.a = alpha[1];
+        freezeOverlay[1].color = overlayColor1;
+
+        Color overlayColor2 = freezeOverlay[2].color;
+        overlayColor2.a = alpha[2];
+        freezeOverlay[2].color = overlayColor2;
+    }
+   private float[] GetAlpha()
+    {
+        float[] alpha = new float[3];
+        
+        float tempPercent = 1-((freezeTemp - temp) / freezeTemp);
+        print(tempPercent);
+        if (tempPercent <= .50)
+        {
+            alpha[0] = Mathf.Clamp01((tempPercent) / (.50f));
+            alpha[1] = 0;
+            alpha[2] = 0;
+        }
+        else if(tempPercent <= .75)
+        {
+            alpha[0] = 1;
+            print("here");
+            alpha[1] = Mathf.Clamp01((tempPercent - .50f) / (.75f - .50f));
+            alpha[2] = 0;
+        }
+        else if (tempPercent <= .95)
+        {
+            alpha[0] = 1;
+            alpha[1] = 1;
+            alpha[2] = Mathf.Clamp01((tempPercent - .75f) / (.95f - .75f));
+        }
+        else if (tempPercent > .95)
+        {
+            alpha[0] = 1;
+            alpha[1] = 1;
+            alpha[2] = 1;
+        }
+        return alpha;
     }
 
     public void HitProjectile(float freezeAmount)
@@ -113,10 +345,17 @@ private void Start()
         {
             isJumping = false;
         }
-
-        if (isGrounded && !isJumping )
+        
+        if (isGrounded && !isJumping && !aboutToJump)
         {
+            animator.SetBool("isJumping", false);
+            animator.SetBool("landed", true);
+            animator.SetBool("isFalling", false);
             canJump = true;
+        }else if (!isGrounded && canJump)
+        {
+            animator.SetBool("isFalling", true);
+            animator.SetBool("landed", false);
         }
     }
     public void Eat()

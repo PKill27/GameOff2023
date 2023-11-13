@@ -25,30 +25,18 @@ public class InputManager : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.A))
         {
-            
-            
-            player.Move(Vector2.left);
-            if (player.isFacingRight)
-            {
-                player.transform.localScale = new Vector2(-1 * player.transform.localScale.x, player.transform.localScale.y);
-            }
-            
-            player.isFacingRight = false;
+            player.isWalking = true;
+            player.Move(Vector2.left); 
         }
         else if (Input.GetKey(KeyCode.D))
         {
-
-            if (!player.isFacingRight)
-            {
-                player.transform.localScale = new Vector2(-1 * player.transform.localScale.x, player.transform.localScale.y);
-            }
+            player.isWalking = true;
             player.Move(Vector2.right);
-            player.isFacingRight = true;
         }
         else
         {
             player.animator.SetBool("isWalking", false);
-
+            player.isWalking = false;
 
         }
         

@@ -38,11 +38,10 @@ public class DialogueManager : MonoBehaviour
         story = new Story(inkFile[Selected].text);
         tags = new List<string>();
         choiceSelected = null;
+        Player.instance.isTalking = true;
         if (story.canContinue)
         {
             AdvanceDialogue();
-
-            //Are there any choices?
             if (story.currentChoices.Count != 0)
             {
                 StartCoroutine(ShowChoices());
@@ -50,12 +49,12 @@ public class DialogueManager : MonoBehaviour
         }
         else
         {
+            Player.instance.isTalking = false;
             FinishDialogue();
         }
     }
     private void Update()
     {
-       //other inputs to go next
     }
 
     private void FinishDialogue()
@@ -66,12 +65,11 @@ public class DialogueManager : MonoBehaviour
 
     public void ContinueButton()
     {
-
+        Player.instance.isTalking = true;
         if (story.canContinue)
         {
             AdvanceDialogue();
 
-            //Are there any choices?
             if (story.currentChoices.Count != 0)
             {
                 StartCoroutine(ShowChoices());
@@ -79,11 +77,11 @@ public class DialogueManager : MonoBehaviour
         }
         else
         {
+            Player.instance.isTalking = false;
             FinishDialogue();
         }
     }
 
-    // Advance through the story 
     void AdvanceDialogue()
     {
         string currentSentence = story.Continue();
@@ -92,7 +90,6 @@ public class DialogueManager : MonoBehaviour
         StartCoroutine(TypeSentence(currentSentence));
     }
 
-    // Type out the sentence letter by letter and make character idle if they were talking
     IEnumerator TypeSentence(string sentence)
     {
         message.text = "";
@@ -102,24 +99,22 @@ public class DialogueManager : MonoBehaviour
             
             yield return new WaitForSeconds(.05f);
         }
-        //CharacterScript tempSpeaker = GameObject.FindObjectOfType<CharacterScript>();
-        /**if (tempSpeaker.isTalking)
-        {
-            SetAnimation("idle");
-        }**/
         yield return null;
     }
-
-    // Create then show the choices on the screen until one got selected
     IEnumerator ShowChoices()
     {
         Debug.Log("There are choices need to be made here!");
         List<Choice> _choices = story.currentChoices;
+        RectTransform panelRectTransform = optionPanel.GetComponent<RectTransform>();
 
         for (int i = 0; i < _choices.Count; i++)
         {
             GameObject temp = Instantiate(customButton, optionPanel.transform);
-            temp.transform.GetChild(0).GetComponent<Text>().text = _choices[i].text;
+            RectTransform buttonRectTransform = temp.GetComponent<RectTransform>();
+            float offsetX = -panelRectTransform.rect.width / 4 + 10f + (buttonRectTransform.rect.width + 10f) * i;
+            buttonRectTransform.anchoredPosition = new Vector2(offsetX, 0f);
+
+            temp.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = _choices[i].text;
             temp.AddComponent<Selectable>();
             temp.GetComponent<Selectable>().element = _choices[i];
             temp.GetComponent<Button>().onClick.AddListener(() => { temp.GetComponent<Selectable>().Decide(); });
@@ -132,14 +127,12 @@ public class DialogueManager : MonoBehaviour
         AdvanceFromDecision();
     }
 
-    // Tells the story which branch to go to
     public static void SetDecision(object element)
     {
         choiceSelected = (Choice)element;
         story.ChooseChoiceIndex(choiceSelected.index);
     }
 
-    // After a choice was made, turn off the panel and advance from that choice
     void AdvanceFromDecision()
     {
         optionPanel.SetActive(false);
@@ -147,13 +140,10 @@ public class DialogueManager : MonoBehaviour
         {
             Destroy(optionPanel.transform.GetChild(i).gameObject);
         }
-        choiceSelected = null; // Forgot to reset the choiceSelected. Otherwise, it would select an option without player intervention.
+        choiceSelected = null; 
         AdvanceDialogue();
     }
 
-    /*** Tag Parser ***/
-    /// In Inky, you can use tags which can be used to cue stuff in a game.
-    /// This is just one way of doing it. Not the only method on how to trigger events. 
     void ParseTags()
     {
         tags = story.currentTags;
@@ -165,9 +155,6 @@ public class DialogueManager : MonoBehaviour
 
             switch (prefix.ToLower())
             {
-                case "anim":
-                    SetAnimation(param);
-                    break;
                 case "color":
                     SetTextColor(param);
                     break;
@@ -178,11 +165,7 @@ public class DialogueManager : MonoBehaviour
             }
         }
     }
-    void SetAnimation(string _name)
-    {
-        /**CharacterScript cs = GameObject.FindObjectOfType<CharacterScript>();
-        cs.PlayAnimation(_name);**/
-    }
+   
     private void ChangeSpeaker(string speaker)
     {
       if(speaker == "player")
