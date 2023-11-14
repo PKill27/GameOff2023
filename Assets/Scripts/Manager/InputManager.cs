@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
-    public InputManager instance;
+    public static InputManager instance;
     public RedPanda player;
     public Camera mainCamera;
     void Awake()

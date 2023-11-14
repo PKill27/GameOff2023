@@ -13,12 +13,17 @@ public class Player : MonoBehaviour
     public float temp;
     public float freezeTemp;
     public float freezeRate;
+
     public Image tempBar;
     public Image foodBar;
+    public Image hpBar;
 
     public float hunger;
     public float maxHunger;
     public float hungerRate;
+
+    public float hp;
+    public float maxHp;
 
     public static Player instance;
     public bool isFacingRight;
@@ -36,7 +41,8 @@ public class Player : MonoBehaviour
     public bool isWalking;
     private float slopeAngle;
     private float prevSlopeAngle;
-    private float sideAngle;
+    private float sideAngleLeft;
+    private float sideAngleRight;
     public Animator animator;
     public bool hasStartedEndGame;
     private float rotationResetimer;
@@ -51,6 +57,14 @@ public class Player : MonoBehaviour
     public bool isTalking = false;
     public GameObject deadPlayer;
     public Material deadMat;
+    public bool hasDied = false;
+    public bool isInWater = false;
+    public bool isInFire = false;
+    public bool canBeSpirit = false;
+    public float fallDistance;
+    public float startFallDistance;
+    private bool takingFallDamage;
+    public GameObject spiritLight;
     private void Awake()
     {
         instance = this;
@@ -62,29 +76,85 @@ public class Player : MonoBehaviour
         {
             AddFreeze();
             IncreaseHunger();
+            UpdateHpUi();
             SetGrounded();
             CheckFrontAngles();
             UpdateAngle();
             CheckEndGame();
+            CheckFallDamage();
         }
         
     }
+    private void CheckFallDamage()
+    {
+        float fallDamageThreshold = 1.6f;
+       
+        if(fallDistance >= fallDamageThreshold && !takingFallDamage)
+        {
+            //if here taking fall dmg
+            print(startFallDistance);
+            hp = hp - 40;
+            fallDistance = 0;
+            startFallDistance = rb.position.y;
+            takingFallDamage = true;
+            StartCoroutine(takeFallDamage());
+        }
+        else if (isGrounded)
+        {
+            startFallDistance = rb.position.y;
+        }
+    }
+    IEnumerator takeFallDamage()
+    {
+        yield return new WaitForSeconds(2f);
+        takingFallDamage = false;
+        fallDistance = 0;
+        startFallDistance = rb.position.y;
+    }
+    private void UpdateHpUi()
+    {
+        if((temp / freezeTemp) >= .5)
+        {
+            hp = hp - (temp / freezeTemp) * .01f;
+        }
+        if ((hunger / maxHunger) >= .8)
+        {
+            hp = hp - (hunger / maxHunger) * .01f;
+        }
+        
+        float amount = 1-((maxHp - hp) / maxHp);
+        float clampedFillAmount = Mathf.Clamp(amount, 0f, 1f);
 
+        hpBar.fillAmount = clampedFillAmount;
+    }
    private void CheckEndGame()
     {
-        if (temp > freezeTemp || hunger > maxHunger)
+        if (hp <= 0)
         {
-            if (isGrounded && !hasStartedEndGame)
+            if (isGrounded && !hasStartedEndGame && !hasDied && canBeSpirit)
             {
                 isGameOver = true;
                 hasStartedEndGame = true;
                 animator.SetBool("isDead", true);
                 StartCoroutine(WaitForDeath());
                 
-            }   
+            }else if(isGrounded && !hasStartedEndGame && !hasDied && !canBeSpirit)
+
+            {
+                isGameOver = true;
+                hasStartedEndGame = true;
+                animator.SetBool("isDead", true);
+                StartCoroutine(WaitForDeath());
+            }
+
+                
         }
     }
-
+    IEnumerator WaitForDeathMenu()
+    {
+        yield return new WaitForSeconds(4f);
+        gameOverPanel.SetActive(true);
+    }
     IEnumerator WaitForDeath()
     {
         yield return new WaitForSeconds(4f);
@@ -97,6 +167,8 @@ public class Player : MonoBehaviour
         isGameOver = false;
         animator.SetBool("isDead", false);
         hasStartedEndGame = false;
+        hasDied = true;
+        spiritLight.SetActive(true);
 
     }
 
@@ -104,7 +176,7 @@ public class Player : MonoBehaviour
     {
         transform.position = GetCheckPointandPos();
         rb = GetComponent<Rigidbody2D>();
-        
+        hp = maxHp;
         sprite = GetComponent<SpriteRenderer>().sprite;
         animator = GetComponent<Animator>();
         spriteRender = GetComponent<SpriteRenderer>();
@@ -140,37 +212,57 @@ public class Player : MonoBehaviour
 
             if (isGrounded && !isOnSlope)
             {
+                //no slope
                 rb.velocity = new Vector2((movement.x * speed), rb.velocity.y);
             }
             else if (canJump && isOnSlope)
             {
-                rb.velocity = -1 * new Vector2(speed * forwardVector.x * movement.x, speed * forwardVector.y * movement.x);
+                
+                if(sideAngleLeft >= 70&& !isFacingRight)
+                {
+                    rb.velocity = new Vector2(0, rb.velocity.y);
+                    animator.SetBool("isWalking", false);
+                }
+                else if (sideAngleRight >= 70 && isFacingRight)
+                {
+                    rb.velocity = new Vector2(0, rb.velocity.y);
+                    animator.SetBool("isWalking", false);
+                }
+                else
+                {
+                    //on slope move in direction of slope
+                    rb.velocity = -1 * new Vector2(speed * forwardVector.x * movement.x, speed * forwardVector.y * movement.x);
+                    
+                }
+                
             }
             else if (!isGrounded)
             {
+                //in air
                 rb.velocity = new Vector2((movement.x * speed), rb.velocity.y);
             }
         }
     }
     private void CheckFrontAngles()
     {
-        RaycastHit2D slopeHitFront = Physics2D.Raycast(groundCheckPos.position, Vector2.right, .5f, platformLayer);
-        RaycastHit2D slopeHitBack = Physics2D.Raycast(groundCheckPos.position, -Vector2.right, .5f, platformLayer);
+        RaycastHit2D slopeHitRight = Physics2D.Raycast(groundCheckPos.position, Vector2.right, .25f, platformLayer);
+        RaycastHit2D slopeHitLeft = Physics2D.Raycast(groundCheckPos.position, -Vector2.right, .25f, platformLayer);
         Debug.DrawRay(groundCheckPos.position, transform.right, Color.green);
-        if (slopeHitFront)
+        if (slopeHitRight)
         {
             isOnSlope = true;
-            sideAngle = Vector2.Angle(slopeHitFront.normal, Vector2.up);
+            sideAngleRight = Vector2.Angle(slopeHitRight.normal, Vector2.up);
 
         }
-        else if (slopeHitBack)
+        else if (slopeHitLeft)
         {
             isOnSlope = true;
-            sideAngle = Vector2.Angle(slopeHitBack.normal, Vector2.up);
+            sideAngleLeft = Vector2.Angle(slopeHitLeft.normal, Vector2.up);
         }
         else
         {
-            sideAngle = 0.0f;
+            sideAngleLeft = 0.0f;
+            sideAngleRight = 0.0f;
             isOnSlope = false;
         }
     }
@@ -285,7 +377,6 @@ public class Player : MonoBehaviour
         float[] alpha = GetAlpha();
 
         Color overlayColor = freezeOverlay[0].color;
-        print(alpha[1]);
         overlayColor.a = alpha[0];
         freezeOverlay[0].color = overlayColor;
 
@@ -302,7 +393,6 @@ public class Player : MonoBehaviour
         float[] alpha = new float[3];
         
         float tempPercent = 1-((freezeTemp - temp) / freezeTemp);
-        print(tempPercent);
         if (tempPercent <= .50)
         {
             alpha[0] = Mathf.Clamp01((tempPercent) / (.50f));
@@ -312,7 +402,6 @@ public class Player : MonoBehaviour
         else if(tempPercent <= .75)
         {
             alpha[0] = 1;
-            print("here");
             alpha[1] = Mathf.Clamp01((tempPercent - .50f) / (.75f - .50f));
             alpha[2] = 0;
         }
@@ -343,20 +432,28 @@ public class Player : MonoBehaviour
         
         if (rb.velocity.y <= 0.0f)
         {
+            //top of jump 
             isJumping = false;
+            startFallDistance = Mathf.Max(startFallDistance,rb.position.y);
         }
         
         if (isGrounded && !isJumping && !aboutToJump)
         {
+            //is on ground
             animator.SetBool("isJumping", false);
             animator.SetBool("landed", true);
             animator.SetBool("isFalling", false);
             canJump = true;
-        }else if (!isGrounded && canJump)
+            fallDistance = startFallDistance - rb.position.y;
+        }
+        else if (!isGrounded && canJump)
         {
             animator.SetBool("isFalling", true);
             animator.SetBool("landed", false);
+            //startFallDistance = Mathf.Max(startFallDistance, rb.position.y);
         }
+        
+
     }
     public void Eat()
     {
