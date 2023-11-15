@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 6802235748313895823}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.161, y: -0.006, z: 0}
+  m_LocalPosition: {x: 0.089, y: 0.162, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -73,12 +73,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: -4891688351616430440, guid: d5180ee658dc646bea9c83a634ccf94a, type: 3}
+  m_Sprite: {fileID: 845214750696770572, guid: cfe330b1f9f4c4c3cb7fb17d57ad11b2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.5, y: 2}
+  m_Size: {x: 0.99, y: 1.22}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -161,12 +161,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -6705639023677779174, guid: c86a8dc14829a44c3a2bb0aa782c1b79, type: 3}
+  m_Sprite: {fileID: -6792922866160359605, guid: 9248087ca90a74d50a7c5bddb8db50a6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.8125, y: 2}
+  m_Size: {x: 1.375, y: 1.53125}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -210,8 +210,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.8125, y: 2}
-    newSize: {x: 1.8125, y: 2}
+    oldSize: {x: 0.88, y: 0.98}
+    newSize: {x: 1.375, y: 1.53125}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -256,8 +256,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.8125, y: 2}
-    newSize: {x: 1.8125, y: 2}
+    oldSize: {x: 0.88, y: 0.98}
+    newSize: {x: 1.375, y: 1.53125}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -276,3 +276,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f880511f3c06d486184539f438acb46d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneName: 

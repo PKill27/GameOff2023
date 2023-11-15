@@ -65,6 +65,9 @@ public class Player : MonoBehaviour
     public float startFallDistance;
     private bool takingFallDamage;
     public GameObject spiritLight;
+    public bool isEating = false;
+    public int trashCollected;
+
     private void Awake()
     {
         instance = this;
@@ -189,7 +192,7 @@ public class Player : MonoBehaviour
 
     public void Move(Vector2 movement)
     {
-        if (!isGameOver&& !isTalking)
+        if (!isGameOver&& !isTalking && !isEating)
         {
             SetGrounded();
             if(movement == Vector2.left)
@@ -312,7 +315,7 @@ public class Player : MonoBehaviour
                 rotationResetimer = 0;
             }
         }
-        if(isOnSlope && !isWalking)
+        if((isOnSlope && !isWalking))
         {
             rb.sharedMaterial = highFriction;
         }
@@ -328,7 +331,7 @@ public class Player : MonoBehaviour
 
     public void Jump()
     {
-        if (!aboutToJump&& !isTalking && !isGameOver)
+        if (!aboutToJump&& !isTalking && !isGameOver && !isEating)
         {
             animator.SetBool("isJumping", true);
             animator.SetBool("landed", false);
@@ -349,7 +352,7 @@ public class Player : MonoBehaviour
     
     public void IncreaseHunger()
     {
-        hunger = hunger + Time.deltaTime * hungerRate;
+        hunger = Mathf.Clamp(hunger + Time.deltaTime * hungerRate,0, maxHunger);
         float amount = ((maxHunger - hunger) / maxHunger);
         float clampedFillAmount = Mathf.Clamp(amount, 0f, 1f);
 
@@ -357,7 +360,7 @@ public class Player : MonoBehaviour
     }
     public void AddFreeze()
     {
-        temp = temp + Time.deltaTime * freezeRate;
+        temp = Mathf.Clamp(temp + Time.deltaTime * freezeRate,0,freezeTemp);
         float amount = 1 - ((freezeTemp - temp) / freezeTemp);
         float clampedFillAmount = Mathf.Clamp(amount, 0f, 1f);
 
@@ -377,15 +380,15 @@ public class Player : MonoBehaviour
         float[] alpha = GetAlpha();
 
         Color overlayColor = freezeOverlay[0].color;
-        overlayColor.a = alpha[0];
+        overlayColor.a = alpha[0]/2;
         freezeOverlay[0].color = overlayColor;
 
         Color overlayColor1 = freezeOverlay[1].color;
-        overlayColor1.a = alpha[1];
+        overlayColor1.a = alpha[1]/3;
         freezeOverlay[1].color = overlayColor1;
 
         Color overlayColor2 = freezeOverlay[2].color;
-        overlayColor2.a = alpha[2];
+        overlayColor2.a = alpha[2]/4;
         freezeOverlay[2].color = overlayColor2;
     }
    private float[] GetAlpha()
@@ -457,9 +460,17 @@ public class Player : MonoBehaviour
     }
     public void Eat()
     {
+        isEating = true;
         hunger = Mathf.Max(hunger - 10, 0);
+        animator.SetBool("isEating",true);
+        StartCoroutine(WaitTillDoneEating());
     }
-
+    IEnumerator WaitTillDoneEating()
+    {
+        yield return new WaitForSeconds(2f);
+        isEating = false;
+        animator.SetBool("isEating", false);
+    }
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(groundCheckPos.position, groundCheckRadius);

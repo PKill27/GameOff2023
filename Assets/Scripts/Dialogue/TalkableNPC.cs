@@ -10,7 +10,8 @@ public class TalkableNPC : MonoBehaviour
     private bool isTalkableTo;
     public Image npcPicture;
     public Image playerPicture;
-    private void OnTriggerEnter2D(Collider2D collision)
+
+    protected void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {

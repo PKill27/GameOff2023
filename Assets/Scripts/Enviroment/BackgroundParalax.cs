@@ -4,19 +4,19 @@ using UnityEngine;
 
 public class BackgroundParalax : MonoBehaviour { 
 
-    public Transform player;
+    public Rigidbody2D player;
     public float backgroundSpeed = 0.5f;
     private float startX;
+    Rigidbody2D rb;
     private void Start()
     {
         startX = transform.position.x;
+        rb = GetComponent<Rigidbody2D>();
     }
     void Update()
     {
-        // Calculate the movement distance based on the player's movement
-        float moveDistance = player.position.x * backgroundSpeed;
-
-        // Move the background in the opposite direction
-        transform.position = new Vector3(startX+moveDistance, transform.position.y, transform.position.z);
-    }
+        rb.velocityX = player.velocityX * backgroundSpeed;
+        
+    
+}
 }

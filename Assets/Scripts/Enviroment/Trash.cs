@@ -4,15 +4,28 @@ using UnityEngine;
 
 public class Trash : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private bool canPickUp;
+    protected void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        if (collision.CompareTag("Player"))
+        {
+            
+            canPickUp = true;
+        }
     }
-
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        
+        if (collision.CompareTag("Player"))
+        {
+            canPickUp = false;
+        }
+    }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.E) && canPickUp)
+        {
+            Player.instance.trashCollected += 1;
+            Destroy(gameObject);
+        }
     }
 }

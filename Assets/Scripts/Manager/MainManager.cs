@@ -8,13 +8,14 @@ public class MainManager : MonoBehaviour, iDataPersistance
     public int musicVol;
     public int sfxVol;
     public int checkPoint;
-
+    public bool[] monologues;
     public void LoadData(GameData data)
     {
         print("loading");
         this.musicVol = data.musicVol;
         this.sfxVol = data.sfxVol;
         this.checkPoint = data.checkpoint;
+        this.monologues = data.monologues;
     }
 
     public void SaveData(ref GameData data)
@@ -23,6 +24,7 @@ public class MainManager : MonoBehaviour, iDataPersistance
         data.musicVol = this.musicVol;
         data.sfxVol = this.sfxVol;
         data.checkpoint = this.checkPoint;
+        data.monologues = this.monologues;
     }
     private void Awake()
     {

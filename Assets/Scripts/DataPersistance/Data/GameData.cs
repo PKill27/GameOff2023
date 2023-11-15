@@ -8,10 +8,13 @@ public class GameData
     public int checkpoint;
     public int musicVol;
     public int sfxVol;
+    public bool[] monologues;
     public GameData()
     {
         this.checkpoint = 0;
         this.musicVol = 100;
         this.sfxVol = 100;
+        this.monologues = new bool[10] {false, false, false, false, false, false, false, false, false, false };
+        
     }
 }

@@ -9,7 +9,14 @@ public class InputManager : MonoBehaviour
     public Camera mainCamera;
     void Awake()
     {
+        if (instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 
     

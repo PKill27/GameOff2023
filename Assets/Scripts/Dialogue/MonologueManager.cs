@@ -4,15 +4,11 @@ using UnityEngine;
 using TMPro;
 public class MonologueManager : MonoBehaviour
 {
-    public bool coldFirstTime = false;
-    public bool nextToFireFirstTime = false;
-    public bool hungryFirstTime = false;
-    public bool inWaterFirstTime = false;
-    public bool seeFoodFirstTime = false;
+    
     public TextMeshProUGUI message;
     public GameObject innerMonoPanel;
     public static MonologueManager instance;
-    
+    public bool isMonoLoguing = false;
     private void Awake()
     {
         if (instance != null)
@@ -24,35 +20,50 @@ public class MonologueManager : MonoBehaviour
         instance = this;
         DontDestroyOnLoad(gameObject);
     }
-
+    
     void Update()
     {
-        if (!coldFirstTime)
+        if (!isMonoLoguing)
         {
 
-        } 
-        else if (!hungryFirstTime)
+       
+        if (!MainManager.instance.monologues[0] && Player.instance.temp <= 10)
+        {//when player is cold first time
+            PlayInnerMono("I am very cold better find shelter");
+            MainManager.instance.monologues[0] = true;
+        }
+        else if (!MainManager.instance.monologues[1] && Player.instance.isInFire)
         {
+            //by fire first time
+            MainManager.instance.monologues[1] = true;
+            PlayInnerMono("the fire feels good I am starting to get the feeling back in my body");
+        }
 
-        }
-        if (!nextToFireFirstTime&&Player.instance.isInFire)
+        else if (!MainManager.instance.monologues[2] && Player.instance.isInWater)
         {
-           nextToFireFirstTime = true;
-           PlayInnerMono("the fire feels good I am starting to get the feeling back in my body");
-        }
-        if (!inWaterFirstTime && Player.instance.isInWater)
-        {
-            inWaterFirstTime = true;
+            //In water first time
+            MainManager.instance.monologues[2] = true;
             PlayInnerMono("ohhh the water is so cold if i dont get out fast I might freeze.");
         }
-        else if (!seeFoodFirstTime)
-        {
 
+        else if (!MainManager.instance.monologues[3] && Player.instance.hunger <= 20)
+        {
+            MainManager.instance.monologues[3] = true;
+            PlayInnerMono("I am starting to feel hungry better find food soon");
+            //hungry first time
+        }
+
+
+            /** if (!seeFoodFirstTime)
+             {
+
+             }**/
         }
     }
     public void PlayInnerMono(string message)
     {
         innerMonoPanel.SetActive(true);
+        isMonoLoguing = true;
         StartCoroutine(TypeSentence(message));
 
 
@@ -64,9 +75,10 @@ public class MonologueManager : MonoBehaviour
         {
             message.text += letter;
 
-            yield return new WaitForSeconds(.05f);
+            yield return new WaitForSeconds(.03f);
         }
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(2f);
+        isMonoLoguing = false;
         innerMonoPanel.SetActive(false);
         yield return null;
     }
