@@ -11,6 +11,7 @@ public class GameOverMenu : MonoBehaviour
         Player.instance.transform.position = Player.instance.GetCheckPointandPos();
         Player.instance.hunger = 0;
         Player.instance.temp = 0;
+        Player.instance.hp = Player.instance.maxHp;
         Player.instance.isGameOver = false;
         Player.instance.hasStartedEndGame = false;
         gameOverPanel.SetActive(false);

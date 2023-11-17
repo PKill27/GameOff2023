@@ -7,23 +7,21 @@ using TMPro;
 public class DialogueManager : MonoBehaviour
 {
     public List<TextAsset> inkFile;
-    public Canvas playerImage;
-    public Canvas NPCImage;
+    public Image speakerImage;
     public GameObject customButton;
     public GameObject optionPanel;
     public bool isTalking = false;
-    public Animator playerAnim;
-    public Animator NPCAnim;
     public GameObject DialogueParent;
     static Story story;
     TextMeshProUGUI nametag;
-
-
     public TextMeshProUGUI message;
     List<string> tags;
     static Choice choiceSelected;
-
     public static DialogueManager instance;
+
+    public Sprite npcImage;
+    public Sprite playerImage;
+
     private void Awake()
     {
         instance = this;
@@ -33,12 +31,15 @@ public class DialogueManager : MonoBehaviour
         
     }
 
-    public void startDialogue(int Selected)
+    public void startDialogue(int Selected,Image currentSpeaker,  Sprite npcImage, Sprite playerImage)
     {
         story = new Story(inkFile[Selected].text);
         tags = new List<string>();
         choiceSelected = null;
+        this.playerImage = playerImage;
+        this.npcImage = npcImage;
         Player.instance.isTalking = true;
+        speakerImage = currentSpeaker;
         if (story.canContinue)
         {
             AdvanceDialogue();
@@ -170,16 +171,10 @@ public class DialogueManager : MonoBehaviour
     {
       if(speaker == "player")
         {
-            playerImage.sortingOrder = 1;
-            NPCImage.sortingOrder = 0;
-            playerAnim.SetBool("isSelected", true);
-            NPCAnim.SetBool("isSelected", false);
+            speakerImage.sprite = playerImage;
         }else if(speaker == "npc")
         {
-            playerImage.sortingOrder = 0;
-            NPCImage.sortingOrder = 1;
-            playerAnim.SetBool("isSelected", false);
-            NPCAnim.SetBool("isSelected", true);
+            speakerImage.sprite = npcImage;
         }
     }
     void SetTextColor(string _color)

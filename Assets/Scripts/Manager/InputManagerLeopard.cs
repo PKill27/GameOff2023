@@ -2,21 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InputManager : MonoBehaviour
+public class InputManagerLeopard : MonoBehaviour
 {
-    public static InputManager instance;
-    public RedPanda player;
-    public Camera mainCamera;
+   
+    //public RedPanda player;
+    public Leopard player;
     void Awake()
     {
-        if (instance != null)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        instance = this;
-        DontDestroyOnLoad(gameObject);
+        
     }
 
     

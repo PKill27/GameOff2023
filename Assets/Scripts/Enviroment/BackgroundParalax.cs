@@ -16,7 +16,6 @@ public class BackgroundParalax : MonoBehaviour {
     void Update()
     {
         rb.velocityX = player.velocityX * backgroundSpeed;
-        
-    
+ 
 }
 }

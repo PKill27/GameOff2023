@@ -9,7 +9,6 @@ public class TalkableNPC : MonoBehaviour
     public GameObject textToTalk;
     private bool isTalkableTo;
     public Image npcPicture;
-    public Image playerPicture;
 
     protected void OnTriggerEnter2D(Collider2D collision)
     {
@@ -33,8 +32,7 @@ public class TalkableNPC : MonoBehaviour
         {
             dialoguePanel.SetActive(true);
             npcPicture.sprite = GetComponent<SpriteRenderer>().sprite;
-            playerPicture.sprite = Player.instance.sprite;
-            DialogueManager.instance.startDialogue(dialogueNumber);
+            //DialogueManager.instance.startDialogue(dialogueNumber, npcPicture);
             isTalkableTo = false;
         }
     }

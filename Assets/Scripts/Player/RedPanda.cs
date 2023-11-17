@@ -4,10 +4,7 @@ using UnityEngine;
 
 public class RedPanda : Player
 {
-    private bool isClimbing = false;
-    private bool isHalfway;
-    private Vector2 groundNormal;
-    private Vector2 velocity;
+   
     private void OnCollisionEnter2D(Collision2D collision)
     {
        

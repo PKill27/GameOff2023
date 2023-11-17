@@ -14,8 +14,8 @@ public class TrashNpcManager : MonoBehaviour
     public GameObject dialoguePanel;
     public GameObject textToTalk;
     private bool isTalkableTo;
-    public Image npcPicture;
-    public Image playerPicture;
+    public Image SpeakerImage;
+    public Sprite npcSprite;
 
     protected void OnTriggerEnter2D(Collider2D collision)
     {
@@ -23,7 +23,8 @@ public class TrashNpcManager : MonoBehaviour
         {
             if (Player.instance.trashCollected >= 1)
             {
-                dialogueNumber = dialougueList[1];
+                dialogueNumber = dialougueList[2];
+                Player.instance.canBeSpirit = true;
             }
             textToTalk.SetActive(true);
             isTalkableTo = true;
@@ -42,11 +43,12 @@ public class TrashNpcManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E) && isTalkableTo)
         {
+            
             dialoguePanel.SetActive(true);
-            npcPicture.sprite = GetComponent<SpriteRenderer>().sprite;
-            playerPicture.sprite = Player.instance.sprite;
-            DialogueManager.instance.startDialogue(dialogueNumber);
+            SpeakerImage.sprite = GetComponent<SpriteRenderer>().sprite;
+            DialogueManager.instance.startDialogue(dialogueNumber, SpeakerImage, npcSprite,Player.instance.sprite);
             isTalkableTo = false;
+            dialogueNumber = dialougueList[1];
         }
     }
 

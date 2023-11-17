@@ -17,12 +17,12 @@ public class MainMenu : MonoBehaviour
     public void ContinueGame()
     {
         DataPersistenceManager.instance.LoadGame();
-        SceneManager.LoadScene("Platforming");
+        LoadScene.instance.LoadLevel("Platforming");
     }
     public void NewGame()
     {
         DataPersistenceManager.instance.NewGame();
-        SceneManager.LoadScene("Platforming");
+        LoadScene.instance.LoadLevel("NewGameScene");
     }
     public void Settings()
     {

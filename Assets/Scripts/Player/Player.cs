@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
 public class Player : MonoBehaviour
 {
     public Rigidbody2D rb;
     public float speed = 1f;
     public float jumpPower = 1f;
     public bool isGrounded;
+    public bool isFacingLeftStart = false;
 
     public float temp;
     public float freezeTemp;
@@ -67,10 +68,17 @@ public class Player : MonoBehaviour
     public GameObject spiritLight;
     public bool isEating = false;
     public int trashCollected;
-
+    public float timeLoaded = 0f;
     private void Awake()
     {
+        if (instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 
     private void Update()
@@ -85,14 +93,18 @@ public class Player : MonoBehaviour
             UpdateAngle();
             CheckEndGame();
             CheckFallDamage();
+            timeLoaded += Time.deltaTime;
         }
         
     }
     private void CheckFallDamage()
     {
         float fallDamageThreshold = 1.6f;
-       
-        if(fallDistance >= fallDamageThreshold && !takingFallDamage)
+        if (timeLoaded <= 1)//stops fall damage on loading in
+        {
+            fallDistance = 0;
+        }
+        if (fallDistance >= fallDamageThreshold && !takingFallDamage)
         {
             //if here taking fall dmg
             print(startFallDistance);
@@ -106,6 +118,8 @@ public class Player : MonoBehaviour
         {
             startFallDistance = rb.position.y;
         }
+        
+        
     }
     IEnumerator takeFallDamage()
     {
@@ -147,7 +161,7 @@ public class Player : MonoBehaviour
                 isGameOver = true;
                 hasStartedEndGame = true;
                 animator.SetBool("isDead", true);
-                StartCoroutine(WaitForDeath());
+                StartCoroutine(WaitForDeathMenu());
             }
 
                 
@@ -177,12 +191,73 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        transform.position = GetCheckPointandPos();
         rb = GetComponent<Rigidbody2D>();
         hp = maxHp;
         sprite = GetComponent<SpriteRenderer>().sprite;
         animator = GetComponent<Animator>();
         spriteRender = GetComponent<SpriteRenderer>();
+        
+        if (!MainManager.instance.isFirstScene)
+        {
+           
+            LoadFromMainManager();
+        }
+        else
+        {
+            transform.position = GetCheckPointandPos();
+            MainManager.instance.isFirstScene = false;
+        }
+        if (SceneManager.GetActiveScene().name == "Platforming")
+        {
+             if (MainManager.instance.MainWorldIsFacingRight)
+            {
+                if(transform.localScale.x > 0)
+                {
+                    transform.localScale = new Vector2(-1 * transform.localScale.x, transform.localScale.y);
+                }
+               
+                isFacingRight = true;
+            }
+
+            else if (!MainManager.instance.MainWorldIsFacingRight)
+            {
+                if (transform.localScale.x < 0)
+                {
+                    transform.localScale = new Vector2(-1 * transform.localScale.x, transform.localScale.y);
+                }
+                isFacingRight = false;
+            }
+        }
+        else if (!isFacingLeftStart)
+        {
+            transform.localScale = new Vector2(-1 * transform.localScale.x, transform.localScale.y);
+            isFacingRight = true;
+        }
+        
+        else if (isFacingLeftStart)
+        {
+                transform.localScale = new Vector2(-1 * transform.localScale.x, transform.localScale.y);
+                isFacingRight = false;
+        }
+            
+
+        }
+
+    private void LoadFromMainManager()
+    {
+        temp = MainManager.instance.temp;
+        hunger = MainManager.instance.hunger;
+        hp = MainManager.instance.hp;
+        if(SceneManager.GetActiveScene().name == "Platforming")
+        {
+            transform.position = MainManager.instance.mainWorldPos;
+        }
+    }
+    public void SaveToMainManager()
+    {
+        MainManager.instance.temp = temp;
+        MainManager.instance.hunger = hunger;
+        MainManager.instance.hp = hp;
     }
 
     public Vector2 GetCheckPointandPos()

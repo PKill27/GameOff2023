@@ -9,9 +9,18 @@ public class MainManager : MonoBehaviour, iDataPersistance
     public int sfxVol;
     public int checkPoint;
     public bool[] monologues;
+
+
+    //player data
+    public float temp;
+    public float hp;
+    public float hunger;
+    public Vector2 mainWorldPos;
+    public bool isFirstScene = true;
+    public bool MainWorldIsFacingRight = true;
+
     public void LoadData(GameData data)
     {
-        print("loading");
         this.musicVol = data.musicVol;
         this.sfxVol = data.sfxVol;
         this.checkPoint = data.checkpoint;
@@ -20,7 +29,6 @@ public class MainManager : MonoBehaviour, iDataPersistance
 
     public void SaveData(ref GameData data)
     {
-        print("savin");
         data.musicVol = this.musicVol;
         data.sfxVol = this.sfxVol;
         data.checkpoint = this.checkPoint;
