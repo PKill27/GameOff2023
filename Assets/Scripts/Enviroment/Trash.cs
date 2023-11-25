@@ -22,7 +22,7 @@ public class Trash : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && canPickUp)
+        if (Input.GetKeyDown(KeyCode.E) && canPickUp && Player.instance.canPickUpTrash)
         {
             Player.instance.trashCollected += 1;
             Destroy(gameObject);

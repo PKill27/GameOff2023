@@ -25,13 +25,19 @@ public class Leopard : Player
        
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        if(Input.GetKeyDown(KeyCode.Q) && !isAttacking)
+        base.Start();
+    }
+
+    // Update is called once per frame
+    protected void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Q) && !isAttacking && isGrounded)
         {
             Attack();
         }
+        base.Update();
     }
 
     private void Attack()

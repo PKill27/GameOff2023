@@ -11,6 +11,8 @@ public class IcePlatform : MonoBehaviour
     public Rigidbody2D rb;
     public Sprite[] sprites;
     private SpriteRenderer render;
+
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -26,32 +28,31 @@ public class IcePlatform : MonoBehaviour
             {
                 rb.constraints = RigidbodyConstraints2D.FreezeRotation;
                 rb.gravityScale = 1;
-                //render.sprite = sprites[4];
                 StartCoroutine(WaitToDestroy());
             }
-            
-            /**else if(hpPercent < .2)
-            {
-                render.sprite = sprites[3];
-            }
-            else if (hpPercent < .4)
+            else if (hpPercent < .25)
             {
                 render.sprite = sprites[2];
             }
-            else if (hpPercent < .6)
+            else if (hpPercent < .5)
             {
                 render.sprite = sprites[1];
             }
-            else if (hpPercent < .8)
+            else if (hpPercent < .75)
             {
                 render.sprite = sprites[0];
-            } **/
+            } 
         }
     }
     IEnumerator WaitToDestroy()
     {
-        print("destorying");
-        yield return new WaitForSeconds(.5f);
+        for (int i = 3; i < 7; i++)
+        {
+            render.sprite = sprites[i];
+            yield return new WaitForSeconds(.1f);
+
+        }
+        yield return new WaitForSeconds(.2f);
         Destroy(gameObject);
     }
     private void OnTriggerEnter2D(Collider2D collision)

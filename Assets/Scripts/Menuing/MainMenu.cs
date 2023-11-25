@@ -8,15 +8,25 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
-        print(DataPersistenceManager.instance.gameData.checkpoint);
-        if (DataPersistenceManager.instance.gameData==null)
+        print(DataPersistenceManager.instance.gameData);
+        DataPersistenceManager.instance.dataHandler = new FileDataHandler(Application.persistentDataPath, DataPersistenceManager.instance.fileName, DataPersistenceManager.instance.useEncryption);
+        DataPersistenceManager.instance.dataPersistenceObjects = DataPersistenceManager.instance.FindAllDataPersistenceObjects();
+
+        DataPersistenceManager.instance.gameData = DataPersistenceManager.instance.dataHandler.Load();
+
+        foreach (iDataPersistance dataPersistenceObj in DataPersistenceManager.instance.dataPersistenceObjects)
+        {
+            dataPersistenceObj.LoadData(DataPersistenceManager.instance.gameData);
+        }
+
+        if (DataPersistenceManager.instance.gameData == null)
         {
             gameObject.SetActive(false);
         }
     }
     public void ContinueGame()
     {
-        DataPersistenceManager.instance.LoadGame();
+        //DataPersistenceManager.instance.LoadGame();
         LoadScene.instance.LoadLevel("Platforming");
     }
     public void NewGame()

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using FMOD.Studio;
+
 public class Player : MonoBehaviour
 {
     public Rigidbody2D rb;
@@ -69,6 +71,11 @@ public class Player : MonoBehaviour
     public bool isEating = false;
     public int trashCollected;
     public float timeLoaded = 0f;
+    private EventInstance playerFootsteps;
+    public bool isPaused  = false;
+    public bool canPickUpTrash;
+    private float timeBetweenFoootstep;
+
     private void Awake()
     {
         if (instance != null)
@@ -81,7 +88,7 @@ public class Player : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    private void Update()
+    protected void Update()
     {
         if (!isTalking)
         {
@@ -95,7 +102,8 @@ public class Player : MonoBehaviour
             CheckFallDamage();
             timeLoaded += Time.deltaTime;
         }
-        
+        //UpdateSound();
+
     }
     private void CheckFallDamage()
     {
@@ -121,6 +129,37 @@ public class Player : MonoBehaviour
         
         
     }
+    
+    public void PauseAllAnimations()
+    {
+        Animator[] allAnimators = FindObjectsByType<Animator>(FindObjectsSortMode.None);
+        foreach (Animator animator in allAnimators)
+        {
+            if (animator != null)
+            {
+                // Get the current state information
+                AnimatorStateInfo currentState = animator.GetCurrentAnimatorStateInfo(0);
+
+                // Pause the animation by setting the speed to 0
+                animator.speed = 0f;
+            }
+        }
+    }
+
+    // Method to unpause all animations
+    public void UnpauseAllAnimations()
+    {
+        Animator[] allAnimators = FindObjectsByType<Animator>(FindObjectsSortMode.None);
+        foreach (Animator animator in allAnimators)
+        {
+            if (animator != null)
+            {
+                // Unpause the animation by setting the speed back to 1
+                animator.speed = 1f;
+            }
+        }
+    }
+
     IEnumerator takeFallDamage()
     {
         yield return new WaitForSeconds(2f);
@@ -187,16 +226,38 @@ public class Player : MonoBehaviour
         hasDied = true;
         spiritLight.SetActive(true);
 
+
+    }
+    public void PlayFootstepSound()
+    {
+        AudioManager.instance.PlayOneShot(FMODEvents.instance.RedPandaFootSteps, transform.position);
+    }
+    private void UpdateSound()
+    {
+        if (isTalking)
+        {
+            AudioManager.instance.SetParam("Text Box is Active",1);
+        }
+        else
+        {
+            AudioManager.instance.SetParam("Text Box is Active", 0);
+        }
+        if(isGrounded && isWalking && timeBetweenFoootstep >= .3)
+        {
+            //AudioManager.instance.PlayOneShot(FMODEvents.instance.RedPandaFootSteps, transform.position);
+            timeBetweenFoootstep = 0;
+        }
+        timeBetweenFoootstep += Time.deltaTime;
     }
 
-    private void Start()
+    protected void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         hp = maxHp;
         sprite = GetComponent<SpriteRenderer>().sprite;
         animator = GetComponent<Animator>();
         spriteRender = GetComponent<SpriteRenderer>();
-        
+        //playerFootsteps = AudioManager.instance.CreateInstance(FMODEvents.instance.PlayerFootsteps);
         if (!MainManager.instance.isFirstScene)
         {
            
@@ -406,7 +467,7 @@ public class Player : MonoBehaviour
 
     public void Jump()
     {
-        if (!aboutToJump&& !isTalking && !isGameOver && !isEating)
+        if (!aboutToJump && !isTalking && !isGameOver && !isEating)
         {
             animator.SetBool("isJumping", true);
             animator.SetBool("landed", false);
@@ -507,7 +568,6 @@ public class Player : MonoBehaviour
     void SetGrounded()
     {
         isGrounded = Physics2D.OverlapCircle(groundCheckPos.position, groundCheckRadius, platformLayer);
-        
         if (rb.velocity.y <= 0.0f)
         {
             //top of jump 

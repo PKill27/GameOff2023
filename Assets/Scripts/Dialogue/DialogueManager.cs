@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using Ink.Runtime;
 using TMPro;
+using System.Linq;
+
 public class DialogueManager : MonoBehaviour
 {
     public List<TextAsset> inkFile;
@@ -22,6 +24,26 @@ public class DialogueManager : MonoBehaviour
     public Sprite npcImage;
     public Sprite playerImage;
 
+    public GameObject playerGameObject;
+    public Animator playerAnimation;
+
+    public GameObject[] npcGameObjects;
+    public Animator[] npcAnimations;
+
+    public GameObject npcGameObject;
+    public Animator npcAnimation;
+
+    public Animator currSpeaker;
+
+    public TextMeshProUGUI speakerName;
+    public bool isShortenedOption;
+    private string speaker;
+    private List<string> shortendChoices;
+    public GameObject continueButton;
+    private string prevMessage;
+    private int waitTime;
+    private bool isTyping;
+    private bool continuePressed;
     private void Awake()
     {
         instance = this;
@@ -31,8 +53,9 @@ public class DialogueManager : MonoBehaviour
         
     }
 
-    public void startDialogue(int Selected,Image currentSpeaker,  Sprite npcImage, Sprite playerImage)
+    public void startDialogue(int Selected, Image currentSpeaker,  Sprite npcImage, Sprite playerImage, int indexOfNpc)
     {
+        shortendChoices = new List<string>();
         story = new Story(inkFile[Selected].text);
         tags = new List<string>();
         choiceSelected = null;
@@ -40,6 +63,8 @@ public class DialogueManager : MonoBehaviour
         this.npcImage = npcImage;
         Player.instance.isTalking = true;
         speakerImage = currentSpeaker;
+        npcGameObject = npcGameObjects[indexOfNpc];
+        npcAnimation = npcAnimations[indexOfNpc];
         if (story.canContinue)
         {
             AdvanceDialogue();
@@ -67,14 +92,29 @@ public class DialogueManager : MonoBehaviour
     public void ContinueButton()
     {
         Player.instance.isTalking = true;
-        if (story.canContinue)
+        if (isTyping)
+        {
+            message.text = prevMessage;
+            isTyping = false;
+            continuePressed = true;
+        }else if (waitTime != 0)
+        {
+
+        }
+
+        else if (story.canContinue)
         {
             AdvanceDialogue();
 
             if (story.currentChoices.Count != 0)
             {
+                continueButton.SetActive(false);
                 StartCoroutine(ShowChoices());
             }
+            else{
+               
+            }
+          
         }
         else
         {
@@ -93,21 +133,55 @@ public class DialogueManager : MonoBehaviour
 
     IEnumerator TypeSentence(string sentence)
     {
-        message.text = "";
-        foreach (char letter in sentence.ToCharArray())
+        if(sentence != "")
         {
-            message.text += letter;
-            
-            yield return new WaitForSeconds(.05f);
+            prevMessage = sentence;
         }
-        yield return null;
+
+        if (waitTime != 0)
+        {
+            print("waiting");
+            yield return new WaitForSeconds(waitTime);
+            waitTime = 0;
+        }
+        if (story.currentChoices.Count == 0)
+        {
+            isTyping = true;
+            ChangeSpeaker(speaker);
+            currSpeaker.SetBool("IsTalking", true);
+            message.text = "";
+            foreach (char letter in sentence.ToCharArray())
+            {
+               
+                if (continuePressed)
+                {
+                    continuePressed = false;
+                    break;//want the for loop to end here
+                }
+                else
+                {
+                    message.text += letter;
+                    yield return new WaitForSeconds(.02f);
+                }
+                
+            }
+            currSpeaker.SetBool("IsTalking", false);
+            isTyping = false;
+            yield return null;
+        }
+        
     }
     IEnumerator ShowChoices()
     {
         Debug.Log("There are choices need to be made here!");
         List<Choice> _choices = story.currentChoices;
+        currSpeaker.SetBool("IsTalking", false);
+        message.text = prevMessage;
         RectTransform panelRectTransform = optionPanel.GetComponent<RectTransform>();
+        if (isShortenedOption)
+        {
 
+        }
         for (int i = 0; i < _choices.Count; i++)
         {
             GameObject temp = Instantiate(customButton, optionPanel.transform);
@@ -115,14 +189,14 @@ public class DialogueManager : MonoBehaviour
             float offsetX = -panelRectTransform.rect.width / 4 + 10f + (buttonRectTransform.rect.width + 10f) * i;
             buttonRectTransform.anchoredPosition = new Vector2(offsetX, 0f);
 
-            temp.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = _choices[i].text;
+            temp.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = shortendChoices[i];
             temp.AddComponent<Selectable>();
             temp.GetComponent<Selectable>().element = _choices[i];
             temp.GetComponent<Button>().onClick.AddListener(() => { temp.GetComponent<Selectable>().Decide(); });
         }
 
         optionPanel.SetActive(true);
-
+        shortendChoices = new List<string>();
         yield return new WaitUntil(() => { return choiceSelected != null; });
 
         AdvanceFromDecision();
@@ -137,6 +211,7 @@ public class DialogueManager : MonoBehaviour
     void AdvanceFromDecision()
     {
         optionPanel.SetActive(false);
+        continueButton.SetActive(true);
         for (int i = 0; i < optionPanel.transform.childCount; i++)
         {
             Destroy(optionPanel.transform.GetChild(i).gameObject);
@@ -144,15 +219,19 @@ public class DialogueManager : MonoBehaviour
         choiceSelected = null; 
         AdvanceDialogue();
     }
-
+    
     void ParseTags()
     {
+       
+       
         tags = story.currentTags;
         foreach (string t in tags)
         {
-            string prefix = t.Split(' ')[0];
-            
-            string param = t.Split(' ')[1];
+            string[] parts = t.Split(' ');
+            string prefix = parts[0];
+            string[] remainingParts = parts.Skip(1).ToArray();
+
+            string param = string.Join(" ", remainingParts);
 
             switch (prefix.ToLower())
             {
@@ -160,10 +239,23 @@ public class DialogueManager : MonoBehaviour
                     SetTextColor(param);
                     break;
                 case "speaker":
-                    ChangeSpeaker(param);
+                    speaker = param;
                     break;
-                
+                case "option":
+                    print(param);
+                    string[] shortendChoice = param.Split('~');
+                    foreach(string shortened in shortendChoice)
+                    {
+                        shortendChoices.Add(shortened);
+                    }
+                    
+                    isShortenedOption = true;
+                    break;
+                case "wait":
+                    waitTime = int.Parse(param); 
+                    break;
             }
+            
         }
     }
    
@@ -171,10 +263,21 @@ public class DialogueManager : MonoBehaviour
     {
       if(speaker == "player")
         {
-            speakerImage.sprite = playerImage;
-        }else if(speaker == "npc")
+           
+            playerGameObject.SetActive(true);
+            npcGameObject.SetActive(false);
+            currSpeaker = playerAnimation;
+            speakerName.text = "player";
+            
+        }
+        else if(speaker == "npc")
         {
-            speakerImage.sprite = npcImage;
+            
+            playerGameObject.SetActive(false);
+            npcGameObject.SetActive(true);
+            speakerName.text = "npcName";
+            currSpeaker = npcAnimation;
+            
         }
     }
     void SetTextColor(string _color)

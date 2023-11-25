@@ -15,7 +15,6 @@ public class BackgroundParalax : MonoBehaviour {
     }
     void Update()
     {
-        rb.velocityX = player.velocityX * backgroundSpeed;
- 
+        transform.position = new Vector2(player.position.x * backgroundSpeed, transform.position.y);
 }
 }

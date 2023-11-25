@@ -46,8 +46,9 @@ public class TrashNpcManager : MonoBehaviour
             
             dialoguePanel.SetActive(true);
             SpeakerImage.sprite = GetComponent<SpriteRenderer>().sprite;
-            DialogueManager.instance.startDialogue(dialogueNumber, SpeakerImage, npcSprite,Player.instance.sprite);
+            DialogueManager.instance.startDialogue(dialogueNumber, SpeakerImage, npcSprite,Player.instance.sprite,0);
             isTalkableTo = false;
+            Player.instance.canPickUpTrash = true;
             dialogueNumber = dialougueList[1];
         }
     }

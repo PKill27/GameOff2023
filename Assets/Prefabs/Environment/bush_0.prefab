@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: 6545382614753218560, guid: 7a39130fc3e364cba91621e1d8dbdcb4, type: 3}
+  m_Sprite: {fileID: -5526461831133874878, guid: 16b84d48058ef4ef1b699128f652aece, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -135,3 +135,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   noBerriesimage: {fileID: 2376465824397043023, guid: 35a1aab7a6cbd47e5b200c7bfa1b0c3a, type: 3}
+  isEatable: 0

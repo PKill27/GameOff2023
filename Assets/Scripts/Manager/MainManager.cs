@@ -5,8 +5,9 @@ using UnityEngine;
 public class MainManager : MonoBehaviour, iDataPersistance
 {
     public static MainManager instance;
-    public int musicVol;
-    public int sfxVol;
+    public int musicVol = 100;
+    public int sfxVol = 100;
+    public int masterVol = 100;
     public int checkPoint;
     public bool[] monologues;
 
@@ -21,16 +22,31 @@ public class MainManager : MonoBehaviour, iDataPersistance
 
     public void LoadData(GameData data)
     {
-        this.musicVol = data.musicVol;
-        this.sfxVol = data.sfxVol;
-        this.checkPoint = data.checkpoint;
-        this.monologues = data.monologues;
+        
+        if(data == null)
+        {
+            
+            this.musicVol = 100;
+            this.sfxVol = 100;
+            this.masterVol = 100;
+        }
+        else
+        {
+            this.musicVol = data.musicVol;
+            this.sfxVol = data.sfxVol;
+            this.masterVol = data.masterVol;
+            this.checkPoint = data.checkpoint;
+            this.monologues = data.monologues;
+        }
+
+        
     }
 
     public void SaveData(ref GameData data)
     {
         data.musicVol = this.musicVol;
         data.sfxVol = this.sfxVol;
+        data.masterVol = this.masterVol;
         data.checkpoint = this.checkPoint;
         data.monologues = this.monologues;
     }

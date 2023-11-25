@@ -6,11 +6,11 @@ using System.Linq;
 public class DataPersistenceManager : MonoBehaviour
 {
     [Header("File Storage Config")]
-    [SerializeField] private string fileName;
-    [SerializeField] private bool useEncryption;
+    [SerializeField] public string fileName;
+    [SerializeField] public bool useEncryption;
 
     public GameData gameData;
-    private List<iDataPersistance> dataPersistenceObjects;
+    public List<iDataPersistance> dataPersistenceObjects;
     public FileDataHandler dataHandler;
 
     public static DataPersistenceManager instance { get; private set; }
@@ -25,22 +25,19 @@ public class DataPersistenceManager : MonoBehaviour
         }
         instance = this;
         DontDestroyOnLoad(gameObject);
+      
     }
 
     private void Start()
     {
 
-
-        this.dataHandler = new FileDataHandler(Application.persistentDataPath, fileName, useEncryption);
-        this.dataPersistenceObjects = FindAllDataPersistenceObjects();
-        this.gameData = dataHandler.Load();
-        if (this.gameData!=null)
+        
+        
+        /**foreach (iDataPersistance dataPersistenceObj in dataPersistenceObjects)
         {
-            foreach (iDataPersistance dataPersistenceObj in dataPersistenceObjects)
-            {
-                dataPersistenceObj.LoadData(gameData);
-            }
-        }
+            dataPersistenceObj.LoadData(gameData);
+        }**/
+        
         
     }
 
@@ -56,13 +53,12 @@ public class DataPersistenceManager : MonoBehaviour
 
     public void LoadGame()
     {
-        // load any saved data from a file using the data handler
+        
         this.gameData = dataHandler.Load();
-        // if no data can be loaded, initialize to a new game
         if (this.gameData == null)
         {
             Debug.Log("No data was found. Initializing data to defaults.");
-            NewGame();
+            //NewGame();
         }
 
         // push the loaded data to all other scripts that need it
@@ -74,6 +70,7 @@ public class DataPersistenceManager : MonoBehaviour
 
     public void SaveGame()
     {
+        print("savin");
         // pass the data to other scripts so they can update it
         foreach (iDataPersistance dataPersistenceObj in dataPersistenceObjects)
         {
@@ -89,7 +86,7 @@ public class DataPersistenceManager : MonoBehaviour
         SaveGame();
     }
 
-    private List<iDataPersistance> FindAllDataPersistenceObjects()
+    public List<iDataPersistance> FindAllDataPersistenceObjects()
     {
         IEnumerable<iDataPersistance> dataPersistenceObjects = FindObjectsOfType<MonoBehaviour>()
             .OfType<iDataPersistance>();

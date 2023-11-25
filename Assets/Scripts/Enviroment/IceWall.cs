@@ -18,16 +18,17 @@ public class IceWall : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
     public void takeDamage(float dmg)
     {
         hp = hp - dmg;
-        if(hp <= 0)
+        if (hp <= 0)
         {
-            Destroy(gameObject);
+            StartCoroutine(PlayEndAnimation());
+
         }
-        else if(hp/maxHp < .2)
+        else if (hp / maxHp < .2)
         {
             render.sprite = sprites[4];
         }
@@ -47,5 +48,16 @@ public class IceWall : MonoBehaviour
         {
             render.sprite = sprites[0];
         }
+    }
+    IEnumerator PlayEndAnimation()
+    {
+        for(int i = 5; i < 9; i++)
+        {
+            render.sprite = sprites[i];
+            yield return new WaitForSeconds(.2f);
+            
+        }
+        
+        Destroy(gameObject);
     }
 }

@@ -14,6 +14,7 @@ public class LoadScene : MonoBehaviour
     }
     private void Start()
     {
+        AudioManager.instance.InitializeMusic(FMODEvents.instance.Music);
         if (SceneManager.GetActiveScene().name == "Platforming")
         {
             if(MainManager.instance.mainWorldPos != new Vector2(0, 0))
@@ -36,8 +37,9 @@ public class LoadScene : MonoBehaviour
     }
     IEnumerator LoadLevelWaiter(string name)
     {
+        AudioManager.instance.SetParam("Apply Fade Out", 1);
         transition.SetTrigger("Start");
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         SceneManager.LoadScene(name);
     }
 }
