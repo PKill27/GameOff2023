@@ -1,10 +1,16 @@
 fileFormatVersion: 2
-guid: 597b77c90290b4985b34afb638ebac38
+guid: dbc1402ef12b144929e01616cafc8024
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6152488279010414668
-    second: toptrees_0
+      213: 8600984533229438479
+    second: Level Title_basecamp_0
+  - first:
+      213: -1979583851440109619
+    second: Level Title_basecamp_1
+  - first:
+      213: 7794514403955685446
+    second: Level Title_basecamp_2
   externalObjects: {}
   serializedVersion: 12
   mipmaps:
@@ -51,7 +57,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 64
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -134,13 +140,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: toptrees_0
+      name: Level Title_basecamp_0
       rect:
         serializedVersion: 2
-        x: 42
-        y: 47
-        width: 50
-        height: 34
+        x: 0
+        y: 2
+        width: 140
+        height: 175
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -148,8 +154,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4bf64dce188fd9aa0800000000000000
-      internalID: -6152488279010414668
+      spriteID: f0605cdecd5dc5770800000000000000
+      internalID: 8600984533229438479
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Level Title_basecamp_1
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 14
+        width: 1244
+        height: 106
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dc700d3b9fa1784e0800000000000000
+      internalID: -1979583851440109619
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Level Title_basecamp_2
+      rect:
+        serializedVersion: 2
+        x: 1322
+        y: 0
+        width: 140
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 648b174ad8dab2c60800000000000000
+      internalID: 7794514403955685446
       vertices: []
       indices: 
       edges: []
@@ -165,7 +213,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      toptrees_0: -6152488279010414668
+      Level Title_basecamp_0: 8600984533229438479
+      Level Title_basecamp_1: -1979583851440109619
+      Level Title_basecamp_2: 7794514403955685446
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

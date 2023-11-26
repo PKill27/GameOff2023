@@ -9,6 +9,7 @@ public class MonologueManager : MonoBehaviour
     public GameObject innerMonoPanel;
     public static MonologueManager instance;
     public bool isMonoLoguing = false;
+    public Animator playerTalking;
     private void Awake()
     {
         if (instance != null)
@@ -71,12 +72,14 @@ public class MonologueManager : MonoBehaviour
     IEnumerator TypeSentence(string sentence)
     {
         message.text = "";
+        playerTalking.SetBool("isTalking", true);
         foreach (char letter in sentence.ToCharArray())
         {
             message.text += letter;
 
             yield return new WaitForSeconds(.03f);
         }
+        playerTalking.SetBool("isTalking", false);
         yield return new WaitForSeconds(2f);
         isMonoLoguing = false;
         innerMonoPanel.SetActive(false);

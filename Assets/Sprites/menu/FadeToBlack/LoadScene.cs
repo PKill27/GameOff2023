@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class LoadScene : MonoBehaviour
 {
     public Animator transition;
+    public Animator OptionalTitleName;
     public static LoadScene instance;
     private void Awake()
     {
@@ -34,6 +35,7 @@ public class LoadScene : MonoBehaviour
     public void LoadLevel(string name)
     {
         StartCoroutine(LoadLevelWaiter(name));
+        
     }
     IEnumerator LoadLevelWaiter(string name)
     {
@@ -41,5 +43,10 @@ public class LoadScene : MonoBehaviour
         transition.SetTrigger("Start");
         yield return new WaitForSeconds(2f);
         SceneManager.LoadScene(name);
+        yield return new WaitForSeconds(2f);
+        if(OptionalTitleName != null)
+        {
+            OptionalTitleName.SetTrigger("Start");
+        }
     }
 }

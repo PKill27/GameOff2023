@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public class TrashNpcManager : MonoBehaviour
+
+public class AmbitionSpirit : MonoBehaviour
 {
     public int[] dialougueList;
     // Start is called before the first frame update
     void Start()
     {
-        dialogueNumber = dialougueList[MainManager.instance.dialogueTracker[0]];
+        dialogueNumber = dialougueList[0];
     }
     public int dialogueNumber;
     public GameObject dialoguePanel;
@@ -21,12 +22,6 @@ public class TrashNpcManager : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            if (Player.instance.trashCollected >= 1)
-            {
-                MainManager.instance.dialogueTracker[0] = 2;
-                dialogueNumber = dialougueList[2];
-                Player.instance.canBeSpirit = true;
-            }
             textToTalk.SetActive(true);
             isTalkableTo = true;
         }
@@ -44,18 +39,11 @@ public class TrashNpcManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E) && isTalkableTo)
         {
-            
+
             dialoguePanel.SetActive(true);
-            SpeakerImage.sprite = GetComponent<SpriteRenderer>().sprite;
-            DialogueManager.instance.startDialogue(dialogueNumber, SpeakerImage, npcSprite,Player.instance.sprite,0,"Nathalie");
+            //SpeakerImage.sprite = GetComponent<SpriteRenderer>().sprite;
+            DialogueManager.instance.startDialogue(dialogueNumber, SpeakerImage, npcSprite, Player.instance.sprite, 1,"Ambition Spirit");
             isTalkableTo = false;
-            Player.instance.canPickUpTrash = true;
-            if(MainManager.instance.dialogueTracker[0] == 0)
-            {
-                MainManager.instance.dialogueTracker[0] = 1;
-                dialogueNumber = dialougueList[1];
-            }
         }
     }
-
 }

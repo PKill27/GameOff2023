@@ -10,6 +10,7 @@ public class GameData
     public int sfxVol;
     public int masterVol;
     public bool[] monologues;
+    public int[] dialogueTracker;//each index is a npc the value is the the current dialogue the npc is at
     public GameData()
     {
         this.checkpoint = 0;
@@ -17,6 +18,6 @@ public class GameData
         this.sfxVol = 100;
         this.masterVol = 100;
         this.monologues = new bool[10] {false, false, false, false, false, false, false, false, false, false };
-        
+        this.dialogueTracker = new int[8] { 0, 0, 0, 0, 0, 0, 0, 0};
     }
 }

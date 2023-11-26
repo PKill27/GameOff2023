@@ -2,10 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 public class GameOverMenu : MonoBehaviour
 {
     public GameObject gameOverPanel;
-
+    private Image image;
+    private Color baseColor;
+    private void Start()
+    {
+        image = GetComponent<Image>();
+        baseColor = image.color;
+    }
     public void OnRespawn()
     {
         Player.instance.transform.position = Player.instance.GetCheckPointandPos();
@@ -21,5 +28,15 @@ public class GameOverMenu : MonoBehaviour
     public void OnMainMenu()
     {
         SceneManager.LoadScene("StartScene");
+    }
+    public void HoverEnter()
+    {
+        print("hpverin");
+        image.color = new Color(72f / 255f, 194f / 255f, 254f / 255f, 1f);
+
+    }
+    public void HoverExit()
+    {
+        image.color = baseColor;
     }
 }

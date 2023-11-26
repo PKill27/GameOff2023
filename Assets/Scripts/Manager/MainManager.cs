@@ -10,7 +10,7 @@ public class MainManager : MonoBehaviour, iDataPersistance
     public int masterVol = 100;
     public int checkPoint;
     public bool[] monologues;
-
+    public int[] dialogueTracker;
 
     //player data
     public float temp;
@@ -37,6 +37,7 @@ public class MainManager : MonoBehaviour, iDataPersistance
             this.masterVol = data.masterVol;
             this.checkPoint = data.checkpoint;
             this.monologues = data.monologues;
+            this.dialogueTracker = data.dialogueTracker;
         }
 
         
@@ -49,6 +50,7 @@ public class MainManager : MonoBehaviour, iDataPersistance
         data.masterVol = this.masterVol;
         data.checkpoint = this.checkPoint;
         data.monologues = this.monologues;
+        data.dialogueTracker = this.dialogueTracker;
     }
     private void Awake()
     {

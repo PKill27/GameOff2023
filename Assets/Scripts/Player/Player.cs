@@ -75,6 +75,7 @@ public class Player : MonoBehaviour
     public bool isPaused  = false;
     public bool canPickUpTrash;
     private float timeBetweenFoootstep;
+    public GroundOption currentGround;
 
     private void Awake()
     {
@@ -90,7 +91,7 @@ public class Player : MonoBehaviour
 
     protected void Update()
     {
-        if (!isTalking)
+        if (!isTalking && !isGameOver)
         {
             AddFreeze();
             IncreaseHunger();

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 9e523efdb2c184688a2b59feb6134b10
+guid: 4eadf5df29679428296db1aa3f12eb74
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2020165742616241834
-    second: IMG_1082_0
+      213: 3117935771994610713
+    second: pinetree_0
   externalObjects: {}
   serializedVersion: 12
   mipmaps:
@@ -46,12 +46,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 64
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -134,13 +134,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: IMG_1082_0
+      name: pinetree_0
       rect:
         serializedVersion: 2
-        x: 26
-        y: 4
-        width: 73
-        height: 124
+        x: 444
+        y: 7
+        width: 117
+        height: 272
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -148,8 +148,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: aa6ed042a02190c10800000000000000
-      internalID: 2020165742616241834
+      spriteID: 91cd83aa012254b20800000000000000
+      internalID: 3117935771994610713
       vertices: []
       indices: 
       edges: []
@@ -157,7 +157,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -165,7 +165,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      IMG_1082_0: 2020165742616241834
+      pinetree_0: 3117935771994610713
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

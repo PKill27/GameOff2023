@@ -44,6 +44,7 @@ public class DialogueManager : MonoBehaviour
     private int waitTime;
     private bool isTyping;
     private bool continuePressed;
+    private string npcName;
     private void Awake()
     {
         instance = this;
@@ -53,7 +54,7 @@ public class DialogueManager : MonoBehaviour
         
     }
 
-    public void startDialogue(int Selected, Image currentSpeaker,  Sprite npcImage, Sprite playerImage, int indexOfNpc)
+    public void startDialogue(int Selected, Image currentSpeaker,  Sprite npcImage, Sprite playerImage, int indexOfNpc, string npcName)
     {
         shortendChoices = new List<string>();
         story = new Story(inkFile[Selected].text);
@@ -65,6 +66,7 @@ public class DialogueManager : MonoBehaviour
         speakerImage = currentSpeaker;
         npcGameObject = npcGameObjects[indexOfNpc];
         npcAnimation = npcAnimations[indexOfNpc];
+        this.npcName = npcName;
         if (story.canContinue)
         {
             AdvanceDialogue();
@@ -275,7 +277,7 @@ public class DialogueManager : MonoBehaviour
             
             playerGameObject.SetActive(false);
             npcGameObject.SetActive(true);
-            speakerName.text = "npcName";
+            speakerName.text = npcName;
             currSpeaker = npcAnimation;
             
         }

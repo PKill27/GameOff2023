@@ -8,6 +8,7 @@ public class Water : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            Player.instance.currentGround = GroundOption.water;
             Player.instance.isInWater = true;
             Player.instance.freezeRate *= 5;
         }
