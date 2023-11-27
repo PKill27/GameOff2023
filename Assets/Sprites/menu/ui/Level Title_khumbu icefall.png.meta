@@ -212,7 +212,10 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Level Title_khumbu icefall_0: 2524220589670660843
+      Level Title_khumbu icefall_1: 1683356101172134358
+      Level Title_khumbu icefall_2: -1889505213899281983
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

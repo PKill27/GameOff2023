@@ -212,7 +212,10 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Level Title_PeakofMtEverest_0: -2581557299262803876
+      Level Title_PeakofMtEverest_1: 2573468754707720908
+      Level Title_PeakofMtEverest_2: -131460940152464855
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
