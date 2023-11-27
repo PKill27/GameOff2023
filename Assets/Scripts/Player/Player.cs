@@ -266,7 +266,7 @@ public class Player : MonoBehaviour
         }
         else
         {
-            transform.position = GetCheckPointandPos();
+            //transform.position = GetCheckPointandPos();
             MainManager.instance.isFirstScene = false;
         }
         if (SceneManager.GetActiveScene().name == "Platforming")
