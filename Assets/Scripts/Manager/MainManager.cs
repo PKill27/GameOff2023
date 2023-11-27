@@ -19,6 +19,7 @@ public class MainManager : MonoBehaviour, iDataPersistance
     public Vector2 mainWorldPos;
     public bool isFirstScene = true;
     public bool MainWorldIsFacingRight = true;
+    public Vector2 playerPosOnLoad;
 
     public void LoadData(GameData data)
     {

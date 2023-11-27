@@ -7,6 +7,8 @@ public class Tunnel : MonoBehaviour
 {
     public string sceneName;
     public bool exitRight;
+    public Vector2 posToSendPlayerTo;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
@@ -17,6 +19,7 @@ public class Tunnel : MonoBehaviour
                 MainManager.instance.MainWorldIsFacingRight = exitRight;
                 MainManager.instance.mainWorldPos = Player.instance.transform.position;
             }
+            MainManager.instance.playerPosOnLoad = posToSendPlayerTo;
             LoadScene.instance.LoadLevel(sceneName);
         }
         

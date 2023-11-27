@@ -16,7 +16,11 @@ public class LoadScene : MonoBehaviour
     private void Start()
     {
         AudioManager.instance.InitializeMusic(FMODEvents.instance.Music);
-        if (SceneManager.GetActiveScene().name == "Platforming")
+        if(MainManager.instance.playerPosOnLoad != new Vector2())
+        {
+            Player.instance.transform.position = MainManager.instance.playerPosOnLoad;
+        }
+        /**if (SceneManager.GetActiveScene().name == "Platforming")
         {
             if(MainManager.instance.mainWorldPos != new Vector2(0, 0))
             {
@@ -27,7 +31,7 @@ public class LoadScene : MonoBehaviour
                 Player.instance.transform.position = Player.instance.GetCheckPointandPos();
             }
             
-        }
+        }**/
         {
 
         }
