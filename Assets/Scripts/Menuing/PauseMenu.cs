@@ -35,7 +35,7 @@ public class PauseMenu : MonoBehaviour
     }
     public void OnQuit()
     {
-
+        LoadScene.instance.LoadLevel("StartScene");
     }
     public void OnSettings()
     {
