@@ -27,7 +27,7 @@ public class MainMenu : MonoBehaviour
     public void ContinueGame()
     {
         //DataPersistenceManager.instance.LoadGame();
-        LoadScene.instance.LoadLevel("Platforming");
+        LoadScene.instance.LoadLevel("Level 1");
     }
     public void NewGame()
     {

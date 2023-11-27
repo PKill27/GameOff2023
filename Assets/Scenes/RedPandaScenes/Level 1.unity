@@ -7047,6 +7047,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2723081076098620247, guid: e498f5465bb334b91a295d8b6426ced3, type: 3}
+      propertyPath: exitRight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2723081076098620247, guid: e498f5465bb334b91a295d8b6426ced3, type: 3}
+      propertyPath: sceneName
+      value: Cave Start
+      objectReference: {fileID: 0}
+    - target: {fileID: 2723081076098620247, guid: e498f5465bb334b91a295d8b6426ced3, type: 3}
+      propertyPath: posToSendPlayerTo.x
+      value: 4.93
+      objectReference: {fileID: 0}
+    - target: {fileID: 2723081076098620247, guid: e498f5465bb334b91a295d8b6426ced3, type: 3}
+      propertyPath: posToSendPlayerTo.y
+      value: -1.1
+      objectReference: {fileID: 0}
     - target: {fileID: 7153442900863887481, guid: e498f5465bb334b91a295d8b6426ced3, type: 3}
       propertyPath: m_Name
       value: TeleportTunnel
@@ -10815,6 +10831,22 @@ PrefabInstance:
     - target: {fileID: 500674991077799516, guid: e498f5465bb334b91a295d8b6426ced3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2723081076098620247, guid: e498f5465bb334b91a295d8b6426ced3, type: 3}
+      propertyPath: exitRight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2723081076098620247, guid: e498f5465bb334b91a295d8b6426ced3, type: 3}
+      propertyPath: sceneName
+      value: Cave Start
+      objectReference: {fileID: 0}
+    - target: {fileID: 2723081076098620247, guid: e498f5465bb334b91a295d8b6426ced3, type: 3}
+      propertyPath: posToSendPlayerTo.x
+      value: 13.18
+      objectReference: {fileID: 0}
+    - target: {fileID: 2723081076098620247, guid: e498f5465bb334b91a295d8b6426ced3, type: 3}
+      propertyPath: posToSendPlayerTo.y
+      value: -1.1
       objectReference: {fileID: 0}
     - target: {fileID: 7153442900863887481, guid: e498f5465bb334b91a295d8b6426ced3, type: 3}
       propertyPath: m_Name
