@@ -51,6 +51,7 @@ public class Player : MonoBehaviour
     private float rotationResetimer;
     public PhysicsMaterial2D highFriction;
     public PhysicsMaterial2D regularFriction;
+    public PhysicsMaterial2D noFriction;
     public Image[] freezeOverlay;
     public Transform[] checkpoints;
     private bool aboutToJump;
@@ -452,11 +453,15 @@ public class Player : MonoBehaviour
                 rotationResetimer = 0;
             }
         }
-        if((isOnSlope && !isWalking))
-        {
+        if ((Mathf.Abs(sideAngleLeft) >= 70 && !isFacingRight) || (Mathf.Abs(sideAngleRight) >= 70 && isFacingRight))
+        {  
+            rb.sharedMaterial = noFriction;
+        }
+        else if((isOnSlope && !isWalking))
+        { 
             rb.sharedMaterial = highFriction;
         }
-        if (!isWalking)
+        else if (!isWalking)
         {
             rb.sharedMaterial = highFriction;
         }
@@ -576,7 +581,7 @@ public class Player : MonoBehaviour
             startFallDistance = Mathf.Max(startFallDistance,rb.position.y);
         }
         
-        if (isGrounded && !isJumping && !aboutToJump)
+        if (isGrounded && !isJumping && !aboutToJump) //&& !((Mathf.Abs(sideAngleLeft)>=70&&!isFacingRight) || (Mathf.Abs(sideAngleRight) >= 70&& isFacingRight)))
         {
             //is on ground
             animator.SetBool("isJumping", false);

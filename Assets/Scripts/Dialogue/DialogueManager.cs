@@ -45,6 +45,7 @@ public class DialogueManager : MonoBehaviour
     private bool isTyping;
     private bool continuePressed;
     private string npcName;
+    private bool areChoicess;
     private void Awake()
     {
         instance = this;
@@ -67,6 +68,7 @@ public class DialogueManager : MonoBehaviour
         npcGameObject = npcGameObjects[indexOfNpc];
         npcAnimation = npcAnimations[indexOfNpc];
         this.npcName = npcName;
+        areChoicess = false;
         if (story.canContinue)
         {
             AdvanceDialogue();
@@ -83,6 +85,15 @@ public class DialogueManager : MonoBehaviour
     }
     private void Update()
     {
+        if (Player.instance.isTalking)
+        {
+            if (Input.GetKeyDown(KeyCode.Space)&&!areChoicess)
+            {
+                ContinueButton();
+            }
+        }
+
+        
     }
 
     private void FinishDialogue()
@@ -106,16 +117,23 @@ public class DialogueManager : MonoBehaviour
 
         else if (story.canContinue)
         {
-            AdvanceDialogue();
+           
+                AdvanceDialogue();
 
-            if (story.currentChoices.Count != 0)
-            {
-                continueButton.SetActive(false);
-                StartCoroutine(ShowChoices());
-            }
-            else{
-               
-            }
+                if (story.currentChoices.Count != 0)
+                {
+                    areChoicess = true;
+                    continueButton.SetActive(false);
+                    StartCoroutine(ShowChoices());
+                }
+                else
+                {
+
+                }
+            
+            
+
+            
           
         }
         else
@@ -179,6 +197,7 @@ public class DialogueManager : MonoBehaviour
         List<Choice> _choices = story.currentChoices;
         currSpeaker.SetBool("IsTalking", false);
         message.text = prevMessage;
+        areChoicess = true;
         RectTransform panelRectTransform = optionPanel.GetComponent<RectTransform>();
         if (isShortenedOption)
         {
@@ -188,8 +207,8 @@ public class DialogueManager : MonoBehaviour
         {
             GameObject temp = Instantiate(customButton, optionPanel.transform);
             RectTransform buttonRectTransform = temp.GetComponent<RectTransform>();
-            float offsetX = -panelRectTransform.rect.width / 4 + 10f + (buttonRectTransform.rect.width + 10f) * i;
-            buttonRectTransform.anchoredPosition = new Vector2(offsetX, 0f);
+            //float offsetX = -panelRectTransform.rect.width / 4 + 10f + (buttonRectTransform.rect.width + 10f) * i;
+            buttonRectTransform.anchoredPosition = new Vector2(200f, 60f * i - 60f);
 
             temp.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = shortendChoices[i];
             temp.AddComponent<Selectable>();
@@ -200,7 +219,7 @@ public class DialogueManager : MonoBehaviour
         optionPanel.SetActive(true);
         shortendChoices = new List<string>();
         yield return new WaitUntil(() => { return choiceSelected != null; });
-
+        
         AdvanceFromDecision();
     }
 
@@ -213,6 +232,7 @@ public class DialogueManager : MonoBehaviour
     void AdvanceFromDecision()
     {
         optionPanel.SetActive(false);
+        areChoicess = false;
         continueButton.SetActive(true);
         for (int i = 0; i < optionPanel.transform.childCount; i++)
         {

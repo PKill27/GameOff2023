@@ -31,7 +31,6 @@ public class GameOverMenu : MonoBehaviour
     }
     public void HoverEnter()
     {
-        print("hpverin");
         image.color = new Color(72f / 255f, 194f / 255f, 254f / 255f, 1f);
 
     }

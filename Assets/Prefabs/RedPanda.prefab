@@ -248,6 +248,7 @@ MonoBehaviour:
   speed: 1.5
   jumpPower: 3
   isGrounded: 1
+  isFacingLeftStart: 0
   temp: 0
   freezeTemp: 100
   freezeRate: 1
@@ -278,6 +279,7 @@ MonoBehaviour:
   hasStartedEndGame: 0
   highFriction: {fileID: 6200000, guid: 06ae29e96fffd48aba673a3ee6836e43, type: 2}
   regularFriction: {fileID: 6200000, guid: dc4da232171ea4f40a7153f4b36d4910, type: 2}
+  noFriction: {fileID: 6200000, guid: ec83ae7ff685b4047b4b316de5e63858, type: 2}
   freezeOverlay:
   - {fileID: 0}
   - {fileID: 0}
@@ -299,6 +301,11 @@ MonoBehaviour:
   startFallDistance: 0
   spiritLight: {fileID: 1672129985538267997}
   isEating: 0
+  trashCollected: 0
+  timeLoaded: 0
+  isPaused: 0
+  canPickUpTrash: 0
+  currentGround: 0
 --- !u!95 &2204606184288482082
 Animator:
   serializedVersion: 7
@@ -355,6 +362,6 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.21489286, y: -0.28663093}
-  m_Size: {x: 0.76720643, y: 0.4312479}
+  m_Offset: {x: -0.3184563, y: -0.28663093}
+  m_Size: {x: 0.9743359, y: 0.4312479}
   m_Direction: 1
