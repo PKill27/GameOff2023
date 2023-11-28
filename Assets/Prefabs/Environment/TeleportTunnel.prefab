@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7428122974827624747}
   - component: {fileID: 3685460969073128505}
   - component: {fileID: 2196027197159877361}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: fronside
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -145,7 +145,7 @@ GameObject:
   - component: {fileID: 8372238077472869231}
   - component: {fileID: 2723081076098620247}
   - component: {fileID: 5647333194474413835}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TeleportTunnel
   m_TagString: Untagged
   m_Icon: {fileID: 0}

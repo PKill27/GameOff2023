@@ -67,6 +67,8 @@ public class Player : MonoBehaviour
     public bool canBeSpirit = false;
     public float fallDistance;
     public float startFallDistance;
+    public float airFallDistance;//has not hit the ground yet
+
     private bool takingFallDamage;
     public GameObject spiritLight;
     public bool isEating = false;
@@ -109,10 +111,18 @@ public class Player : MonoBehaviour
     }
     private void CheckFallDamage()
     {
-        float fallDamageThreshold = 1.6f;
-        if (timeLoaded <= 1)//stops fall damage on loading in
+        float fallDamageThreshold = 3f;
+        float fallDamageDieThreshold = 100f;
+        if (timeLoaded <= 1)//stops fall damage on loading in and too quickly
         {
             fallDistance = 0;
+        }
+        if (airFallDistance >= fallDamageDieThreshold)
+        {
+            hp = 0;
+            LoadScene.instance.transition.SetTrigger("Start");
+            print("too much fall game over");
+            //gameover
         }
         if (fallDistance >= fallDamageThreshold && !takingFallDamage)
         {
@@ -138,9 +148,6 @@ public class Player : MonoBehaviour
         {
             if (animator != null)
             {
-                // Get the current state information
-                AnimatorStateInfo currentState = animator.GetCurrentAnimatorStateInfo(0);
-
                 // Pause the animation by setting the speed to 0
                 animator.speed = 0f;
             }
@@ -259,6 +266,11 @@ public class Player : MonoBehaviour
         animator = GetComponent<Animator>();
         spriteRender = GetComponent<SpriteRenderer>();
         //playerFootsteps = AudioManager.instance.CreateInstance(FMODEvents.instance.PlayerFootsteps);
+        if (MainManager.instance.playerPosOnLoad != null || MainManager.instance.playerPosOnLoad != Vector2.zero)
+        {
+            print(MainManager.instance.playerPosOnLoad);
+            transform.position = MainManager.instance.playerPosOnLoad;
+        }
         if (!MainManager.instance.isFirstScene)
         {
            
@@ -312,7 +324,8 @@ public class Player : MonoBehaviour
         hp = MainManager.instance.hp;
         if(SceneManager.GetActiveScene().name == "Platforming")
         {
-            transform.position = MainManager.instance.mainWorldPos;
+            //transform.position = MainManager.instance.mainWorldPos;
+            //load in pos
         }
     }
     public void SaveToMainManager()
@@ -590,6 +603,7 @@ public class Player : MonoBehaviour
     void SetGrounded()
     {
         isGrounded = Physics2D.OverlapCircle(groundCheckPos.position, groundCheckRadius, platformLayer);
+        airFallDistance = startFallDistance - rb.position.y; 
         if (rb.velocity.y <= 0.0f)
         {
             //top of jump 
