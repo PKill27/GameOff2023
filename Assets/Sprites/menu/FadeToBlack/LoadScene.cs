@@ -18,6 +18,7 @@ public class LoadScene : MonoBehaviour
         AudioManager.instance.InitializeMusic(FMODEvents.instance.Music);
         if(MainManager.instance.playerPosOnLoad != new Vector2())
         {
+            print(MainManager.instance.playerPosOnLoad); 
             Player.instance.transform.position = MainManager.instance.playerPosOnLoad;
         }
         /**if (SceneManager.GetActiveScene().name == "Platforming")
