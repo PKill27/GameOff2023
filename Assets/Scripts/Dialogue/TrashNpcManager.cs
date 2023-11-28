@@ -8,7 +8,15 @@ public class TrashNpcManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        dialogueNumber = dialougueList[MainManager.instance.dialogueTracker[0]];
+        if(MainManager.instance != null)
+        {
+            dialogueNumber = dialougueList[MainManager.instance.dialogueTracker[0]];
+        }
+        else
+        {
+            dialogueNumber = 0;
+        }
+       
     }
     public int dialogueNumber;
     public GameObject dialoguePanel;
