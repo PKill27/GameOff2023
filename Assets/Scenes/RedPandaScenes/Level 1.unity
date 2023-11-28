@@ -25195,7 +25195,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 3420984211156007249}
-  backgroundSpeed: 0.7
+  backgroundSpeedHoriz: 0.7
+  backgroundSpeedVert: 0.85
 --- !u!212 &652891378
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -37651,7 +37652,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 3420984211156007249}
-  backgroundSpeed: 0.95
+  backgroundSpeedHoriz: 0.95
+  backgroundSpeedVert: 0.98
 --- !u!212 &1497867454
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -39618,7 +39620,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 3420984211156007249}
-  backgroundSpeed: 0.8
+  backgroundSpeedHoriz: 0.8
+  backgroundSpeedVert: 0.93
 --- !u!212 &2110599508
 SpriteRenderer:
   m_ObjectHideFlags: 0
