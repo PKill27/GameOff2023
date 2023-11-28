@@ -15,7 +15,7 @@ public class LoadScene : MonoBehaviour
     }
     private void Start()
     {
-        AudioManager.instance.InitializeMusic(FMODEvents.instance.Music);
+        AudioManager.instance.InitializeMusic(FMODEvents.instance.Music1);
         if(MainManager.instance.playerPosOnLoad != null || MainManager.instance.playerPosOnLoad!= Vector2.zero)
         {
             print(MainManager.instance.playerPosOnLoad);

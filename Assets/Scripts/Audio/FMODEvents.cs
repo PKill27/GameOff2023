@@ -5,18 +5,28 @@ using FMODUnity;
 
 public class FMODEvents : MonoBehaviour
 {
-    //[field: Header("Ambience")]
-    //[field: SerializeField] public EventReference ambience { get; private set; }
+    
 
     [field: Header("Music")]
-    [field: SerializeField] public EventReference Music;
-
+    [field: SerializeField] public EventReference MusicMenu;
+    [field: SerializeField] public EventReference Music1;
+    [field: SerializeField] public EventReference Music2;
+    [field: SerializeField] public EventReference Music3;
+    
     [field: Header("Player SFX")]
     [field: SerializeField] public EventReference RedPandaFootSteps;
+    [field: SerializeField] public EventReference LeopardFootSteps;
+    [field: SerializeField] public EventReference PikaFootSteps;
 
-    //[field: Header("Coin SFX")]
-    //[field: SerializeField] public EventReference coinCollected { get; private set; }
-    //[field: SerializeField] public EventReference coinIdle { get; private set; }
+    [field: Header("Survival Meters")]
+    [field: SerializeField] public EventReference Health;
+    [field: SerializeField] public EventReference Hunger;
+    [field: SerializeField] public EventReference Temp;
+
+    [field: Header("Voices")]
+    [field: SerializeField] public EventReference Nathalie;
+    [field: SerializeField] public EventReference Ambition;
+    [field: SerializeField] public EventReference Player;
 
     public static FMODEvents instance { get; private set; }
 

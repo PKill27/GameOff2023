@@ -169,12 +169,14 @@ MonoBehaviour:
   masterVol: 0
   checkPoint: 0
   monologues: 
+  dialogueTracker: 
   temp: 0
   hp: 0
   hunger: 0
   mainWorldPos: {x: 0, y: 0}
   isFirstScene: 1
   MainWorldIsFacingRight: 1
+  playerPosOnLoad: {x: 0, y: 0}
 --- !u!1 &232625549
 GameObject:
   m_ObjectHideFlags: 0
@@ -556,13 +558,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72bfdb121cb7e468cbcc73a7b8ed2cab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Music:
+  MusicMenu:
+    Guid:
+      Data1: 1503582241
+      Data2: 1239107273
+      Data3: -1354492740
+      Data4: 1924025901
+    Path: event:/Music/Menu Music
+  Music1:
     Guid:
       Data1: -2136992058
       Data2: 1272197156
       Data3: -1725483618
       Data4: 1782983847
     Path: event:/Music/Level 1 Music
+  Music2:
+    Guid:
+      Data1: -2060441226
+      Data2: 1335278548
+      Data3: -2087894650
+      Data4: -1273910215
+    Path: event:/Music/Level 2 Music
+  Music3:
+    Guid:
+      Data1: -1130668111
+      Data2: 1095230507
+      Data3: -1722032255
+      Data4: -961254848
+    Path: event:/Music/Level 3 Music
   RedPandaFootSteps:
     Guid:
       Data1: 1776714445
@@ -570,6 +593,62 @@ MonoBehaviour:
       Data3: 208222357
       Data4: 719151296
     Path: event:/Footsteps/Red Panda Steps
+  LeopardFootSteps:
+    Guid:
+      Data1: 1953262728
+      Data2: 1144446357
+      Data3: 706009224
+      Data4: -1243565631
+    Path: event:/Footsteps/Snow Leopard Steps
+  PikaFootSteps:
+    Guid:
+      Data1: -860000458
+      Data2: 1222991285
+      Data3: -483400540
+      Data4: 2120879711
+    Path: event:/Footsteps/Himalayan Pika Steps
+  Health:
+    Guid:
+      Data1: -458990902
+      Data2: 1109192239
+      Data3: 1879423151
+      Data4: -1497795851
+    Path: event:/Survival Meters/Health
+  Hunger:
+    Guid:
+      Data1: -997356807
+      Data2: 1137338368
+      Data3: 1698755489
+      Data4: -1854848137
+    Path: event:/Survival Meters/Hunger
+  Temp:
+    Guid:
+      Data1: -1085708626
+      Data2: 1281699881
+      Data3: -1416671838
+      Data4: 1464029157
+    Path: event:/Survival Meters/Weather
+  Nathalie:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  Ambition:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  Player:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!1 &635040038
 GameObject:
   m_ObjectHideFlags: 0
@@ -1538,6 +1617,7 @@ MonoBehaviour:
     sfxVol: 100
     masterVol: 100
     monologues: 00000000000000000000
+    dialogueTracker: 0000000000000000000000000000000000000000000000000000000000000000
 --- !u!4 &1668710968
 Transform:
   m_ObjectHideFlags: 0
