@@ -117,7 +117,6 @@ public class Player : MonoBehaviour
         if (fallDistance >= fallDamageThreshold && !takingFallDamage)
         {
             //if here taking fall dmg
-            print(startFallDistance);
             hp = hp - 40;
             fallDistance = 0;
             startFallDistance = rb.position.y;
@@ -430,8 +429,16 @@ public class Player : MonoBehaviour
 
             if (rotationResetimer >= .15)
             {
-                rb.rotation = -Vector2.SignedAngle(hit.normal, Vector2.up);
-                rotationResetimer = 0;
+                if (slopeAngle >= 70)
+                {
+                    print("steep");
+                }
+                else
+                {
+                    rb.rotation = -Vector2.SignedAngle(hit.normal, Vector2.up);
+                    rotationResetimer = 0;
+                }
+                
             }
 
         }else if (hitTrueDown)
@@ -449,9 +456,18 @@ public class Player : MonoBehaviour
 
             if (rotationResetimer >= .15)
             {
-                rb.rotation = -Vector2.SignedAngle(hitTrueDown.normal, Vector2.up);
-                rotationResetimer = 0;
+                if(Vector2.Angle(hitTrueDown.normal, Vector2.up) >= 70)
+                {
+                    print("steep");
+                }
+                else
+                {
+                    rb.rotation = -Vector2.SignedAngle(hitTrueDown.normal, Vector2.up);
+                    rotationResetimer = 0;
+                }
+                
             }
+
         }
         if ((Mathf.Abs(sideAngleLeft) >= 70 && !isFacingRight) || (Mathf.Abs(sideAngleRight) >= 70 && isFacingRight))
         {  
@@ -473,7 +489,7 @@ public class Player : MonoBehaviour
 
     public void Jump()
     {
-        if (!aboutToJump && !isTalking && !isGameOver && !isEating)
+        if (!aboutToJump && !isTalking && !isGameOver && !isEating&& isGrounded)
         {
             animator.SetBool("isJumping", true);
             animator.SetBool("landed", false);

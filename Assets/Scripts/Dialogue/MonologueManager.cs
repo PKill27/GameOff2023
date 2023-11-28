@@ -28,8 +28,9 @@ public class MonologueManager : MonoBehaviour
         {
 
        
-        if (!MainManager.instance.monologues[0] && Player.instance.temp <= 10)
+        if (!MainManager.instance.monologues[0] && Player.instance.temp <= 10000)
         {//when player is cold first time
+                print("fgetting cold");
             PlayInnerMono("I am very cold better find shelter");
             MainManager.instance.monologues[0] = true;
         }

@@ -5,7 +5,8 @@ using UnityEngine;
 public class BackgroundParalax : MonoBehaviour { 
 
     public Rigidbody2D player;
-    public float backgroundSpeed = 0.5f;
+    public float backgroundSpeedHoriz = 0.5f;
+    public float backgroundSpeedVert = 0.5f;
     private float startX;
     Rigidbody2D rb;
     private void Start()
@@ -15,6 +16,6 @@ public class BackgroundParalax : MonoBehaviour {
     }
     void Update()
     {
-        transform.position = new Vector2(player.position.x * backgroundSpeed, transform.position.y);
+        transform.position = new Vector2(player.position.x * backgroundSpeedHoriz, player.position.y * backgroundSpeedVert);
 }
 }

@@ -169,12 +169,14 @@ MonoBehaviour:
   masterVol: 0
   checkPoint: 0
   monologues: 
+  dialogueTracker: 
   temp: 0
   hp: 0
   hunger: 0
   mainWorldPos: {x: 0, y: 0}
   isFirstScene: 1
   MainWorldIsFacingRight: 1
+  playerPosOnLoad: {x: 0, y: 0}
 --- !u!1 &232625549
 GameObject:
   m_ObjectHideFlags: 0
@@ -556,13 +558,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72bfdb121cb7e468cbcc73a7b8ed2cab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Music:
+  MusicMenu:
+    Guid:
+      Data1: 1503582241
+      Data2: 1239107273
+      Data3: -1354492740
+      Data4: 1924025901
+    Path: event:/Music/Menu Music
+  Music1:
     Guid:
       Data1: -2136992058
       Data2: 1272197156
       Data3: -1725483618
       Data4: 1782983847
     Path: event:/Music/Level 1 Music
+  Music2:
+    Guid:
+      Data1: -2060441226
+      Data2: 1335278548
+      Data3: -2087894650
+      Data4: -1273910215
+    Path: event:/Music/Level 2 Music
+  Music3:
+    Guid:
+      Data1: -1130668111
+      Data2: 1095230507
+      Data3: -1722032255
+      Data4: -961254848
+    Path: event:/Music/Level 3 Music
   RedPandaFootSteps:
     Guid:
       Data1: 1776714445
@@ -570,6 +593,62 @@ MonoBehaviour:
       Data3: 208222357
       Data4: 719151296
     Path: event:/Footsteps/Red Panda Steps
+  LeopardFootSteps:
+    Guid:
+      Data1: 1953262728
+      Data2: 1144446357
+      Data3: 706009224
+      Data4: -1243565631
+    Path: event:/Footsteps/Snow Leopard Steps
+  PikaFootSteps:
+    Guid:
+      Data1: -860000458
+      Data2: 1222991285
+      Data3: -483400540
+      Data4: 2120879711
+    Path: event:/Footsteps/Himalayan Pika Steps
+  Health:
+    Guid:
+      Data1: -458990902
+      Data2: 1109192239
+      Data3: 1879423151
+      Data4: -1497795851
+    Path: event:/Survival Meters/Health
+  Hunger:
+    Guid:
+      Data1: -997356807
+      Data2: 1137338368
+      Data3: 1698755489
+      Data4: -1854848137
+    Path: event:/Survival Meters/Hunger
+  Temp:
+    Guid:
+      Data1: -1085708626
+      Data2: 1281699881
+      Data3: -1416671838
+      Data4: 1464029157
+    Path: event:/Survival Meters/Weather
+  Nathalie:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  Ambition:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  Player:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!1 &635040038
 GameObject:
   m_ObjectHideFlags: 0
@@ -820,8 +899,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: New Game
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b3e75a160fa7c41c9898aacafc9fd611, type: 2}
+  m_sharedMaterial: {fileID: 8620563017938676861, guid: b3e75a160fa7c41c9898aacafc9fd611, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -851,7 +930,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 16
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -881,7 +960,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 148.74573, y: 15.024811, z: 57.09424, w: 0}
+  m_margin: {x: 187.38239, y: 15.024841, z: 50.993774, w: 5.0837708}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1249,8 +1328,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Continue
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b3e75a160fa7c41c9898aacafc9fd611, type: 2}
+  m_sharedMaterial: {fileID: 8620563017938676861, guid: b3e75a160fa7c41c9898aacafc9fd611, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1280,7 +1359,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 16
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -1310,7 +1389,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 144.98016, y: 22.98468, z: 51.27356, w: 0}
+  m_margin: {x: 201.83667, y: 22.98468, z: 47.988403, w: 2.190094}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1538,6 +1617,7 @@ MonoBehaviour:
     sfxVol: 100
     masterVol: 100
     monologues: 00000000000000000000
+    dialogueTracker: 0000000000000000000000000000000000000000000000000000000000000000
 --- !u!4 &1668710968
 Transform:
   m_ObjectHideFlags: 0
@@ -1612,8 +1692,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Settings
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b3e75a160fa7c41c9898aacafc9fd611, type: 2}
+  m_sharedMaterial: {fileID: 8620563017938676861, guid: b3e75a160fa7c41c9898aacafc9fd611, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1643,7 +1723,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 16
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -1673,7 +1753,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 141.43646, y: 21.29155, z: 71.47864, w: 0}
+  m_margin: {x: 180.0731, y: 21.29155, z: 71.47864, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1695,9 +1775,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 911539862}
     m_Modifications:
+    - target: {fileID: 1277246806958191254, guid: d8e9bdfc0b51e424da28b1a4dc2495d6, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2091380291403270998, guid: d8e9bdfc0b51e424da28b1a4dc2495d6, type: 3}
       propertyPath: m_Name
       value: SettingPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 2415128786404722324, guid: d8e9bdfc0b51e424da28b1a4dc2495d6, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3901583573383401578, guid: d8e9bdfc0b51e424da28b1a4dc2495d6, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4396670460456566354, guid: d8e9bdfc0b51e424da28b1a4dc2495d6, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4573806812228706213, guid: d8e9bdfc0b51e424da28b1a4dc2495d6, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4947518824741282544, guid: d8e9bdfc0b51e424da28b1a4dc2495d6, type: 3}
       propertyPath: m_Pivot.x
@@ -1777,6 +1877,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4947518824741282544, guid: d8e9bdfc0b51e424da28b1a4dc2495d6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5664270363348121371, guid: d8e9bdfc0b51e424da28b1a4dc2495d6, type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5905534316880157702, guid: d8e9bdfc0b51e424da28b1a4dc2495d6, type: 3}
