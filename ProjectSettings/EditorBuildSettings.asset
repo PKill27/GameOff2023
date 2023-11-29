@@ -23,5 +23,17 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/RedPandaScenes/Cave Start.unity
     guid: 13702613577b2764f877a773c8db3e27
+  - enabled: 1
+    path: Assets/Scenes/Cave1.unity
+    guid: 467340ede600c4283b4cb0039486bd72
+  - enabled: 1
+    path: Assets/Scenes/RedPandaScenes/Cave 2.unity
+    guid: f0c45b3421ab70641849dc4c999da443
+  - enabled: 1
+    path: Assets/Scenes/RedPandaScenes/Cave 3.unity
+    guid: 97fcffb5d0d101041a2d1e2d810ec801
+  - enabled: 1
+    path: Assets/Scenes/RedPandaScenes/Cave 4.unity
+    guid: e51703e51998d6d4694c2dbf84293957
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
