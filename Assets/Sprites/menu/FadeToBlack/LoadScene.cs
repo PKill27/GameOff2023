@@ -55,23 +55,28 @@ public class LoadScene : MonoBehaviour
     {
         print("respawn");
         StartCoroutine(LoadLevelWaiterRespawn(name));
-
+        
     }
     IEnumerator LoadLevelWaiterRespawn(string name)
     {
         AudioManager.instance.SetParam("Apply Fade Out", 1);
         transition.SetTrigger("Start");
         yield return new WaitForSeconds(2f);
+        print("respawn");
         SceneManager.LoadScene(name);
+       
         yield return new WaitForSeconds(.1f);
-        print(Fire.instance.transform.position);
+        MainManager.instance.isRespawn = false;
         Player.instance.transform.position = Fire.instance.transform.position;
+        print("respawn");
+
         yield return new WaitForSeconds(2f);
+        
         if (OptionalTitleName != null)
         {
             OptionalTitleName.SetTrigger("Start");
         }
-        MainManager.instance.isRespawn = false;
+        
     }
     public void LoadLevelOverworld(string name,Vector2 pos)
     {
@@ -86,13 +91,13 @@ public class LoadScene : MonoBehaviour
         yield return new WaitForSeconds(2f);
         SceneManager.LoadScene(name);
         yield return new WaitForSeconds(.1f);
-        print(Fire.instance.transform.position);
         Player.instance.transform.position = pos;
+        
+        MainManager.instance.isRespawn = false;
         yield return new WaitForSeconds(2f);
         if (OptionalTitleName != null)
         {
             OptionalTitleName.SetTrigger("Start");
         }
-        MainManager.instance.isRespawn = false;
     }
 }

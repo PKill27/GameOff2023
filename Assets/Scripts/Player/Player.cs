@@ -122,7 +122,7 @@ public class Player : MonoBehaviour
             //hp = 0;
             airfallDistance = 0;
             waitingToRespawn = true;
-            MainManager.instance.HandleRespawn();
+            //MainManager.instance.HandleRespawn();
         }
         else if (fallDistance >= fallDamageThreshold && !takingFallDamage)
         {
@@ -268,39 +268,40 @@ public class Player : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>().sprite;
         animator = GetComponent<Animator>();
         spriteRender = GetComponent<SpriteRenderer>();
+        print(MainManager.instance.isRespawn);
         if (!MainManager.instance.isRespawn)
         {
-            transform.position = MainManager.instance.playerPosOnLoad;
-        }
-        
-        //playerFootsteps = AudioManager.instance.CreateInstance(FMODEvents.instance.PlayerFootsteps);
-        if (!MainManager.instance.isFirstScene)
-        {
-           
-            LoadFromMainManager();
-        }
-        else
-        {
-            //transform.position = GetCheckPointandPos();
-            MainManager.instance.HandleRespawn();
-            MainManager.instance.isFirstScene = false;
-        }
-        
-        if (!isFacingLeftStart)
-        {
-            transform.localScale = new Vector2(-1 * transform.localScale.x, transform.localScale.y);
-            isFacingRight = true;
-        }
-        
-        else if (isFacingLeftStart)
-        {
-            transform.localScale = new Vector2(-1 * transform.localScale.x, transform.localScale.y);
-            isFacingRight = false;
-        }
-            
-
+        transform.position = MainManager.instance.playerPosOnLoad;
         }
 
+                //playerFootsteps = AudioManager.instance.CreateInstance(FMODEvents.instance.PlayerFootsteps);
+            if (!MainManager.instance.isFirstScene)
+            {
+
+                LoadFromMainManager();
+            }
+            else
+            {
+                //transform.position = GetCheckPointandPos();
+                //MainManager.instance.HandleRespawnStart();
+                MainManager.instance.isFirstScene = false;
+            }
+
+            if (!isFacingLeftStart)
+            {
+                transform.localScale = new Vector2(-1 * transform.localScale.x, transform.localScale.y);
+                isFacingRight = true;
+            }
+
+            else if (isFacingLeftStart)
+            {
+                transform.localScale = new Vector2(-1 * transform.localScale.x, transform.localScale.y);
+                isFacingRight = false;
+            }
+
+
+        }
+    
     private void LoadFromMainManager()
     {
         temp = MainManager.instance.temp;

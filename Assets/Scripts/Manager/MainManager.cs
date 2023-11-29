@@ -67,15 +67,52 @@ public class MainManager : MonoBehaviour, iDataPersistance
     }
     public void HandleRespawn()
     {
+        print(isRespawn);
         isRespawn = true;
+        
         if(checkPoint == 0)
         {
             LoadScene.instance.LoadLevelOverworld("Level 1",new Vector2(-20,-1.1f));
         }else if(checkPoint == 1)
         {
-            Player.instance.SaveToMainManager();
+            //Player.instance.SaveToMainManager();
             LoadScene.instance.LoadLevelRespawn("Cave Start");
             //Player.instance.transform.position = Fire.instance.transform.position;
+        }
+        else if (checkPoint == 2)
+        {
+
+        }
+        else if (checkPoint == 3)
+        {
+
+        }
+        else if (checkPoint == 4)
+        {
+
+        }
+        StartCoroutine(FalseRespawn());
+
+    }
+    IEnumerator FalseRespawn() {
+
+        yield return new WaitForSeconds(3);
+        isRespawn = false;
+        print("here");
+
+    }
+    
+    
+
+            public void HandleRespawnStart() { 
+        if (checkPoint == 0)
+        {
+            Player.instance.transform.position = new Vector2(-20, -1.1f);
+        }
+        else if (checkPoint == 1)
+        {
+            
+            Player.instance.transform.position = Fire.instance.transform.position;
         }
         else if (checkPoint == 2)
         {
