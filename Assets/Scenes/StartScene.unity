@@ -177,6 +177,7 @@ MonoBehaviour:
   isFirstScene: 1
   MainWorldIsFacingRight: 1
   playerPosOnLoad: {x: 0, y: 0}
+  isRespawn: 0
 --- !u!1 &232625549
 GameObject:
   m_ObjectHideFlags: 0
@@ -1478,6 +1479,59 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1070579833}
   m_CullTransparentMesh: 1
+--- !u!1 &1158734257
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1158734259}
+  - component: {fileID: 1158734258}
+  m_Layer: 0
+  m_Name: DataPersistanceManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1158734258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1158734257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d04becb43c12f4a6ebc83890ae2f92c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fileName: data.GAME
+  useEncryption: 0
+  gameData:
+    checkpoint: 0
+    musicVol: 100
+    sfxVol: 100
+    masterVol: 100
+    monologues: 00000000000000000000
+    dialogueTracker: 0000000000000000000000000000000000000000000000000000000000000000
+--- !u!4 &1158734259
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1158734257}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1251.8026, y: 682.9647, z: -14.07426}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1472492591
 GameObject:
   m_ObjectHideFlags: 0
@@ -1580,59 +1634,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!1 &1668710966
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1668710968}
-  - component: {fileID: 1668710967}
-  m_Layer: 0
-  m_Name: DataPersistanceManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1668710967
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1668710966}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d04becb43c12f4a6ebc83890ae2f92c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fileName: data.GAME
-  useEncryption: 0
-  gameData:
-    checkpoint: 0
-    musicVol: 100
-    sfxVol: 100
-    masterVol: 100
-    monologues: 00000000000000000000
-    dialogueTracker: 0000000000000000000000000000000000000000000000000000000000000000
---- !u!4 &1668710968
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1668710966}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1251.8026, y: 682.9647, z: -14.07426}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2105108246
 GameObject:
   m_ObjectHideFlags: 0
@@ -1900,6 +1901,6 @@ SceneRoots:
   - {fileID: 392700629}
   - {fileID: 1472492592}
   - {fileID: 975374484}
-  - {fileID: 1668710968}
+  - {fileID: 1158734259}
   - {fileID: 719891307}
   - {fileID: 65617708}
