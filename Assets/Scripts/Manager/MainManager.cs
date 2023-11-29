@@ -19,7 +19,7 @@ public class MainManager : MonoBehaviour, iDataPersistance
     public float hunger;
     public Vector2 mainWorldPos;
     public bool isFirstScene = true;
-    public bool MainWorldIsFacingRight = true;
+    public bool isFacingRightLoadScene = true;
     public Vector2 playerPosOnLoad;
     public bool isRespawn = false;//keeps track if the new load is a respawn or from a tunnel
 
@@ -158,7 +158,10 @@ public class MainManager : MonoBehaviour, iDataPersistance
 
         yield return new WaitForSeconds(.1f);
         MainManager.instance.isRespawn = false;
-        Player.instance.transform.position = Fire.instance.transform.position;
+        Player.instance.hunger = 0;
+        Player.instance.temp = 0;
+        Player.instance.hp = Player.instance.maxHp;
+        Player.instance.transform.position = Fire.instance.transform.position + new Vector3(-1, 0, 0);
         print("respawn");
 
         yield return new WaitForSeconds(2f);
@@ -182,6 +185,9 @@ public class MainManager : MonoBehaviour, iDataPersistance
         yield return new WaitForSeconds(2f);
         SceneManager.LoadScene(name);
         yield return new WaitForSeconds(.1f);
+        Player.instance.hunger = 0;
+        Player.instance.temp = 0;
+        Player.instance.hp = Player.instance.maxHp;
         Player.instance.transform.position = pos;
 
         MainManager.instance.isRespawn = false;

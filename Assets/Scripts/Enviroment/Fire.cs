@@ -17,7 +17,7 @@ public class Fire : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             Player.instance.isInFire = true;
-            Player.instance.freezeRate = -Player.instance.freezeRate;
+            Player.instance.freezeRate = -Player.instance.freezeRate*10;
             if (MainManager.instance.checkPoint < checkPointId)
             {
                 MainManager.instance.checkPoint = checkPointId;
@@ -32,7 +32,7 @@ public class Fire : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             Player.instance.isInFire = false;
-            Player.instance.freezeRate = -Player.instance.freezeRate;
+            Player.instance.freezeRate = -Player.instance.freezeRate/10;
         }
     }
 }

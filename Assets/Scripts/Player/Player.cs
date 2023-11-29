@@ -265,9 +265,22 @@ public class Player : MonoBehaviour
         waitingToRespawn = false;
         if (!MainManager.instance.isRespawn)
         {
+            if (!MainManager.instance.isFacingRightLoadScene)
+            {
+                transform.localScale = new Vector2(transform.localScale.x, transform.localScale.y);
+                isFacingRight = false;
+            }
+
+            else if (MainManager.instance.isFacingRightLoadScene)
+            {
+                transform.localScale = new Vector2(-1 * transform.localScale.x, transform.localScale.y);
+                isFacingRight = true;
+            }
+
             transform.position = MainManager.instance.playerPosOnLoad;
         }
 
+       
                 //playerFootsteps = AudioManager.instance.CreateInstance(FMODEvents.instance.PlayerFootsteps);
             if (!MainManager.instance.isFirstScene)
             {
@@ -279,21 +292,18 @@ public class Player : MonoBehaviour
                 //transform.position = GetCheckPointandPos();
                 //MainManager.instance.HandleRespawnStart();
                 MainManager.instance.isFirstScene = false;
-            }
+                if (!isFacingLeftStart)
+                {
+                    transform.localScale = new Vector2(-1 * transform.localScale.x, transform.localScale.y);
+                    isFacingRight = true;
+                }
 
-            if (!isFacingLeftStart)
-            {
-                transform.localScale = new Vector2(-1 * transform.localScale.x, transform.localScale.y);
-                isFacingRight = true;
-            }
-
-            else if (isFacingLeftStart)
-            {
-                transform.localScale = new Vector2(-1 * transform.localScale.x, transform.localScale.y);
-                isFacingRight = false;
-            }
-
-
+                else if (isFacingLeftStart)
+                {
+                    transform.localScale = new Vector2(-1 * transform.localScale.x, transform.localScale.y);
+                    isFacingRight = false;
+                }
+        }
         }
     
     private void LoadFromMainManager()

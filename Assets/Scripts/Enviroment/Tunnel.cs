@@ -15,6 +15,7 @@ public class Tunnel : MonoBehaviour
         {
             Player.instance.SaveToMainManager();
             MainManager.instance.playerPosOnLoad = posToSendPlayerTo;
+            MainManager.instance.isFacingRightLoadScene = exitRight;
             LoadScene.instance.LoadLevel(sceneName);
         }
         
