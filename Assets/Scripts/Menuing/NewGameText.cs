@@ -22,7 +22,7 @@ public class NewGameText : MonoBehaviour
             yield return new WaitForSeconds(.1f);
         }
         yield return new WaitForSeconds(2f);
-        LoadScene.instance.LoadLevel("Level 1");
+        MainManager.instance.HandleRespawn();
        
     }
 }

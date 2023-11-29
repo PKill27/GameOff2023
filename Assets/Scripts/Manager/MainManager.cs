@@ -72,8 +72,11 @@ public class MainManager : MonoBehaviour, iDataPersistance
         
         if(checkPoint == 0)
         {
+            print("heheeh");
             LoadScene.instance.LoadLevelOverworld("Level 1",new Vector2(-20,-1.1f));
-        }else if(checkPoint == 1)
+            StartCoroutine(OverworldPos());
+        }
+        else if(checkPoint == 1)
         {
             //Player.instance.SaveToMainManager();
             LoadScene.instance.LoadLevelRespawn("Cave Start");
@@ -92,19 +95,27 @@ public class MainManager : MonoBehaviour, iDataPersistance
 
         }
         StartCoroutine(FalseRespawn());
+        
+    }
+    IEnumerator OverworldPos()
+    {
+
+        yield return new WaitForSeconds(2.1f);
+        Player.instance.transform.position = new Vector2(-20, -1.1f);
+        
 
     }
+
     IEnumerator FalseRespawn() {
 
         yield return new WaitForSeconds(3);
         isRespawn = false;
-        print("here");
 
     }
     
     
 
-            public void HandleRespawnStart() { 
+    public void HandleRespawnStart() { 
         if (checkPoint == 0)
         {
             Player.instance.transform.position = new Vector2(-20, -1.1f);

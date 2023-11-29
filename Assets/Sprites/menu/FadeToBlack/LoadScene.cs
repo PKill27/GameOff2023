@@ -16,7 +16,10 @@ public class LoadScene : MonoBehaviour
     private void Start()
     {
         AudioManager.instance.InitializeMusic(FMODEvents.instance.Music1);
-        
+        if (OptionalTitleName != null)
+        {
+            OptionalTitleName.SetTrigger("Start");
+        }
         /**if (SceneManager.GetActiveScene().name == "Platforming")
         {
             if(MainManager.instance.mainWorldPos != new Vector2(0, 0))
@@ -95,9 +98,6 @@ public class LoadScene : MonoBehaviour
         
         MainManager.instance.isRespawn = false;
         yield return new WaitForSeconds(2f);
-        if (OptionalTitleName != null)
-        {
-            OptionalTitleName.SetTrigger("Start");
-        }
+        
     }
 }

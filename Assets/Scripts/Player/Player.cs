@@ -122,7 +122,7 @@ public class Player : MonoBehaviour
             //hp = 0;
             airfallDistance = 0;
             waitingToRespawn = true;
-            //MainManager.instance.HandleRespawn();
+            MainManager.instance.HandleRespawn();
         }
         else if (fallDistance >= fallDamageThreshold && !takingFallDamage)
         {
@@ -269,9 +269,10 @@ public class Player : MonoBehaviour
         animator = GetComponent<Animator>();
         spriteRender = GetComponent<SpriteRenderer>();
         print(MainManager.instance.isRespawn);
+        waitingToRespawn = false;
         if (!MainManager.instance.isRespawn)
         {
-        transform.position = MainManager.instance.playerPosOnLoad;
+            transform.position = MainManager.instance.playerPosOnLoad;
         }
 
                 //playerFootsteps = AudioManager.instance.CreateInstance(FMODEvents.instance.PlayerFootsteps);
