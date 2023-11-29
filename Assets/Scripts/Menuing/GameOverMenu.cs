@@ -15,7 +15,7 @@ public class GameOverMenu : MonoBehaviour
     }
     public void OnRespawn()
     {
-        Player.instance.transform.position = Player.instance.GetCheckPointandPos();
+        /**Player.instance.transform.position = Player.instance.GetCheckPointandPos();
         Player.instance.hunger = 0;
         Player.instance.temp = 0;
         Player.instance.hp = Player.instance.maxHp;
@@ -23,7 +23,8 @@ public class GameOverMenu : MonoBehaviour
         Player.instance.hasStartedEndGame = false;
         gameOverPanel.SetActive(false);
 
-        Player.instance.animator.SetBool("isDead", false);
+        Player.instance.animator.SetBool("isDead", false);**/
+        MainManager.instance.HandleRespawn();
     }
     public void OnMainMenu()
     {

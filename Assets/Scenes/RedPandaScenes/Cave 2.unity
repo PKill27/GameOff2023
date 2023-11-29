@@ -7440,7 +7440,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5916809668516902327, guid: 8288dd557a621443883ebe99e2ce90f3, type: 3}
       propertyPath: maxHunger
-      value: 10
+      value: 400
       objectReference: {fileID: 0}
     - target: {fileID: 5916809668516902327, guid: 8288dd557a621443883ebe99e2ce90f3, type: 3}
       propertyPath: gameOverPanel

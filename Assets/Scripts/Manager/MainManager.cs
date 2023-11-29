@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MainManager : MonoBehaviour, iDataPersistance
 {
@@ -73,26 +74,26 @@ public class MainManager : MonoBehaviour, iDataPersistance
         if(checkPoint == 0)
         {
             print("heheeh");
-            LoadScene.instance.LoadLevelOverworld("Level 1",new Vector2(-20,-1.1f));
-            StartCoroutine(OverworldPos());
+            LoadLevelOverworld("Level 1",new Vector2(-22,-3.1f));
+            //StartCoroutine(OverworldPos());
         }
         else if(checkPoint == 1)
         {
             //Player.instance.SaveToMainManager();
-            LoadScene.instance.LoadLevelRespawn("Cave Start");
+            LoadLevelRespawn("Cave Start");
             //Player.instance.transform.position = Fire.instance.transform.position;
         }
         else if (checkPoint == 2)
         {
-
+            LoadLevelRespawn("Cave 2");
         }
         else if (checkPoint == 3)
         {
-
+            LoadLevelRespawn("Cave 3");
         }
         else if (checkPoint == 4)
         {
-
+            LoadLevelRespawn("Cave 4");
         }
         StartCoroutine(FalseRespawn());
         
@@ -101,7 +102,7 @@ public class MainManager : MonoBehaviour, iDataPersistance
     {
 
         yield return new WaitForSeconds(2.1f);
-        Player.instance.transform.position = new Vector2(-20, -1.1f);
+        Player.instance.transform.position = new Vector2(-22, -3.1f);
         
 
     }
@@ -118,7 +119,7 @@ public class MainManager : MonoBehaviour, iDataPersistance
     public void HandleRespawnStart() { 
         if (checkPoint == 0)
         {
-            Player.instance.transform.position = new Vector2(-20, -1.1f);
+            Player.instance.transform.position = new Vector2(-22, -3.1f);
         }
         else if (checkPoint == 1)
         {
@@ -127,16 +128,64 @@ public class MainManager : MonoBehaviour, iDataPersistance
         }
         else if (checkPoint == 2)
         {
-
+            Player.instance.transform.position = Fire.instance.transform.position;
         }
         else if (checkPoint == 3)
         {
-
+            Player.instance.transform.position = Fire.instance.transform.position;
         }
         else if (checkPoint == 4)
         {
-
+            Player.instance.transform.position = Fire.instance.transform.position;
         }
+
+    }
+    public void LoadLevelRespawn(string name)
+    {
+        print("respawn");
+        StartCoroutine(LoadLevelWaiterRespawn(name));
+
+    }
+    IEnumerator LoadLevelWaiterRespawn(string name)
+    {
+        AudioManager.instance.SetParam("Apply Fade Out", 1);
+        LoadScene.instance.transition.SetTrigger("Start");
+
+        yield return new WaitForSeconds(2f);
+        print("respawn");
+
+        SceneManager.LoadScene(name);
+
+        yield return new WaitForSeconds(.1f);
+        MainManager.instance.isRespawn = false;
+        Player.instance.transform.position = Fire.instance.transform.position;
+        print("respawn");
+
+        yield return new WaitForSeconds(2f);
+
+        if (LoadScene.instance.OptionalTitleName != null)
+        {
+            LoadScene.instance.OptionalTitleName.SetTrigger("Start");
+        }
+
+    }
+    public void LoadLevelOverworld(string name, Vector2 pos)
+    {
+        print("respawn");
+        StartCoroutine(LoadLevelWaiterOverworld(name, pos));
+
+    }
+    IEnumerator LoadLevelWaiterOverworld(string name, Vector2 pos)
+    {
+        AudioManager.instance.SetParam("Apply Fade Out", 1);
+        LoadScene.instance.transition.SetTrigger("Start");
+        yield return new WaitForSeconds(2f);
+        SceneManager.LoadScene(name);
+        yield return new WaitForSeconds(.1f);
+        Player.instance.transform.position = pos;
+
+        MainManager.instance.isRespawn = false;
+        yield return new WaitForSeconds(2f);
 
     }
 }

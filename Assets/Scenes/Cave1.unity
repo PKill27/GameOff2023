@@ -4900,7 +4900,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 3420984211156007249}
-  backgroundSpeed: 0.7
+  backgroundSpeedHoriz: 0.5
+  backgroundSpeedVert: 0.5
 --- !u!212 &652891378
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -12936,7 +12937,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 3420984211156007249}
-  backgroundSpeed: 0.95
+  backgroundSpeedHoriz: 0.5
+  backgroundSpeedVert: 0.5
 --- !u!212 &1497867454
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -16827,7 +16829,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 3420984211156007249}
-  backgroundSpeed: 0.8
+  backgroundSpeedHoriz: 0.5
+  backgroundSpeedVert: 0.5
 --- !u!212 &2110599508
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -17248,7 +17251,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5916809668516902327, guid: 8288dd557a621443883ebe99e2ce90f3, type: 3}
       propertyPath: maxHunger
-      value: 10
+      value: 400
       objectReference: {fileID: 0}
     - target: {fileID: 5916809668516902327, guid: 8288dd557a621443883ebe99e2ce90f3, type: 3}
       propertyPath: gameOverPanel

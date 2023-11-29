@@ -144,7 +144,7 @@ SpriteRenderer:
   m_Size: {x: 0.2, y: 0.23}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &8404491506171437270
@@ -159,19 +159,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d39a9775771c44b8d8f254f78399de71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currTemp: 0
   rb: {fileID: 0}
   speed: 1.5
   jumpPower: 3
   isGrounded: 1
+  isFacingLeftStart: 0
   temp: 0
-  freezeTemp: 100
+  freezeTemp: 400
   freezeRate: 1
   tempBar: {fileID: 0}
   foodBar: {fileID: 0}
+  hpBar: {fileID: 0}
   hunger: 0
-  maxHunger: 100
+  maxHunger: 400
   hungerRate: 1
+  hp: 400
+  maxHp: 400
   isFacingRight: 0
   platformLayer:
     serializedVersion: 2
@@ -180,12 +183,40 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   sprite: {fileID: 0}
+  spriteRender: {fileID: 0}
   groundCheckPos: {fileID: 7862870385887228537}
   groundCheckRadius: 0.1
   isJumping: 0
   canJump: 0
   isOnSlope: 0
+  isWalking: 0
   animator: {fileID: 0}
+  hasStartedEndGame: 0
+  highFriction: {fileID: 0}
+  regularFriction: {fileID: 0}
+  noFriction: {fileID: 0}
+  freezeOverlay: []
+  checkpoints: []
+  isGameOver: 0
+  gameOverPanel: {fileID: 0}
+  freezeOverlayMultiplier: 1
+  isTalking: 0
+  deadPlayer: {fileID: 0}
+  deadMat: {fileID: 0}
+  hasDied: 0
+  isInWater: 0
+  isInFire: 0
+  canBeSpirit: 0
+  fallDistance: 0
+  airfallDistance: 0
+  startFallDistance: 0
+  spiritLight: {fileID: 0}
+  isEating: 0
+  trashCollected: 0
+  timeLoaded: 0
+  isPaused: 0
+  canPickUpTrash: 0
+  currentGround: 0
 --- !u!95 &117880050468513058
 Animator:
   serializedVersion: 7

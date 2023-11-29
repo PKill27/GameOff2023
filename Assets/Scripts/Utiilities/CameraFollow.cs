@@ -11,7 +11,10 @@ public class CameraFollow : MonoBehaviour
     void LateUpdate()
     {
         float distance = Vector3.Distance(transform.position, player.position);
- 
+        if(distance > 10)
+        {
+            transform.position = new Vector3(player.position.x, player.position.y + 1.2f, transform.position.z);
+        }
         if (distance > followThreshold)
         {
             Vector3 targetPosition = new Vector3(player.position.x, player.position.y+1.2f, transform.position.z);

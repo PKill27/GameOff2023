@@ -76,7 +76,6 @@ public class Player : MonoBehaviour
     private EventInstance playerFootsteps;
     public bool isPaused  = false;
     public bool canPickUpTrash;
-    private float timeBetweenFoootstep;
     public GroundOption currentGround;
     private bool waitingToRespawn = false;
 
@@ -112,12 +111,12 @@ public class Player : MonoBehaviour
     private void CheckFallDamage()
     {
         float fallDamageThreshold = 1.6f;
-        float fallDamageThresholdEnd = 4f;
+        float fallDamageThresholdEnd = 8f;
         if (timeLoaded <= 1)//stops fall damage on loading in
         {
             fallDistance = 0;
         }
-        if(airfallDistance >= fallDamageThresholdEnd && !waitingToRespawn)
+        if(airfallDistance >= fallDamageThresholdEnd && !waitingToRespawn && timeLoaded >= 2f)
         {
             //hp = 0;
             airfallDistance = 0;
@@ -253,12 +252,7 @@ public class Player : MonoBehaviour
         {
             AudioManager.instance.SetParam("Text Box is Active", 0);
         }
-        if(isGrounded && isWalking && timeBetweenFoootstep >= .3)
-        {
-            //AudioManager.instance.PlayOneShot(FMODEvents.instance.RedPandaFootSteps, transform.position);
-            timeBetweenFoootstep = 0;
-        }
-        timeBetweenFoootstep += Time.deltaTime;
+        
     }
 
     protected void Start()
@@ -268,7 +262,6 @@ public class Player : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>().sprite;
         animator = GetComponent<Animator>();
         spriteRender = GetComponent<SpriteRenderer>();
-        print(MainManager.instance.isRespawn);
         waitingToRespawn = false;
         if (!MainManager.instance.isRespawn)
         {

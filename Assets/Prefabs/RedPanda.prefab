@@ -250,16 +250,16 @@ MonoBehaviour:
   isGrounded: 1
   isFacingLeftStart: 0
   temp: 0
-  freezeTemp: 100
+  freezeTemp: 400
   freezeRate: 1
   tempBar: {fileID: 0}
   foodBar: {fileID: 0}
   hpBar: {fileID: 0}
   hunger: 0
-  maxHunger: 100
+  maxHunger: 400
   hungerRate: 1
-  hp: 100
-  maxHp: 100
+  hp: 400
+  maxHp: 400
   isFacingRight: 0
   platformLayer:
     serializedVersion: 2
@@ -298,6 +298,7 @@ MonoBehaviour:
   isInFire: 0
   canBeSpirit: 0
   fallDistance: 0
+  airfallDistance: 0
   startFallDistance: 0
   spiritLight: {fileID: 1672129985538267997}
   isEating: 0
