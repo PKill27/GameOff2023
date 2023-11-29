@@ -28,7 +28,7 @@ public class MonologueManager : MonoBehaviour
         {
 
        
-        if (!MainManager.instance.monologues[0] && Player.instance.temp <= 10000)
+        if (!MainManager.instance.monologues[0] && Player.instance.temp/Player.instance.freezeTemp >= .1)
         {//when player is cold first time
                 print("fgetting cold");
             PlayInnerMono("I am very cold better find shelter");
@@ -48,7 +48,7 @@ public class MonologueManager : MonoBehaviour
             PlayInnerMono("ohhh the water is so cold if i dont get out fast I might freeze.");
         }
 
-        else if (!MainManager.instance.monologues[3] && Player.instance.hunger <= 20)
+        else if (!MainManager.instance.monologues[3] && Player.instance.hunger / Player.instance.maxHunger >= .1)
         {
             MainManager.instance.monologues[3] = true;
             PlayInnerMono("I am starting to feel hungry better find food soon");
