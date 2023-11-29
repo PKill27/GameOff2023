@@ -271,7 +271,7 @@ public class Player : MonoBehaviour
         print(MainManager.instance.isRespawn);
         if (!MainManager.instance.isRespawn)
         {
-        transform.position = MainManager.instance.playerPosOnLoad;
+        //transform.position = MainManager.instance.playerPosOnLoad;
         }
 
                 //playerFootsteps = AudioManager.instance.CreateInstance(FMODEvents.instance.PlayerFootsteps);
