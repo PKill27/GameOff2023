@@ -66,6 +66,7 @@ public class Player : MonoBehaviour
     public bool isInFire = false;
     public bool canBeSpirit = false;
     public float fallDistance;
+    public float airfallDistance;
     public float startFallDistance;
     private bool takingFallDamage;
     public GameObject spiritLight;
@@ -77,6 +78,7 @@ public class Player : MonoBehaviour
     public bool canPickUpTrash;
     private float timeBetweenFoootstep;
     public GroundOption currentGround;
+    private bool waitingToRespawn = false;
 
     private void Awake()
     {
@@ -110,11 +112,19 @@ public class Player : MonoBehaviour
     private void CheckFallDamage()
     {
         float fallDamageThreshold = 1.6f;
+        float fallDamageThresholdEnd = 4f;
         if (timeLoaded <= 1)//stops fall damage on loading in
         {
             fallDistance = 0;
         }
-        if (fallDistance >= fallDamageThreshold && !takingFallDamage)
+        if(airfallDistance >= fallDamageThresholdEnd && !waitingToRespawn)
+        {
+            //hp = 0;
+            airfallDistance = 0;
+            waitingToRespawn = true;
+            MainManager.instance.HandleRespawn();
+        }
+        else if (fallDistance >= fallDamageThreshold && !takingFallDamage)
         {
             //if here taking fall dmg
             hp = hp - 40;
@@ -258,6 +268,11 @@ public class Player : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>().sprite;
         animator = GetComponent<Animator>();
         spriteRender = GetComponent<SpriteRenderer>();
+        if (!MainManager.instance.isRespawn)
+        {
+            transform.position = MainManager.instance.playerPosOnLoad;
+        }
+        
         //playerFootsteps = AudioManager.instance.CreateInstance(FMODEvents.instance.PlayerFootsteps);
         if (!MainManager.instance.isFirstScene)
         {
@@ -267,30 +282,11 @@ public class Player : MonoBehaviour
         else
         {
             //transform.position = GetCheckPointandPos();
+            MainManager.instance.HandleRespawn();
             MainManager.instance.isFirstScene = false;
         }
-        if (SceneManager.GetActiveScene().name == "Platforming")
-        {
-             if (MainManager.instance.MainWorldIsFacingRight)
-            {
-                if(transform.localScale.x > 0)
-                {
-                    transform.localScale = new Vector2(-1 * transform.localScale.x, transform.localScale.y);
-                }
-               
-                isFacingRight = true;
-            }
-
-            else if (!MainManager.instance.MainWorldIsFacingRight)
-            {
-                if (transform.localScale.x < 0)
-                {
-                    transform.localScale = new Vector2(-1 * transform.localScale.x, transform.localScale.y);
-                }
-                isFacingRight = false;
-            }
-        }
-        else if (!isFacingLeftStart)
+        
+        if (!isFacingLeftStart)
         {
             transform.localScale = new Vector2(-1 * transform.localScale.x, transform.localScale.y);
             isFacingRight = true;
@@ -298,8 +294,8 @@ public class Player : MonoBehaviour
         
         else if (isFacingLeftStart)
         {
-                transform.localScale = new Vector2(-1 * transform.localScale.x, transform.localScale.y);
-                isFacingRight = false;
+            transform.localScale = new Vector2(-1 * transform.localScale.x, transform.localScale.y);
+            isFacingRight = false;
         }
             
 
@@ -310,10 +306,7 @@ public class Player : MonoBehaviour
         temp = MainManager.instance.temp;
         hunger = MainManager.instance.hunger;
         hp = MainManager.instance.hp;
-        if(SceneManager.GetActiveScene().name == "Platforming")
-        {
-            transform.position = MainManager.instance.mainWorldPos;
-        }
+        
     }
     public void SaveToMainManager()
     {
@@ -590,6 +583,8 @@ public class Player : MonoBehaviour
     void SetGrounded()
     {
         isGrounded = Physics2D.OverlapCircle(groundCheckPos.position, groundCheckRadius, platformLayer);
+        airfallDistance = startFallDistance - rb.position.y;
+
         if (rb.velocity.y <= 0.0f)
         {
             //top of jump 

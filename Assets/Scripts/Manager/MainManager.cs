@@ -20,6 +20,7 @@ public class MainManager : MonoBehaviour, iDataPersistance
     public bool isFirstScene = true;
     public bool MainWorldIsFacingRight = true;
     public Vector2 playerPosOnLoad;
+    public bool isRespawn = false;//keeps track if the new load is a respawn or from a tunnel
 
     public void LoadData(GameData data)
     {
@@ -63,5 +64,31 @@ public class MainManager : MonoBehaviour, iDataPersistance
 
         instance = this;
         DontDestroyOnLoad(gameObject);
+    }
+    public void HandleRespawn()
+    {
+        isRespawn = true;
+        if(checkPoint == 0)
+        {
+            LoadScene.instance.LoadLevelOverworld("Level 1",new Vector2(-20,-1.1f));
+        }else if(checkPoint == 1)
+        {
+            Player.instance.SaveToMainManager();
+            LoadScene.instance.LoadLevelRespawn("Cave Start");
+            //Player.instance.transform.position = Fire.instance.transform.position;
+        }
+        else if (checkPoint == 2)
+        {
+
+        }
+        else if (checkPoint == 3)
+        {
+
+        }
+        else if (checkPoint == 4)
+        {
+
+        }
+
     }
 }

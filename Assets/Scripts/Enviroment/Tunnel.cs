@@ -14,11 +14,6 @@ public class Tunnel : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             Player.instance.SaveToMainManager();
-            if (SceneManager.GetActiveScene().name == "Platforming")
-            {
-                MainManager.instance.MainWorldIsFacingRight = exitRight;
-                MainManager.instance.mainWorldPos = Player.instance.transform.position;
-            }
             MainManager.instance.playerPosOnLoad = posToSendPlayerTo;
             LoadScene.instance.LoadLevel(sceneName);
         }

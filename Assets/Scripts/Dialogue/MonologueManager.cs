@@ -19,7 +19,7 @@ public class MonologueManager : MonoBehaviour
         }
 
         instance = this;
-        DontDestroyOnLoad(gameObject);
+    
     }
     
     void Update()
@@ -73,14 +73,14 @@ public class MonologueManager : MonoBehaviour
     IEnumerator TypeSentence(string sentence)
     {
         message.text = "";
-        playerTalking.SetBool("isTalking", true);
+        playerTalking.SetBool("IsTalking", true);
         foreach (char letter in sentence.ToCharArray())
         {
             message.text += letter;
 
             yield return new WaitForSeconds(.03f);
         }
-        playerTalking.SetBool("isTalking", false);
+        playerTalking.SetBool("IsTalking", false);
         yield return new WaitForSeconds(2f);
         isMonoLoguing = false;
         innerMonoPanel.SetActive(false);
