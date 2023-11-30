@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using FMODUnity;
 using FMOD.Studio;
+using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
@@ -25,6 +26,7 @@ public class AudioManager : MonoBehaviour
 
     //private EventInstance ambienceEventInstance;
     private EventInstance musicEventInstance;
+    private EventInstance dialogueEventInstance;
 
     public static AudioManager instance { get; private set; }
 
@@ -66,7 +68,15 @@ public class AudioManager : MonoBehaviour
         musicEventInstance = CreateInstance(musicEventReference);
         musicEventInstance.start();
     }
-
+    public void InitializeDialogue(EventReference dialogueEventReference)
+    {
+        dialogueEventInstance = CreateInstance(dialogueEventReference);
+        dialogueEventInstance.start();
+    }
+    public void StopDialogue()
+    {
+        dialogueEventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+    }
     public EventInstance CreateInstance(EventReference eventReference)
     {
         EventInstance eventInstance = RuntimeManager.CreateInstance(eventReference);
@@ -97,6 +107,11 @@ public class AudioManager : MonoBehaviour
             emitter.Stop();
         }
       
+    }
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        print("clean up");
+        CleanUp();
     }
 
     private void OnDestroy()

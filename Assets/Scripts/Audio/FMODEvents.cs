@@ -17,6 +17,8 @@ public class FMODEvents : MonoBehaviour
     [field: SerializeField] public EventReference RedPandaFootSteps;
     [field: SerializeField] public EventReference LeopardFootSteps;
     [field: SerializeField] public EventReference PikaFootSteps;
+    [field: SerializeField] public EventReference Eat;
+    [field: SerializeField] public EventReference Jump;
 
     [field: Header("Survival Meters")]
     [field: SerializeField] public EventReference Health;
@@ -27,6 +29,21 @@ public class FMODEvents : MonoBehaviour
     [field: SerializeField] public EventReference Nathalie;
     [field: SerializeField] public EventReference Ambition;
     [field: SerializeField] public EventReference Player;
+
+    [field: Header("autenuated")]
+    [field: SerializeField] public EventReference Fire;
+    [field: SerializeField] public EventReference Rolling;
+
+    [field: Header("UI")]
+    [field: SerializeField] public EventReference Back;
+    [field: SerializeField] public EventReference Highlighted;
+    [field: SerializeField] public EventReference Select;
+    [field: SerializeField] public EventReference TextBoxPopUp;
+    [field: SerializeField] public EventReference TextBoxPopDisapear;
+
+    [field: Header("misc")]
+    [field: SerializeField] public EventReference Paused;
+    [field: SerializeField] public EventReference Cave;
 
     public static FMODEvents instance { get; private set; }
 

@@ -502,6 +502,7 @@ public class Player : MonoBehaviour
     {
         aboutToJump =  true;
         yield return new WaitForSeconds(.2f);
+        AudioManager.instance.PlayOneShot(FMODEvents.instance.Jump, transform.position);
         rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
         isGrounded = false;
         canJump = false;
@@ -625,6 +626,10 @@ public class Player : MonoBehaviour
         hunger = Mathf.Max(hunger - 10, 0);
         animator.SetBool("isEating",true);
         StartCoroutine(WaitTillDoneEating());
+    }
+    public void PlayEatingSound()
+    {
+        AudioManager.instance.PlayOneShot(FMODEvents.instance.Eat, transform.position);
     }
     IEnumerator WaitTillDoneEating()
     {

@@ -42,4 +42,8 @@ public class MainMenu : MonoBehaviour
     {
         SettingsPanel.SetActive(false);
     }
+    public void PlaySelectedSound()
+    {
+        AudioManager.instance.PlayOneShot(FMODEvents.instance.Select,Vector3.zero);
+    }
 }

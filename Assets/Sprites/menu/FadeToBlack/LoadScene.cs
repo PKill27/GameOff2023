@@ -9,13 +9,22 @@ public class LoadScene : MonoBehaviour
     public Animator transition;
     public Animator OptionalTitleName;
     public static LoadScene instance;
+    public int musicToPlay;
     private void Awake()
     {
         instance = this;
     }
     private void Start()
     {
-        AudioManager.instance.InitializeMusic(FMODEvents.instance.Music1);
+        if(musicToPlay == 0)
+        {
+            AudioManager.instance.InitializeMusic(FMODEvents.instance.MusicMenu);
+        }
+        else
+        {
+            AudioManager.instance.InitializeMusic(FMODEvents.instance.Music1);
+        }
+        
         if (OptionalTitleName != null&& MainManager.instance.playLevelLoader)
         {
             OptionalTitleName.SetTrigger("Start");

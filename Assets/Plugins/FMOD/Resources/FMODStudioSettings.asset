@@ -560,8 +560,8 @@ MonoBehaviour:
   switchSettingsMigration: 1
   HasSourceProject: 1
   HasPlatforms: 1
-  sourceProjectPath: ../../Downloads/Everest Game Audio 2/Everest Game Audio.fspro
-  sourceBankPath: ../../Downloads/Everest Game Audio 2/Build
+  sourceProjectPath: ../../Downloads/Everest Game Audio 3/Everest Game Audio.fspro
+  sourceBankPath: ../../Downloads/Everest Game Audio 3/Build
   sourceBankPathUnformatted: 
   BankRefreshCooldown: 5
   ShowBankRefreshWindow: 1

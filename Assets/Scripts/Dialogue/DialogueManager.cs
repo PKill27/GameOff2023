@@ -80,6 +80,7 @@ public class DialogueManager : MonoBehaviour
         else
         {
             Player.instance.isTalking = false;
+            AudioManager.instance.PlayOneShot(FMODEvents.instance.TextBoxPopDisapear, Vector3.zero);
             FinishDialogue();
         }
     }
@@ -130,15 +131,11 @@ public class DialogueManager : MonoBehaviour
                 {
 
                 }
-            
-            
-
-            
-          
         }
         else
         {
             Player.instance.isTalking = false;
+            AudioManager.instance.PlayOneShot(FMODEvents.instance.TextBoxPopDisapear, Vector3.zero);
             FinishDialogue();
         }
     }
@@ -168,6 +165,19 @@ public class DialogueManager : MonoBehaviour
         {
             isTyping = true;
             ChangeSpeaker(speaker);
+            if(speakerName.text == "player")
+            {
+                AudioManager.instance.InitializeDialogue(FMODEvents.instance.Player);
+            }else if(speakerName.text == "Nathalie")
+            {
+                AudioManager.instance.InitializeDialogue(FMODEvents.instance.Nathalie);
+
+            }
+            else if(speakerName.text == "Ambition Spirit")
+            {
+                AudioManager.instance.InitializeDialogue(FMODEvents.instance.Ambition);
+
+            }
             currSpeaker.SetBool("IsTalking", true);
             message.text = "";
             foreach (char letter in sentence.ToCharArray())
@@ -185,6 +195,7 @@ public class DialogueManager : MonoBehaviour
                 }
                 
             }
+            AudioManager.instance.StopDialogue();
             currSpeaker.SetBool("IsTalking", false);
             isTyping = false;
             yield return null;

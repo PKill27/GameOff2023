@@ -4627,8 +4627,47 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4316567199807114632, guid: d828b08a7da5348dd9a64add5410f3c4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 699692466}
   m_SourcePrefab: {fileID: 100100000, guid: d828b08a7da5348dd9a64add5410f3c4, type: 3}
+--- !u!1 &699692465 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4316567199807114632, guid: d828b08a7da5348dd9a64add5410f3c4, type: 3}
+  m_PrefabInstance: {fileID: 699692464}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &699692466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 699692465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 394543905
+      Data2: 1226402925
+      Data3: -240900931
+      Data4: 1239552060
+    Path: event:/Other Dynamic/Campfire
+  Event: 
+  PlayEvent: 1
+  StopEvent: 2
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!4 &771171601 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8364713813825778792, guid: c3150981a4f054c938b1299571858199, type: 3}

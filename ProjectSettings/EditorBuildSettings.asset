@@ -12,9 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Platforming.unity
     guid: dea03e87212e64831a66596d78071896
   - enabled: 1
-    path: Assets/Scenes/Cave.unity
-    guid: 1abc40831d0344251a7b6400aba4cbdc
-  - enabled: 1
     path: Assets/Scenes/NewGameScene.unity
     guid: 30a092ac49e76429985f9435c914289f
   - enabled: 1

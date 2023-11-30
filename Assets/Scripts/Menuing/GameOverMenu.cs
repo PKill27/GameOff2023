@@ -32,11 +32,17 @@ public class GameOverMenu : MonoBehaviour
     }
     public void HoverEnter()
     {
+        AudioManager.instance.PlayOneShot(FMODEvents.instance.Highlighted, Vector3.zero);
         image.color = new Color(72f / 255f, 194f / 255f, 254f / 255f, 1f);
 
     }
     public void HoverExit()
     {
+        AudioManager.instance.PlayOneShot(FMODEvents.instance.Highlighted, Vector3.zero);
         image.color = baseColor;
+    }
+    public void PlaySelectedSound()
+    {
+        AudioManager.instance.PlayOneShot(FMODEvents.instance.Select, Vector3.zero);
     }
 }

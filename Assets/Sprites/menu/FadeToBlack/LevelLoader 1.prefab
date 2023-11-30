@@ -149,6 +149,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transition: {fileID: 6592196355085757742}
+  OptionalTitleName: {fileID: 0}
+  musicToPlay: 1
 --- !u!1 &7243981603644385223
 GameObject:
   m_ObjectHideFlags: 0

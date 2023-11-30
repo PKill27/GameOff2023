@@ -175,9 +175,11 @@ MonoBehaviour:
   hunger: 0
   mainWorldPos: {x: 0, y: 0}
   isFirstScene: 1
-  MainWorldIsFacingRight: 1
+  isFacingRightLoadScene: 1
   playerPosOnLoad: {x: 0, y: 0}
   isRespawn: 0
+  playLevelLoader: 0
+  canMove: 1
 --- !u!1 &232625549
 GameObject:
   m_ObjectHideFlags: 0
@@ -264,6 +266,18 @@ MonoBehaviour:
       - m_Target: {fileID: 909333974}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
         m_MethodName: NewGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 909333974}
+        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+        m_MethodName: PlaySelectedSound
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -406,6 +420,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 909333974}
+        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+        m_MethodName: PlaySelectedSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &242252954
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -469,6 +495,10 @@ PrefabInstance:
     - target: {fileID: 5823002459544482930, guid: c3150981a4f054c938b1299571858199, type: 3}
       propertyPath: m_AdditionalShaderChannelsFlag
       value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8278360889803473475, guid: c3150981a4f054c938b1299571858199, type: 3}
+      propertyPath: musicToPlay
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8364713813825778792, guid: c3150981a4f054c938b1299571858199, type: 3}
       propertyPath: m_LocalPosition.x
@@ -608,19 +638,33 @@ MonoBehaviour:
       Data3: -483400540
       Data4: 2120879711
     Path: event:/Footsteps/Himalayan Pika Steps
-  Health:
+  Eat:
     Guid:
-      Data1: -458990902
-      Data2: 1109192239
-      Data3: 1879423151
-      Data4: -1497795851
-    Path: event:/Survival Meters/Health
-  Hunger:
+      Data1: -310839084
+      Data2: 1300044114
+      Data3: 1414646192
+      Data4: -279204439
+    Path: event:/One-Shots/Player/Eat
+  Jump:
+    Guid:
+      Data1: 1938571336
+      Data2: 1157533278
+      Data3: 481493416
+      Data4: -584170388
+    Path: event:/One-Shots/Player/Jump
+  Health:
     Guid:
       Data1: -997356807
       Data2: 1137338368
       Data3: 1698755489
       Data4: -1854848137
+    Path: event:/Survival Meters/Health
+  Hunger:
+    Guid:
+      Data1: -458990902
+      Data2: 1109192239
+      Data3: 1879423151
+      Data4: -1497795851
     Path: event:/Survival Meters/Hunger
   Temp:
     Guid:
@@ -631,25 +675,88 @@ MonoBehaviour:
     Path: event:/Survival Meters/Weather
   Nathalie:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 1275077063
+      Data2: 1280451519
+      Data3: 226676879
+      Data4: 632777703
+    Path: event:/Text Box Speech/Nathalie Speech
   Ambition:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: -965692658
+      Data2: 1115103895
+      Data3: 624947127
+      Data4: 1521462224
+    Path: event:/Text Box Speech/Ambition Speech
   Player:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 1463026438
+      Data2: 1280808923
+      Data3: -1442746189
+      Data4: -261351692
+    Path: event:/Text Box Speech/Red Panda Speech
+  Fire:
+    Guid:
+      Data1: 394543905
+      Data2: 1226402925
+      Data3: -240900931
+      Data4: 1239552060
+    Path: event:/Other Dynamic/Campfire
+  Rolling:
+    Guid:
+      Data1: 1183482677
+      Data2: 1247119456
+      Data3: -2044474690
+      Data4: -1954774263
+    Path: event:/Other Dynamic/Snowball
+  Back:
+    Guid:
+      Data1: 1606502463
+      Data2: 1294695070
+      Data3: -147909244
+      Data4: 1827928705
+    Path: event:/One-Shots/UI/Back
+  Highlighted:
+    Guid:
+      Data1: -864860033
+      Data2: 1336987524
+      Data3: 1572406463
+      Data4: 2115311817
+    Path: event:/One-Shots/UI/Option Highlight
+  Select:
+    Guid:
+      Data1: -420951181
+      Data2: 1163804182
+      Data3: 2137405326
+      Data4: -168160499
+    Path: event:/One-Shots/UI/Select
+  TextBoxPopUp:
+    Guid:
+      Data1: -1088613012
+      Data2: 1277910440
+      Data3: 1286174347
+      Data4: 1854718636
+    Path: event:/One-Shots/UI/Text Box Disappear
+  TextBoxPopDisapear:
+    Guid:
+      Data1: -1088613012
+      Data2: 1277910440
+      Data3: 1286174347
+      Data4: 1854718636
+    Path: event:/One-Shots/UI/Text Box Disappear
+  Paused:
+    Guid:
+      Data1: -1190074998
+      Data2: 1183760011
+      Data3: -870226030
+      Data4: 1809255278
+    Path: event:/Pause Status
+  Cave:
+    Guid:
+      Data1: -1915650403
+      Data2: 1295065560
+      Data3: 1411187376
+      Data4: 1963206928
+    Path: event:/In Cave
 --- !u!1 &635040038
 GameObject:
   m_ObjectHideFlags: 0
@@ -1062,6 +1169,18 @@ MonoBehaviour:
       - m_Target: {fileID: 909333974}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
         m_MethodName: ContinueGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 909333974}
+        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+        m_MethodName: PlaySelectedSound
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1905,9 +2024,37 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5905534316880157702, guid: d8e9bdfc0b51e424da28b1a4dc2495d6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5905534316880157702, guid: d8e9bdfc0b51e424da28b1a4dc2495d6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5905534316880157702, guid: d8e9bdfc0b51e424da28b1a4dc2495d6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 909333974}
+    - target: {fileID: 5905534316880157702, guid: d8e9bdfc0b51e424da28b1a4dc2495d6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 909333974}
+    - target: {fileID: 5905534316880157702, guid: d8e9bdfc0b51e424da28b1a4dc2495d6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5905534316880157702, guid: d8e9bdfc0b51e424da28b1a4dc2495d6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: PlaySelectedSound
+      objectReference: {fileID: 0}
+    - target: {fileID: 5905534316880157702, guid: d8e9bdfc0b51e424da28b1a4dc2495d6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: MainMenu, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5905534316880157702, guid: d8e9bdfc0b51e424da28b1a4dc2495d6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 6712087541667673501, guid: d8e9bdfc0b51e424da28b1a4dc2495d6, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1923,6 +2070,34 @@ PrefabInstance:
     - target: {fileID: 6712087541667673501, guid: d8e9bdfc0b51e424da28b1a4dc2495d6, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6785183852630787114, guid: d8e9bdfc0b51e424da28b1a4dc2495d6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6785183852630787114, guid: d8e9bdfc0b51e424da28b1a4dc2495d6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6785183852630787114, guid: d8e9bdfc0b51e424da28b1a4dc2495d6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 909333974}
+    - target: {fileID: 6785183852630787114, guid: d8e9bdfc0b51e424da28b1a4dc2495d6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6785183852630787114, guid: d8e9bdfc0b51e424da28b1a4dc2495d6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: PlaySelectedSound
+      objectReference: {fileID: 0}
+    - target: {fileID: 6785183852630787114, guid: d8e9bdfc0b51e424da28b1a4dc2495d6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: MainMenu, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6785183852630787114, guid: d8e9bdfc0b51e424da28b1a4dc2495d6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 8051099692604975353, guid: d8e9bdfc0b51e424da28b1a4dc2495d6, type: 3}
       propertyPath: m_AnchorMax.y

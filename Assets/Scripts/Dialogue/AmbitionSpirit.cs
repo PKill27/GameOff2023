@@ -42,6 +42,7 @@ public class AmbitionSpirit : MonoBehaviour
 
             dialoguePanel.SetActive(true);
             //SpeakerImage.sprite = GetComponent<SpriteRenderer>().sprite;
+            AudioManager.instance.PlayOneShot(FMODEvents.instance.TextBoxPopUp, Vector3.zero);
             DialogueManager.instance.startDialogue(dialogueNumber, SpeakerImage, npcSprite, Player.instance.sprite, 1,"Ambition Spirit");
             isTalkableTo = false;
         }
