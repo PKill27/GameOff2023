@@ -33,6 +33,7 @@ public class PauseMenu : MonoBehaviour
         Player.instance.UnpauseAllAnimations();
         pauseMenuPanel.SetActive(false);
         Player.instance.rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        AudioManager.instance.UnPausedGame();
     }
     public void OnQuit()
     {

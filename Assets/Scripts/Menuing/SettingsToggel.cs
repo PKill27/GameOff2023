@@ -22,4 +22,8 @@ public class SettingsToggel : MonoBehaviour
     {
         AudioManager.instance.PlayOneShot(FMODEvents.instance.Select, Vector3.zero);
     }
+    public void PlayBackSound()
+    {
+        AudioManager.instance.PlayOneShot(FMODEvents.instance.Back, Vector3.zero);
+    }
 }

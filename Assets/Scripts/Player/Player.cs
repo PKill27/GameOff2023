@@ -113,7 +113,7 @@ public class Player : MonoBehaviour
     {
         if (isInWater)
         {
-            AudioManager.instance.SetParamWalking(3);
+            AudioManager.instance.SetParamWalking(2);
         }
         else
         {
@@ -620,6 +620,7 @@ public class Player : MonoBehaviour
             //is on ground
             animator.SetBool("isJumping", false);
             animator.SetBool("landed", true);
+            PlayFootstepSound();
             animator.SetBool("isFalling", false);
             canJump = true;
             fallDistance = startFallDistance - rb.position.y;

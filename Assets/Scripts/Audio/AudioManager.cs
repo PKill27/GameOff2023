@@ -28,6 +28,11 @@ public class AudioManager : MonoBehaviour
     private EventInstance musicEventInstance;
     private EventInstance dialogueEventInstance;
     private EventInstance walkingInstance;
+    private EventInstance walkingInstance2;
+    private EventInstance pause;
+    private EventInstance cave;
+
+    private int instanceWalingNumber = 0;
 
     public static AudioManager instance { get; private set; }
 
@@ -52,8 +57,7 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-        //InitializeAmbience(FMODEvents.instance.ambience);
-        //print(FMODEvents.instance.Music);
+        
         //InitializeMusic(FMODEvents.instance.Music);
     }
     private void Update()
@@ -76,10 +80,32 @@ public class AudioManager : MonoBehaviour
         eventInstances.Add(dialogueEventInstance);
         dialogueEventInstance.start();
     }
+    public void InitializePauseCave(bool isCave)
+    {
+        pause = CreateInstance(FMODEvents.instance.Paused);
+        eventInstances.Add(pause);
+        if (isCave)
+        {
+            cave = CreateInstance(FMODEvents.instance.Cave);
+            eventInstances.Add(cave);
+            cave.start(); 
+            cave.setParameterByName("In Cave", 1.0f);
+        }
+    }
+    public void PausedGame()
+    {
+        pause.start();
+    }
+    public void UnPausedGame()
+    {
+        pause.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+    }
     public void InitializeFootsteps(EventReference footstepsEventReference)
     {
         walkingInstance = CreateInstance(footstepsEventReference);
         eventInstances.Add(walkingInstance);
+        walkingInstance2 = CreateInstance(footstepsEventReference);
+        eventInstances.Add(walkingInstance2);
     }
     public void StopDialogue()
     {
@@ -98,11 +124,25 @@ public class AudioManager : MonoBehaviour
     public void SetParamWalking(float paramValue)
     {
         walkingInstance.setParameterByName("Material", paramValue);
+        walkingInstance2.setParameterByName("Material", paramValue);
     }
     public void PlayOneShotFootstep(Vector3 worldPos)
     {
-        walkingInstance.start();
-        dialogueEventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        //walkingInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+       //walkingInstance2.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        if (instanceWalingNumber == 0)
+        { 
+            walkingInstance.start();
+            walkingInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            instanceWalingNumber = 1;
+        }
+        else
+        {   
+            walkingInstance2.start();
+            walkingInstance2.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            instanceWalingNumber = 0;
+        }
+        
         // RuntimeManager.PlayOneShot(sound, worldPos);
     }
     public void PlayOneShot(EventReference sound, Vector3 worldPos)
@@ -110,12 +150,13 @@ public class AudioManager : MonoBehaviour
         RuntimeManager.PlayOneShot(sound, worldPos);
     }
 
+
     public void CleanUp()
     {
         print("cleaning up");
         // stop and release any created instances
        foreach (EventInstance eventInstance in eventInstances)
-        {
+       {
             eventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
             eventInstance.release();
         }

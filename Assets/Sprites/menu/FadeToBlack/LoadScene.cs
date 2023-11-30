@@ -18,10 +18,16 @@ public class LoadScene : MonoBehaviour
     {
         if(musicToPlay == 0)
         {
+            AudioManager.instance.InitializePauseCave(false);
             AudioManager.instance.InitializeMusic(FMODEvents.instance.MusicMenu);
+        }
+        else if (SceneManager.GetActiveScene().name.Contains("Cave"))
+        {
+            AudioManager.instance.InitializePauseCave(true);
         }
         else
         {
+            AudioManager.instance.InitializePauseCave(false);
             AudioManager.instance.InitializeMusic(FMODEvents.instance.Music1);
         }
         
@@ -55,9 +61,9 @@ public class LoadScene : MonoBehaviour
     {
         AudioManager.instance.SetParam("Apply Fade Out", 1);
         transition.SetTrigger("Start");
-        AudioManager.instance.CleanUp();
+        
         yield return new WaitForSeconds(2f);
-        //AudioManager.instance.CleanUp();
+        AudioManager.instance.CleanUp();
         SceneManager.LoadScene(name);
         yield return new WaitForSeconds(2f);
         if(OptionalTitleName != null)

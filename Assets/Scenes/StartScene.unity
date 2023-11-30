@@ -745,11 +745,11 @@ MonoBehaviour:
     Path: event:/One-Shots/UI/Text Box Disappear
   Paused:
     Guid:
-      Data1: -1190074998
-      Data2: 1183760011
-      Data3: -870226030
-      Data4: 1809255278
-    Path: event:/Pause Status
+      Data1: -1833175832
+      Data2: 1201742419
+      Data3: 640143757
+      Data4: -37480257
+    Path: snapshot:/Game Pause
   Cave:
     Guid:
       Data1: -1915650403
