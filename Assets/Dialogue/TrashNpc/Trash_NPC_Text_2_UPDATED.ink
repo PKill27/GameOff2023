@@ -34,6 +34,7 @@ then this is what I can offer you.
 ->trashEnd2
 
 ===OE2===
+#speaker npc
 You work fast little panda. 
 Thank you for your help. 
 And of course, I haven’t forgotten about your reward. 
@@ -46,6 +47,7 @@ then this is what I can offer you.
 ->trashEnd2
 
 ===OE3===
+#speaker npc
 The reward is what it is, 
 its worth is entirely dependent on you. 
 Your body won’t be able to make it past a certain point on the mountain, 

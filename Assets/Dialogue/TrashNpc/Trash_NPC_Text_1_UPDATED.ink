@@ -35,6 +35,7 @@ I’ve been here fifteen years now, and I don’t feel like I’ve even scratche
 ->trashChoice2
 
 ===I1===
+#speaker npc
 It’s not pity, it’s out of perseverance. 
 Your species is dying. 
 My spirit may be stuck here to clean trash off the mountain, 
@@ -43,6 +44,7 @@ And that includes you little panda.
 ->trashChoice2
 
 ===S1===
+#speaker npc
 I’m going to pretend you didn’t just say that
 You spend fifteen years cleaning a mountain so animals like you have a safe place to live.
 And this is what I’m rewarded with.  
@@ -77,6 +79,7 @@ I may even be able to help you summit the mountain.
 ->trashChoice3
 
 ===I2===
+#speaker npc
 Hold on a second small friend, 
 you're trying to summit the mountain? 
 It’s extremely dangerous 
@@ -94,6 +97,7 @@ then I’ll help you on your journey to the top.
 ->trashChoice3
 
 ===S2===
+#speaker npc
 You’re a snarky one, aren’t you? 
 Wouldn’t know how to be thankful if your life depended on it. 
 Normally I'd tell you to buzz off.

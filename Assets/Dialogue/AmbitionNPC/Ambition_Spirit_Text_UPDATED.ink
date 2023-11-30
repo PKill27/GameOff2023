@@ -126,6 +126,7 @@ and thinking is for the people I pay.
 ->AChoice4
 
 ===DA3===
+#speaker npc
 Trash? 
 Wait, did the trash throw me away, or is the sherpa trash?
 What even is trash?
@@ -163,6 +164,7 @@ I will see the summit of this god forsaken mountain.
 ->AChoice5
 
 ===DA4===
+#speaker npc
 And to think, 
 nature could be so cruel.
 First it kills me, 
@@ -244,6 +246,7 @@ YOU DON’T KNOW ANYTHING!!!
 ->AChoice7
 
 ===IA6===
+#speaker npc
 Thank you for respecting my ambition.
 This has certainly been the weirdest conversation of my afterlife.
 Actually it’s been the only conversation of my afterlife but regardless, 
@@ -254,6 +257,7 @@ I’m going to get there first!
 ->END
 
 ===DA6===
+#speaker npc
 I don’t need to listen to you.
 Get lost panda, 
 and don’t come back.
