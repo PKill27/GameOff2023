@@ -104,9 +104,21 @@ public class Player : MonoBehaviour
             CheckEndGame();
             CheckFallDamage();
             timeLoaded += Time.deltaTime;
+            SetFootSteps();
         }
         //UpdateSound();
 
+    }
+    private void SetFootSteps()
+    {
+        if (isInWater)
+        {
+            AudioManager.instance.SetParamWalking(3);
+        }
+        else
+        {
+            AudioManager.instance.SetParamWalking(0);
+        }
     }
     private void CheckFallDamage()
     {
@@ -240,7 +252,7 @@ public class Player : MonoBehaviour
     }
     public void PlayFootstepSound()
     {
-        AudioManager.instance.PlayOneShot(FMODEvents.instance.RedPandaFootSteps, transform.position);
+        AudioManager.instance.PlayOneShotFootstep(transform.position);
     }
     private void UpdateSound()
     {
@@ -261,6 +273,7 @@ public class Player : MonoBehaviour
         {
             IntroCutscene.instance.gameObject.SetActive(false);
         }
+        AudioManager.instance.InitializeFootsteps(FMODEvents.instance.RedPandaFootSteps);
         rb = GetComponent<Rigidbody2D>();
         hp = maxHp;
         sprite = GetComponent<SpriteRenderer>().sprite;

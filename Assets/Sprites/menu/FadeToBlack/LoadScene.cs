@@ -55,7 +55,9 @@ public class LoadScene : MonoBehaviour
     {
         AudioManager.instance.SetParam("Apply Fade Out", 1);
         transition.SetTrigger("Start");
+        AudioManager.instance.CleanUp();
         yield return new WaitForSeconds(2f);
+        //AudioManager.instance.CleanUp();
         SceneManager.LoadScene(name);
         yield return new WaitForSeconds(2f);
         if(OptionalTitleName != null)
@@ -76,6 +78,7 @@ public class LoadScene : MonoBehaviour
         transition.SetTrigger("Start");
         yield return new WaitForSeconds(2f);
         print("respawn");
+        AudioManager.instance.CleanUp();
         SceneManager.LoadScene(name);
        
         yield return new WaitForSeconds(.1f);

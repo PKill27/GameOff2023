@@ -153,8 +153,8 @@ public class MainManager : MonoBehaviour, iDataPersistance
         LoadScene.instance.transition.SetTrigger("Start");
 
         yield return new WaitForSeconds(2f);
-        
 
+        AudioManager.instance.CleanUp();
         SceneManager.LoadScene(name);
 
         yield return new WaitForSeconds(.1f);
@@ -190,6 +190,7 @@ public class MainManager : MonoBehaviour, iDataPersistance
         AudioManager.instance.SetParam("Apply Fade Out", 1);
         LoadScene.instance.transition.SetTrigger("Start");
         yield return new WaitForSeconds(2f);
+        AudioManager.instance.CleanUp();
         SceneManager.LoadScene(name);
         yield return new WaitForSeconds(.1f);
         if (IntroCutscene.instance != null)
@@ -217,6 +218,7 @@ public class MainManager : MonoBehaviour, iDataPersistance
         yield return new WaitForSeconds(2f);
         playLevelLoader = false;
         canMove = false;
+        AudioManager.instance.CleanUp();
         SceneManager.LoadScene("Level 1");
         yield return new WaitForSeconds(.1f);
         IntroCutscene.instance.healthBars.SetActive(false);

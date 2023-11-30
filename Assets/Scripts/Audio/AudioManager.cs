@@ -27,6 +27,7 @@ public class AudioManager : MonoBehaviour
     //private EventInstance ambienceEventInstance;
     private EventInstance musicEventInstance;
     private EventInstance dialogueEventInstance;
+    private EventInstance walkingInstance;
 
     public static AudioManager instance { get; private set; }
 
@@ -66,12 +67,19 @@ public class AudioManager : MonoBehaviour
     {
         print("music playing");
         musicEventInstance = CreateInstance(musicEventReference);
+        eventInstances.Add(musicEventInstance);
         musicEventInstance.start();
     }
     public void InitializeDialogue(EventReference dialogueEventReference)
     {
         dialogueEventInstance = CreateInstance(dialogueEventReference);
+        eventInstances.Add(dialogueEventInstance);
         dialogueEventInstance.start();
+    }
+    public void InitializeFootsteps(EventReference footstepsEventReference)
+    {
+        walkingInstance = CreateInstance(footstepsEventReference);
+        eventInstances.Add(walkingInstance);
     }
     public void StopDialogue()
     {
@@ -87,14 +95,24 @@ public class AudioManager : MonoBehaviour
     {
         musicEventInstance.setParameterByName(paramName, paramValue);
     }
-
+    public void SetParamWalking(float paramValue)
+    {
+        walkingInstance.setParameterByName("Material", paramValue);
+    }
+    public void PlayOneShotFootstep(Vector3 worldPos)
+    {
+        walkingInstance.start();
+        dialogueEventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        // RuntimeManager.PlayOneShot(sound, worldPos);
+    }
     public void PlayOneShot(EventReference sound, Vector3 worldPos)
     {
         RuntimeManager.PlayOneShot(sound, worldPos);
     }
 
-    private void CleanUp()
+    public void CleanUp()
     {
+        print("cleaning up");
         // stop and release any created instances
        foreach (EventInstance eventInstance in eventInstances)
         {
