@@ -108,6 +108,7 @@ public class DialogueManager : MonoBehaviour
         Player.instance.isTalking = true;
         if (isTyping)
         {
+            AudioManager.instance.StopDialogue();
             message.text = prevMessage;
             isTyping = false;
             continuePressed = true;
@@ -150,7 +151,8 @@ public class DialogueManager : MonoBehaviour
 
     IEnumerator TypeSentence(string sentence)
     {
-        if(sentence != "")
+        AudioManager.instance.StopDialogue();
+        if (sentence != "")
         {
             prevMessage = sentence;
         }
@@ -186,6 +188,7 @@ public class DialogueManager : MonoBehaviour
                 if (continuePressed)
                 {
                     continuePressed = false;
+                    AudioManager.instance.StopDialogue();
                     break;//want the for loop to end here
                 }
                 else
