@@ -16,10 +16,11 @@ public class LoadScene : MonoBehaviour
     private void Start()
     {
         AudioManager.instance.InitializeMusic(FMODEvents.instance.Music1);
-        if (OptionalTitleName != null)
+        if (OptionalTitleName != null&& MainManager.instance.playLevelLoader)
         {
             OptionalTitleName.SetTrigger("Start");
         }
+        MainManager.instance.playLevelLoader = true;
         /**if (SceneManager.GetActiveScene().name == "Platforming")
         {
             if(MainManager.instance.mainWorldPos != new Vector2(0, 0))

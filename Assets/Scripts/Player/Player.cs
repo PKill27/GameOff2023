@@ -88,7 +88,7 @@ public class Player : MonoBehaviour
         }
 
         instance = this;
-        DontDestroyOnLoad(gameObject);
+       // DontDestroyOnLoad(gameObject);
     }
 
     protected void Update()
@@ -327,7 +327,7 @@ public class Player : MonoBehaviour
 
     public void Move(Vector2 movement)
     {
-        if (!isGameOver&& !isTalking && !isEating)
+        if (!isGameOver&& !isTalking && !isEating && MainManager.instance.canMove)
         {
             SetGrounded();
             if(movement == Vector2.left)

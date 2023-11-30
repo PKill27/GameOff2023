@@ -22,7 +22,8 @@ public class MainManager : MonoBehaviour, iDataPersistance
     public bool isFacingRightLoadScene = true;
     public Vector2 playerPosOnLoad;
     public bool isRespawn = false;//keeps track if the new load is a respawn or from a tunnel
-
+    public bool playLevelLoader;
+    public bool canMove = true;
     public void LoadData(GameData data)
     {
         
@@ -142,7 +143,7 @@ public class MainManager : MonoBehaviour, iDataPersistance
     }
     public void LoadLevelRespawn(string name)
     {
-        print("respawn");
+      
         StartCoroutine(LoadLevelWaiterRespawn(name));
 
     }
@@ -152,11 +153,16 @@ public class MainManager : MonoBehaviour, iDataPersistance
         LoadScene.instance.transition.SetTrigger("Start");
 
         yield return new WaitForSeconds(2f);
-        print("respawn");
+        
 
         SceneManager.LoadScene(name);
 
         yield return new WaitForSeconds(.1f);
+        if (IntroCutscene.instance != null)
+        {
+            IntroCutscene.instance.gameObject.SetActive(false);
+        }
+        
         MainManager.instance.isRespawn = false;
         Player.instance.hunger = 0;
         Player.instance.temp = 0;
@@ -185,6 +191,10 @@ public class MainManager : MonoBehaviour, iDataPersistance
         yield return new WaitForSeconds(2f);
         SceneManager.LoadScene(name);
         yield return new WaitForSeconds(.1f);
+        if (IntroCutscene.instance != null)
+        {
+            IntroCutscene.instance.gameObject.SetActive(false);
+        }
         Player.instance.hunger = 0;
         Player.instance.temp = 0;
         Player.instance.hp = Player.instance.maxHp;
@@ -192,6 +202,30 @@ public class MainManager : MonoBehaviour, iDataPersistance
 
         MainManager.instance.isRespawn = false;
         yield return new WaitForSeconds(2f);
+
+    }
+    public void PlayIntroCutscene()
+    {
+        StartCoroutine(LoadLevelPlayIntoCutscene());
+        
+    }
+    IEnumerator LoadLevelPlayIntoCutscene()
+    {
+        AudioManager.instance.SetParam("Apply Fade Out", 1);
+        LoadScene.instance.transition.SetTrigger("Start");
+        yield return new WaitForSeconds(2f);
+        playLevelLoader = false;
+        canMove = false;
+        SceneManager.LoadScene("Level 1");
+        yield return new WaitForSeconds(.1f);
+        IntroCutscene.instance.healthBars.SetActive(false);
+        IntroCutscene.instance.gameObject.SetActive(true);
+        Player.instance.transform.position = new Vector2(-22, -3.1f);
+
+        MainManager.instance.isRespawn = false;
+
+        yield return new WaitForSeconds(2f);
+        IntroCutscene.instance.PlayCutscene();
 
     }
 }

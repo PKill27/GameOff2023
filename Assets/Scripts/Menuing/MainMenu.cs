@@ -32,7 +32,7 @@ public class MainMenu : MonoBehaviour
     public void NewGame()
     {
         DataPersistenceManager.instance.NewGame();
-        LoadScene.instance.LoadLevel("NewGameScene");
+        MainManager.instance.PlayIntroCutscene();
     }
     public void Settings()
     {
