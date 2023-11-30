@@ -257,6 +257,10 @@ public class Player : MonoBehaviour
 
     protected void Start()
     {
+        if (IntroCutscene.instance != null && MainManager.instance.canMove)
+        {
+            IntroCutscene.instance.gameObject.SetActive(false);
+        }
         rb = GetComponent<Rigidbody2D>();
         hp = maxHp;
         sprite = GetComponent<SpriteRenderer>().sprite;

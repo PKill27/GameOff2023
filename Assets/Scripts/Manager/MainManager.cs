@@ -165,6 +165,7 @@ public class MainManager : MonoBehaviour, iDataPersistance
         
         MainManager.instance.isRespawn = false;
         Player.instance.hunger = 0;
+        MainManager.instance.canMove = true;
         Player.instance.temp = 0;
         Player.instance.hp = Player.instance.maxHp;
         Player.instance.transform.position = Fire.instance.transform.position + new Vector3(-1, 0, 0);
@@ -199,7 +200,7 @@ public class MainManager : MonoBehaviour, iDataPersistance
         Player.instance.temp = 0;
         Player.instance.hp = Player.instance.maxHp;
         Player.instance.transform.position = pos;
-
+        MainManager.instance.canMove = true;
         MainManager.instance.isRespawn = false;
         yield return new WaitForSeconds(2f);
 
