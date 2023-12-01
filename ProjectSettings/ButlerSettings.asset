@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 743bbf64120a59b4d920157af9723d65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BuildTarget: 20
+  BuildTarget: 19
   Account: Pkill27
   Project: Everest
   OverrideChannel: 0

@@ -26,7 +26,7 @@ public class MonologueManager : MonoBehaviour
     {
         if (!isMonoLoguing)
         {
-        if (!MainManager.instance.monologues[0] && Player.instance.temp/Player.instance.freezeTemp >= .1)
+        if (!MainManager.instance.monologues[0] && Player.instance.temp/Player.instance.freezeTemp >= .075)
         {//when player is cold first time
                 
             PlayInnerMono("Need to warm up... ");
@@ -46,7 +46,7 @@ public class MonologueManager : MonoBehaviour
             PlayInnerMono("This water is freezing…");
         }
 
-        else if (!MainManager.instance.monologues[3] && Player.instance.hunger / Player.instance.maxHunger >= .15)
+        else if (!MainManager.instance.monologues[3] && Player.instance.hunger / Player.instance.maxHunger >= .085)
         {
             MainManager.instance.monologues[3] = true;
             PlayInnerMono("I should find something to eat...");

@@ -134,9 +134,9 @@ public class Player : MonoBehaviour
     }
     private void CheckFallDamage()
     {
-        float fallDamageThreshold = 3.5f;
-        float fallDamageThresholdEnd = 6f;
-        if (timeLoaded <= 1)//stops fall damage on loading in
+        float fallDamageThreshold = 4.0f;
+        float fallDamageThresholdEnd = 9f;
+        if (timeLoaded <= 3)//stops fall damage on loading in
         {
             fallDistance = 0;
         }
@@ -649,7 +649,7 @@ public class Player : MonoBehaviour
     public void Eat()
     {
         isEating = true;
-        hunger = Mathf.Max(hunger - 10, 0);
+        hunger = Mathf.Max(hunger - 150, 0);
         animator.SetBool("isEating",true);
         StartCoroutine(WaitTillDoneEating());
     }

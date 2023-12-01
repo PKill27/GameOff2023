@@ -27,6 +27,7 @@ public class AmbitionSpirit : MonoBehaviour
     }
     public void acsend()
     {
+        e.gameObject.SetActive(false);
         acending.SetTrigger("Start");
     }
     protected void OnTriggerEnter2D(Collider2D collision)

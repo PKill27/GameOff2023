@@ -12,10 +12,14 @@ public class SettingsToggel : MonoBehaviour
     {
         if(image.sprite == yes)
         {
+            Screen.fullScreen = false;
+            MainManager.instance.fullScreen = false;
             image.sprite = no;
         }
         else
         {
+            Screen.fullScreen = true;
+            MainManager.instance.fullScreen = true;
             image.sprite = yes;
         }
     }

@@ -90,11 +90,14 @@ public class IntroCutscene : MonoBehaviour
         LoadScene.instance.OptionalTitleName.SetTrigger("Start");
         
         yield return new WaitForSeconds(.5f);
-        MainManager.instance.canMove = true;
+       
         
         yield return new WaitForSeconds(1.5f);
         controlsAnimator.SetTrigger("Start");
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(3f);
+        MainManager.instance.canMove = true;
+        yield return new WaitForSeconds(2f);
+
         gameObject.SetActive(false);
 
     }

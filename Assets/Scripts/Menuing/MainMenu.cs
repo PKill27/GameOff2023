@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     public GameObject SettingsPanel;
-
+    public static bool hasPressed = false;
     private void Start()
     {
         print(DataPersistenceManager.instance.gameData);
@@ -27,12 +28,23 @@ public class MainMenu : MonoBehaviour
     public void ContinueGame()
     {
         //DataPersistenceManager.instance.LoadGame();
-        MainManager.instance.HandleRespawn();
+        if (!hasPressed)
+        {
+            hasPressed = true;
+            MainManager.instance.HandleRespawn();
+        }
+        
+       
     }
     public void NewGame()
     {
-        DataPersistenceManager.instance.NewGame();
-        MainManager.instance.PlayIntroCutscene();
+        if (!hasPressed)
+        {
+            hasPressed = true;
+            DataPersistenceManager.instance.NewGame();
+            MainManager.instance.PlayIntroCutscene();
+        }
+
     }
     public void Settings()
     {

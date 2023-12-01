@@ -25,6 +25,7 @@ public class MainManager : MonoBehaviour, iDataPersistance
     public bool playLevelLoader;
     public bool canMove = true;
     public bool canPickUpTrash;
+    public bool fullScreen = false;
     public void LoadData(GameData data)
     {
         
