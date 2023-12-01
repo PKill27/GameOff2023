@@ -150,6 +150,7 @@ public class MainManager : MonoBehaviour, iDataPersistance
     IEnumerator LoadLevelWaiterRespawn(string name)
     {
         AudioManager.instance.SetParam("Apply Fade Out", 1);
+        AudioManager.instance.FadeOut();
         LoadScene.instance.transition.SetTrigger("Start");
 
         yield return new WaitForSeconds(2f);
@@ -188,6 +189,7 @@ public class MainManager : MonoBehaviour, iDataPersistance
     IEnumerator LoadLevelWaiterOverworld(string name, Vector2 pos)
     {
         AudioManager.instance.SetParam("Apply Fade Out", 1);
+        AudioManager.instance.FadeOut();
         LoadScene.instance.transition.SetTrigger("Start");
         yield return new WaitForSeconds(2f);
         AudioManager.instance.CleanUp();
@@ -214,6 +216,7 @@ public class MainManager : MonoBehaviour, iDataPersistance
     IEnumerator LoadLevelPlayIntoCutscene()
     {
         AudioManager.instance.SetParam("Apply Fade Out", 1);
+        AudioManager.instance.FadeOut();
         LoadScene.instance.transition.SetTrigger("Start");
         yield return new WaitForSeconds(2f);
         playLevelLoader = false;

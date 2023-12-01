@@ -107,7 +107,7 @@ public class AudioManager : MonoBehaviour
             wind.start();
         }
     }
-    public void fadeOut()
+    public void FadeOut()
     {
         wind.setParameterByName("Apply Fade Out", 1);
         musicEventInstance.setParameterByName("Apply Fade Out", 1);
