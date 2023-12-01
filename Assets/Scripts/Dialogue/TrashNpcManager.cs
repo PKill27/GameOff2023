@@ -58,6 +58,7 @@ public class TrashNpcManager : MonoBehaviour
         {
             
             dialoguePanel.SetActive(true);
+            e.EndAnimation();
             SpeakerImage.sprite = GetComponent<SpriteRenderer>().sprite;
             AudioManager.instance.PlayOneShot(FMODEvents.instance.TextBoxPopUp, Vector3.zero);
             DialogueManager.instance.startDialogue(dialogueNumber, SpeakerImage, npcSprite,Player.instance.sprite,0,"Nathalie");

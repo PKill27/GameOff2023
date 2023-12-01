@@ -3828,7 +3828,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3acf1a6365fae4d34a41bec660bbc098, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 8404491506205146265}
   backgroundSpeedHoriz: 0.99
   backgroundSpeedVert: 0.99
   offset: 1.5
@@ -3959,7 +3959,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3acf1a6365fae4d34a41bec660bbc098, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 8404491506205146265}
   backgroundSpeedHoriz: 0.96
   backgroundSpeedVert: 0.96
   offset: 1.5
@@ -5595,7 +5595,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3acf1a6365fae4d34a41bec660bbc098, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 8404491506205146265}
   backgroundSpeedHoriz: 0.9
   backgroundSpeedVert: 0.9
   offset: 1.5
@@ -6992,7 +6992,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 8.85, y: -1.24, z: 0}
-  m_LocalScale: {x: 2.5, y: 2.5, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 219231578}
@@ -8579,6 +8579,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d39a9775771c44b8d8f254f78399de71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!50 &8404491506205146265 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 233661063672817297, guid: 8288dd557a621443883ebe99e2ce90f3, type: 3}
+  m_PrefabInstance: {fileID: 5421737214617572735}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8462934841114124944
 PrefabInstance:
   m_ObjectHideFlags: 0
