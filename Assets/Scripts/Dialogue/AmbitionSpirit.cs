@@ -45,6 +45,7 @@ public class AmbitionSpirit : MonoBehaviour
             AudioManager.instance.PlayOneShot(FMODEvents.instance.TextBoxPopUp, Vector3.zero);
             DialogueManager.instance.startDialogue(dialogueNumber, SpeakerImage, npcSprite, Player.instance.sprite, 1,"Ambition Spirit");
             isTalkableTo = false;
+            textToTalk.SetActive(false);
         }
     }
 }

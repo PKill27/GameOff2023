@@ -204,19 +204,23 @@ public class Player : MonoBehaviour
     }
     private void UpdateHpUi()
     {
-        if((temp / freezeTemp) >= .5)
+        float deltatime = Time.deltaTime;
+        if (!isPaused)
         {
-            hp = hp - (temp / freezeTemp) * .01f;
-        }
-        if ((hunger / maxHunger) >= .8)
-        {
-            hp = hp - (hunger / maxHunger) * .01f;
-        }
-        
-        float amount = 1-((maxHp - hp) / maxHp);
-        float clampedFillAmount = Mathf.Clamp(amount, 0f, 1f);
+            if ((temp / freezeTemp) >= .5)
+            {
+                hp = hp - (temp / freezeTemp) * .01f;
+            }
+            if ((hunger / maxHunger) >= .8)
+            {
+                hp = hp - (hunger / maxHunger) * .01f;
+            }
 
-        hpBar.fillAmount = clampedFillAmount;
+            float amount = 1 - ((maxHp - hp) / maxHp);
+            float clampedFillAmount = Mathf.Clamp(amount, 0f, 1f);
+
+            hpBar.fillAmount = clampedFillAmount;
+        }
     }
    private void CheckEndGame()
     {
@@ -266,18 +270,7 @@ public class Player : MonoBehaviour
     {
         AudioManager.instance.PlayOneShotFootstep(transform.position);
     }
-    private void UpdateSound()
-    {
-        if (isTalking)
-        {
-            AudioManager.instance.SetParam("Text Box is Active",1);
-        }
-        else
-        {
-            AudioManager.instance.SetParam("Text Box is Active", 0);
-        }
-        
-    }
+   
 
     protected void Start()
     {
@@ -515,7 +508,7 @@ public class Player : MonoBehaviour
 
     public void Jump()
     {
-        if (!aboutToJump && !isTalking && !isGameOver && !isEating&& isGrounded)
+        if (!aboutToJump && !isTalking && !isGameOver && !isEating&& isGrounded && MainManager.instance.canMove)
         {
             animator.SetBool("isJumping", true);
             animator.SetBool("landed", false);
@@ -537,21 +530,30 @@ public class Player : MonoBehaviour
     
     public void IncreaseHunger()
     {
-        hunger = Mathf.Clamp(hunger + Time.deltaTime * hungerRate,0, maxHunger);
-        float amount = ((maxHunger - hunger) / maxHunger);
-        float clampedFillAmount = Mathf.Clamp(amount, 0f, 1f);
+        float deltatime = Time.deltaTime;
+        if (!isPaused)
+        {
+            hunger = Mathf.Clamp(hunger + deltatime * hungerRate, 0, maxHunger);
+            float amount = ((maxHunger - hunger) / maxHunger);
+            float clampedFillAmount = Mathf.Clamp(amount, 0f, 1f);
 
-        foodBar.fillAmount = clampedFillAmount;
+            foodBar.fillAmount = clampedFillAmount;
+        }
     }
     public void AddFreeze()
     {
-        temp = Mathf.Clamp(temp + Time.deltaTime * freezeRate,0,freezeTemp);
-        float amount = 1 - ((freezeTemp - temp) / freezeTemp);
-        float clampedFillAmount = Mathf.Clamp(amount, 0f, 1f);
-        AudioManager.instance.SetParamTemp(clampedFillAmount);
-        tempBar.fillAmount = clampedFillAmount;
+        float deltatime = Time.deltaTime;
+        if(!isPaused)
+        {
+            temp = Mathf.Clamp(temp + deltatime * freezeRate, 0, freezeTemp);
+            float amount = 1 - ((freezeTemp - temp) / freezeTemp);
+            float clampedFillAmount = Mathf.Clamp(amount, 0f, 1f);
+            AudioManager.instance.SetParamTemp(clampedFillAmount);
+            tempBar.fillAmount = clampedFillAmount;
 
-        SetOverlays();
+            SetOverlays();
+        }
+        
         
         
     }

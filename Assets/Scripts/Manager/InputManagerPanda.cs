@@ -29,7 +29,7 @@ public class InputManagerPanda : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                if (player.canJump)
+                if (player.canJump&&MainManager.instance.canMove)
                 {
                     player.Jump();
                 }

@@ -59,7 +59,8 @@ public class TrashNpcManager : MonoBehaviour
             DialogueManager.instance.startDialogue(dialogueNumber, SpeakerImage, npcSprite,Player.instance.sprite,0,"Nathalie");
             isTalkableTo = false;
             Player.instance.canPickUpTrash = true;
-            if(MainManager.instance.dialogueTracker[0] == 0)
+            textToTalk.SetActive(false);
+            if (MainManager.instance.dialogueTracker[0] == 0)
             {
                 MainManager.instance.dialogueTracker[0] = 1;
                 dialogueNumber = dialougueList[1];

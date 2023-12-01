@@ -7,7 +7,8 @@ public class SettingsToggel : MonoBehaviour
     public Image image;
     public Sprite yes;
     public Sprite no;
-   public void OnTogle()
+    
+    public void OnTogle()
     {
         if(image.sprite == yes)
         {

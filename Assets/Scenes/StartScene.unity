@@ -756,11 +756,11 @@ MonoBehaviour:
     Path: event:/One-Shots/UI/Select
   TextBoxPopUp:
     Guid:
-      Data1: -1088613012
-      Data2: 1277910440
-      Data3: 1286174347
-      Data4: 1854718636
-    Path: event:/One-Shots/UI/Text Box Disappear
+      Data1: -890788490
+      Data2: 1094919055
+      Data3: 1371458958
+      Data4: -978980337
+    Path: event:/One-Shots/UI/Text Box Popup
   TextBoxPopDisapear:
     Guid:
       Data1: -1088613012

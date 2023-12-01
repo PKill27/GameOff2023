@@ -85,8 +85,11 @@ public class IntroCutscene : MonoBehaviour
         Player.instance.hunger = 0;
         Player.instance.temp = 0;
         healthBars.SetActive(true);
-        MainManager.instance.canMove = true;
         LoadScene.instance.OptionalTitleName.SetTrigger("Start");
+        
+        yield return new WaitForSeconds(.5f);
+        MainManager.instance.canMove = true;
         gameObject.SetActive(false);
+
     }
 }

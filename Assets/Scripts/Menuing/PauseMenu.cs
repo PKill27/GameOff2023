@@ -40,6 +40,7 @@ public class PauseMenu : MonoBehaviour
     }
     public void OnSettings()
     {
+        pauseMenuPanel.SetActive(false);
         settingsPanel.SetActive(true);
     }
     public void PlaySelectedSound()

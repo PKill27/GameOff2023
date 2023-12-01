@@ -28,7 +28,7 @@ public class GameOverMenu : MonoBehaviour
     }
     public void OnMainMenu()
     {
-        SceneManager.LoadScene("StartScene");
+        LoadScene.instance.LoadLevel("StartScene");
     }
     public void HoverEnter()
     {

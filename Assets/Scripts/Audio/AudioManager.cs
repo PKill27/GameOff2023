@@ -32,6 +32,7 @@ public class AudioManager : MonoBehaviour
     private EventInstance pause;
     private EventInstance cave;
     private EventInstance wind;
+    private EventInstance cavewind;
     private int instanceWalingNumber = 0;
 
     public static AudioManager instance { get; private set; }
@@ -90,7 +91,7 @@ public class AudioManager : MonoBehaviour
         eventInstances.Add(pause);
         if (isCave)
         {
-            EventInstance cavewind = CreateInstance(FMODEvents.instance.CaveWind);
+            cavewind = CreateInstance(FMODEvents.instance.CaveWind);
             eventInstances.Add(cavewind);
             cavewind.start();
 
@@ -105,6 +106,12 @@ public class AudioManager : MonoBehaviour
             eventInstances.Add(wind);
             wind.start();
         }
+    }
+    public void fadeOut()
+    {
+        wind.setParameterByName("Apply Fade Out", 1);
+        musicEventInstance.setParameterByName("Apply Fade Out", 1);
+        cavewind.setParameterByName("Apply Fade Out", 1);
     }
     public void PausedGame()
     {
@@ -123,7 +130,7 @@ public class AudioManager : MonoBehaviour
     }
     public void StopDialogue()
     {
-        dialogueEventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        dialogueEventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
     }
     public EventInstance CreateInstance(EventReference eventReference)
     {
