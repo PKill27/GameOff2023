@@ -16,6 +16,7 @@ public class IntroCutscene : MonoBehaviour
 
     public Animator playerAnimator;
     public GameObject healthBars;
+    public Animator textAnimator;
     private void Awake()
     {
         instance = this;
@@ -47,6 +48,7 @@ public class IntroCutscene : MonoBehaviour
             yield return new WaitForSeconds(.1f);
         }
         yield return new WaitForSeconds(1f);
+        message.text = "";
         startingMessage = "Fulfill your purpose";
         foreach (char letter in startingMessage.ToCharArray())
         {
@@ -65,6 +67,7 @@ public class IntroCutscene : MonoBehaviour
         mountainAnimation.SetTrigger("Start");
         yield return new WaitForSeconds(3);
         textboxAnimator.SetTrigger("Start");
+        textAnimator.SetTrigger("Start");
         playerAnimator.SetBool("isCutscene", true);
         yield return new WaitForSeconds(1);
         sky.SetActive(false);
