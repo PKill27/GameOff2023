@@ -9,7 +9,7 @@ public class Trash : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            
+            Player.instance.inRangeOfTrash = true;
             canPickUp = true;
         }
     }

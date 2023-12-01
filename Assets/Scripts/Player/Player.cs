@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
     public float temp;
     public float freezeTemp;
     public float freezeRate;
-
+    public bool inRangeOfTrash;
     public Image tempBar;
     public Image foodBar;
     public Image hpBar;
@@ -122,8 +122,8 @@ public class Player : MonoBehaviour
     }
     private void CheckFallDamage()
     {
-        float fallDamageThreshold = 1.6f;
-        float fallDamageThresholdEnd = 8f;
+        float fallDamageThreshold = 5f;
+        float fallDamageThresholdEnd = 10f;
         if (timeLoaded <= 1)//stops fall damage on loading in
         {
             fallDistance = 0;
@@ -138,7 +138,7 @@ public class Player : MonoBehaviour
         else if (fallDistance >= fallDamageThreshold && !takingFallDamage)
         {
             //if here taking fall dmg
-            hp = hp - 40;
+            hp = hp - 50;
             fallDistance = 0;
             startFallDistance = rb.position.y;
             takingFallDamage = true;

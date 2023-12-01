@@ -26,40 +26,44 @@ public class MonologueManager : MonoBehaviour
     {
         if (!isMonoLoguing)
         {
-
-       
-        if (!MainManager.instance.monologues[0] && Player.instance.temp/Player.instance.freezeTemp >= .1)
+        if (!MainManager.instance.monologues[0] && Player.instance.temp/Player.instance.freezeTemp >= .15)
         {//when player is cold first time
-                print("fgetting cold");
-            PlayInnerMono("I am very cold better find shelter");
+                
+            PlayInnerMono("Need to warm up... ");
             MainManager.instance.monologues[0] = true;
         }
         else if (!MainManager.instance.monologues[1] && Player.instance.isInFire)
         {
             //by fire first time
             MainManager.instance.monologues[1] = true;
-            PlayInnerMono("the fire feels good I am starting to get the feeling back in my body");
+            PlayInnerMono("the fire feels good, I am starting to get the feeling back in my body...");
         }
 
         else if (!MainManager.instance.monologues[2] && Player.instance.isInWater)
         {
             //In water first time
             MainManager.instance.monologues[2] = true;
-            PlayInnerMono("ohhh the water is so cold if i dont get out fast I might freeze.");
+            PlayInnerMono("This water is freezing…");
         }
 
         else if (!MainManager.instance.monologues[3] && Player.instance.hunger / Player.instance.maxHunger >= .1)
         {
             MainManager.instance.monologues[3] = true;
-            PlayInnerMono("I am starting to feel hungry better find food soon");
-            //hungry first time
+            PlayInnerMono("I should find something to eat...");
+           
         }
-
-
-            /** if (!seeFoodFirstTime)
-             {
-
-             }**/
+            else if (!MainManager.instance.monologues[4] && Player.instance.inRangeOfTrash)
+            {
+                MainManager.instance.monologues[4] = true;
+                PlayInnerMono("This is probably the trash that Nathalie  wanted me to pick up...");
+               
+            }
+            else if (!MainManager.instance.monologues[5] && Player.instance.trashCollected >=3)
+            {
+                MainManager.instance.monologues[5] = true;
+                PlayInnerMono("Well that is 3 peices of trash, better go back...");
+               
+            } 
         }
     }
     public void PlayInnerMono(string message)

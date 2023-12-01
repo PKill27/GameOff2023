@@ -28,7 +28,7 @@ public class IntroCutscene : MonoBehaviour
     IEnumerator PlayCutsceneCor()
     {
         message.text = "";
-        string startingMessage = "Climb to the top!!";
+        string startingMessage = "The mountain calls to you spirit...";
         foreach (char letter in startingMessage.ToCharArray())
         {
 
@@ -36,6 +36,28 @@ public class IntroCutscene : MonoBehaviour
 
             yield return new WaitForSeconds(.1f);
         }
+        yield return new WaitForSeconds(1f);
+        message.text = "";
+        startingMessage = "Reach the top...";
+        foreach (char letter in startingMessage.ToCharArray())
+        {
+
+            message.text += letter;
+
+            yield return new WaitForSeconds(.1f);
+        }
+        yield return new WaitForSeconds(1f);
+        startingMessage = "Fulfill your purpose";
+        foreach (char letter in startingMessage.ToCharArray())
+        {
+
+            message.text += letter;
+
+            yield return new WaitForSeconds(.1f);
+        }
+        
+
+
         Player.instance.transform.localScale = new Vector2(-1 * Player.instance.transform.localScale.x, Player.instance.transform.localScale.y);
 
         Player.instance.isFacingRight = true;
@@ -49,8 +71,8 @@ public class IntroCutscene : MonoBehaviour
         fadeIn.SetActive(true);
         Mountain.SetActive(false);
         textboxAnimator.transform.gameObject.SetActive(false);
-        spiritAnimator.SetTrigger("Start");
         yield return new WaitForSeconds(2f);
+        spiritAnimator.SetTrigger("Start");
         FadeInAnimator.SetTrigger("Start");
         yield return new WaitForSeconds(2f);
         playerAnimator.SetBool("hasFadedIn", true);

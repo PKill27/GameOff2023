@@ -1,0 +1,944 @@
+fileFormatVersion: 2
+guid: ae2c50baf27d04846b0d8258160b3624
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -411719944959160060
+    second: fire-spirit-new_0
+  - first:
+      213: 3714299113393249379
+    second: fire-spirit-new_1
+  - first:
+      213: 3544025374220328265
+    second: fire-spirit-new_2
+  - first:
+      213: -2959688349868202168
+    second: fire-spirit-new_3
+  - first:
+      213: 6361892296028996119
+    second: fire-spirit-new_4
+  - first:
+      213: -7149487620959968170
+    second: fire-spirit-new_5
+  - first:
+      213: 79228698754421865
+    second: fire-spirit-new_6
+  - first:
+      213: -5741614012923354605
+    second: fire-spirit-new_7
+  - first:
+      213: -6410466301981657478
+    second: fire-spirit-new_8
+  - first:
+      213: 1606350275969348009
+    second: fire-spirit-new_9
+  - first:
+      213: -9167505276719491325
+    second: fire-spirit-new_10
+  - first:
+      213: -4290321965722510798
+    second: fire-spirit-new_11
+  - first:
+      213: -7283800741016079983
+    second: fire-spirit-new_12
+  - first:
+      213: -5308602044643384614
+    second: fire-spirit-new_13
+  - first:
+      213: 2476960162513821842
+    second: fire-spirit-new_14
+  - first:
+      213: -889624728933918914
+    second: fire-spirit-new_15
+  - first:
+      213: 7191821673035496388
+    second: fire-spirit-new_16
+  - first:
+      213: 6051377452074067179
+    second: fire-spirit-new_17
+  - first:
+      213: 6504709656822735734
+    second: fire-spirit-new_18
+  - first:
+      213: 6693350400317255540
+    second: fire-spirit-new_19
+  - first:
+      213: -7418948036099822094
+    second: fire-spirit-new_20
+  - first:
+      213: -1508298312118923094
+    second: fire-spirit-new_21
+  - first:
+      213: 6003837179024536321
+    second: fire-spirit-new_22
+  - first:
+      213: 2467252861904115230
+    second: fire-spirit-new_23
+  - first:
+      213: 9171179627123268937
+    second: fire-spirit-new_24
+  - first:
+      213: 7727346692463112859
+    second: fire-spirit-new_25
+  - first:
+      213: 70799217325048699
+    second: fire-spirit-new_26
+  - first:
+      213: 3437795517156384037
+    second: fire-spirit-new_27
+  - first:
+      213: -4304871245609343819
+    second: fire-spirit-new_28
+  - first:
+      213: 6647459849363887903
+    second: fire-spirit-new_29
+  - first:
+      213: 485057344662719122
+    second: fire-spirit-new_30
+  - first:
+      213: -6404417412543125719
+    second: fire-spirit-new_31
+  - first:
+      213: 7000748902511265286
+    second: fire-spirit-new_32
+  - first:
+      213: 4071050176487566550
+    second: fire-spirit-new_33
+  - first:
+      213: -7394468159580913371
+    second: fire-spirit-new_34
+  - first:
+      213: 6483351774608454673
+    second: fire-spirit-new_35
+  - first:
+      213: -4057485492734062421
+    second: fire-spirit-new_36
+  - first:
+      213: -8199018293380756046
+    second: fire-spirit-new_37
+  - first:
+      213: 5826603862560498469
+    second: fire-spirit-new_38
+  - first:
+      213: -3752777940179306200
+    second: fire-spirit-new_39
+  - first:
+      213: 1164544687829322392
+    second: fire-spirit-new_40
+  - first:
+      213: 7960488033048127628
+    second: fire-spirit-new_41
+  - first:
+      213: 525488067584351820
+    second: fire-spirit-new_42
+  - first:
+      213: -3649839132387177413
+    second: fire-spirit-new_43
+  - first:
+      213: -4741876916125055008
+    second: fire-spirit-new_44
+  - first:
+      213: 8271047858107271132
+    second: fire-spirit-new_45
+  - first:
+      213: 7542071179961106099
+    second: fire-spirit-new_46
+  - first:
+      213: -2695808855771245232
+    second: fire-spirit-new_47
+  - first:
+      213: -5361515605022663979
+    second: fire-spirit-new_48
+  - first:
+      213: -8413479595242322811
+    second: fire-spirit-new_49
+  - first:
+      213: -4534256937779265045
+    second: fire-spirit-new_50
+  - first:
+      213: -7728784253678741193
+    second: fire-spirit-new_51
+  - first:
+      213: -6679526039471286030
+    second: fire-spirit-new_52
+  - first:
+      213: -641649826410936649
+    second: fire-spirit-new_53
+  - first:
+      213: -4220712425555506300
+    second: fire-spirit-new_54
+  - first:
+      213: -2431480341756888912
+    second: fire-spirit-new_55
+  - first:
+      213: 3703522415017844310
+    second: fire-spirit-new_56
+  - first:
+      213: 1942592090908994515
+    second: fire-spirit-new_57
+  - first:
+      213: 4991752287698095363
+    second: fire-spirit-new_58
+  - first:
+      213: -2157874736503349544
+    second: fire-spirit-new_59
+  - first:
+      213: -5619935354712211786
+    second: fire-spirit-new_60
+  - first:
+      213: -4656990968020925110
+    second: fire-spirit-new_61
+  - first:
+      213: -8870074739918767605
+    second: fire-spirit-new_62
+  - first:
+      213: 9058698072837301754
+    second: fire-spirit-new_63
+  - first:
+      213: -4985951558178947473
+    second: fire-spirit-new_64
+  - first:
+      213: -124443054142544383
+    second: fire-spirit-new_65
+  - first:
+      213: 2439663629729641850
+    second: fire-spirit-new_66
+  - first:
+      213: -1398551198048274249
+    second: fire-spirit-new_67
+  - first:
+      213: 2251709394595374879
+    second: fire-spirit-new_68
+  - first:
+      213: 395521927398366227
+    second: fire-spirit-new_69
+  - first:
+      213: 4775667203216727452
+    second: fire-spirit-new_70
+  - first:
+      213: -433385558353557343
+    second: fire-spirit-new_71
+  - first:
+      213: -6406436190528145421
+    second: fire-spirit-new_72
+  - first:
+      213: -5627253441732661856
+    second: fire-spirit-new_73
+  - first:
+      213: -7592967628344517403
+    second: fire-spirit-new_74
+  - first:
+      213: -5114662134089011929
+    second: fire-spirit-new_75
+  - first:
+      213: -3815813493099874377
+    second: fire-spirit-new_76
+  - first:
+      213: -2360745500180183040
+    second: fire-spirit-new_77
+  - first:
+      213: -5364867420256888696
+    second: fire-spirit-new_78
+  - first:
+      213: 1226332775915837189
+    second: fire-spirit-new_79
+  - first:
+      213: 5989609300960820380
+    second: fire-spirit-new_80
+  - first:
+      213: 477905372749445295
+    second: fire-spirit-new_81
+  - first:
+      213: -7077355358742117749
+    second: fire-spirit-new_82
+  - first:
+      213: -2326698329934346909
+    second: fire-spirit-new_83
+  - first:
+      213: 3923175773747521918
+    second: fire-spirit-new_84
+  - first:
+      213: -1581118506831289157
+    second: fire-spirit-new_85
+  - first:
+      213: 549596526045410128
+    second: fire-spirit-new_86
+  - first:
+      213: -7483871037032611154
+    second: fire-spirit-new_87
+  - first:
+      213: -5694038392166840086
+    second: fire-spirit-new_88
+  - first:
+      213: 809429050769819997
+    second: fire-spirit-new_89
+  - first:
+      213: -8932404349437222789
+    second: fire-spirit-new_90
+  - first:
+      213: -1831722788852344294
+    second: fire-spirit-new_91
+  - first:
+      213: -5114110571896410903
+    second: fire-spirit-new_92
+  - first:
+      213: -8644241629616949010
+    second: fire-spirit-new_93
+  - first:
+      213: 2201400237550339158
+    second: fire-spirit-new_94
+  - first:
+      213: 5697351179586866446
+    second: fire-spirit-new_95
+  - first:
+      213: 1378581076893755416
+    second: fire-spirit-new_96
+  - first:
+      213: 4414748508230742373
+    second: fire-spirit-new_97
+  - first:
+      213: -7037568964769788907
+    second: fire-spirit-new_98
+  - first:
+      213: 7795977518241514712
+    second: fire-spirit-new_99
+  - first:
+      213: 4596485776585170890
+    second: fire-spirit-new_100
+  - first:
+      213: -3454476178589846819
+    second: fire-spirit-new_101
+  - first:
+      213: -3624258773548245064
+    second: fire-spirit-new_102
+  - first:
+      213: -4727910178693476030
+    second: fire-spirit-new_103
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: fire-spirit-new_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 40114c534e6494af0800000000000000
+      internalID: -411719944959160060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fire-spirit-new_1
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36c5a5b4d57db8330800000000000000
+      internalID: 3714299113393249379
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fire-spirit-new_2
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 94d9f510d48ee2130800000000000000
+      internalID: 3544025374220328265
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fire-spirit-new_3
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 0
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8476e3c70231de6d0800000000000000
+      internalID: -2959688349868202168
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fire-spirit-new_4
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 0
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7124a14265bf94850800000000000000
+      internalID: 6361892296028996119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fire-spirit-new_5
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 0
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 654e0aa63eae7cc90800000000000000
+      internalID: -7149487620959968170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fire-spirit-new_6
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 0
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 964164de41a791100800000000000000
+      internalID: 79228698754421865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fire-spirit-new_7
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 0
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3126c42c970b150b0800000000000000
+      internalID: -5741614012923354605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fire-spirit-new_8
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 0
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7675c9ccd27907a0800000000000000
+      internalID: -6410466301981657478
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fire-spirit-new_9
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 0
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a1f000b017ea4610800000000000000
+      internalID: 1606350275969348009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fire-spirit-new_10
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 0
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3079d98b58a76c080800000000000000
+      internalID: -9167505276719491325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fire-spirit-new_11
+      rect:
+        serializedVersion: 2
+        x: 1760
+        y: 0
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 23add0d37e6b574c0800000000000000
+      internalID: -4290321965722510798
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fire-spirit-new_12
+      rect:
+        serializedVersion: 2
+        x: 1920
+        y: 0
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 191720931ddbaea90800000000000000
+      internalID: -7283800741016079983
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fire-spirit-new_13
+      rect:
+        serializedVersion: 2
+        x: 2080
+        y: 0
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad26e1b019e0456b0800000000000000
+      internalID: -5308602044643384614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fire-spirit-new_14
+      rect:
+        serializedVersion: 2
+        x: 2240
+        y: 0
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2902e61f42eef5220800000000000000
+      internalID: 2476960162513821842
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fire-spirit-new_15
+      rect:
+        serializedVersion: 2
+        x: 2400
+        y: 0
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e379d70c50b67a3f0800000000000000
+      internalID: -889624728933918914
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fire-spirit-new_16
+      rect:
+        serializedVersion: 2
+        x: 2560
+        y: 0
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4cb7c3d25bb7ec360800000000000000
+      internalID: 7191821673035496388
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fire-spirit-new_17
+      rect:
+        serializedVersion: 2
+        x: 2720
+        y: 0
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be4eea82bbfcaf350800000000000000
+      internalID: 6051377452074067179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fire-spirit-new_18
+      rect:
+        serializedVersion: 2
+        x: 2880
+        y: 0
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 673e8fd28fe554a50800000000000000
+      internalID: 6504709656822735734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fire-spirit-new_19
+      rect:
+        serializedVersion: 2
+        x: 3040
+        y: 0
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 47fe028e9be83ec50800000000000000
+      internalID: 6693350400317255540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fire-spirit-new_20
+      rect:
+        serializedVersion: 2
+        x: 3200
+        y: 0
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2fd2035811a9a0990800000000000000
+      internalID: -7418948036099822094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fire-spirit-new_21
+      rect:
+        serializedVersion: 2
+        x: 3360
+        y: 0
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa094da2da2711be0800000000000000
+      internalID: -1508298312118923094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 8cf0fd922d15547c7b99e08d1d06abb9
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      fire-spirit-new_0: -411719944959160060
+      fire-spirit-new_1: 3714299113393249379
+      fire-spirit-new_10: -9167505276719491325
+      fire-spirit-new_11: -4290321965722510798
+      fire-spirit-new_12: -7283800741016079983
+      fire-spirit-new_13: -5308602044643384614
+      fire-spirit-new_14: 2476960162513821842
+      fire-spirit-new_15: -889624728933918914
+      fire-spirit-new_16: 7191821673035496388
+      fire-spirit-new_17: 6051377452074067179
+      fire-spirit-new_18: 6504709656822735734
+      fire-spirit-new_19: 6693350400317255540
+      fire-spirit-new_2: 3544025374220328265
+      fire-spirit-new_20: -7418948036099822094
+      fire-spirit-new_21: -1508298312118923094
+      fire-spirit-new_3: -2959688349868202168
+      fire-spirit-new_4: 6361892296028996119
+      fire-spirit-new_5: -7149487620959968170
+      fire-spirit-new_6: 79228698754421865
+      fire-spirit-new_7: -5741614012923354605
+      fire-spirit-new_8: -6410466301981657478
+      fire-spirit-new_9: 1606350275969348009
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
