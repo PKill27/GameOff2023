@@ -69,6 +69,7 @@ public class DialogueManager : MonoBehaviour
         npcAnimation = npcAnimations[indexOfNpc];
         this.npcName = npcName;
         areChoicess = false;
+        AudioManager.instance.PlayOneShot(FMODEvents.instance.TextBoxPopUp, Vector3.zero);
         if (story.canContinue)
         {
             AdvanceDialogue();

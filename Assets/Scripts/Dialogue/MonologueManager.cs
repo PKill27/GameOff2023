@@ -68,6 +68,7 @@ public class MonologueManager : MonoBehaviour
     }
     public void PlayInnerMono(string message)
     {
+        AudioManager.instance.PlayOneShot(FMODEvents.instance.TextBoxPopUp, Vector3.zero);
         innerMonoPanel.SetActive(true);
         isMonoLoguing = true;
         StartCoroutine(TypeSentence(message));
@@ -76,6 +77,7 @@ public class MonologueManager : MonoBehaviour
     }
     IEnumerator TypeSentence(string sentence)
     {
+        AudioManager.instance.InitializeDialogue(FMODEvents.instance.Player);
         message.text = "";
         playerTalking.SetBool("IsTalking", true);
         foreach (char letter in sentence.ToCharArray())
@@ -85,9 +87,11 @@ public class MonologueManager : MonoBehaviour
             yield return new WaitForSeconds(.03f);
         }
         playerTalking.SetBool("IsTalking", false);
+        AudioManager.instance.StopDialogue();
         yield return new WaitForSeconds(2f);
         isMonoLoguing = false;
         innerMonoPanel.SetActive(false);
+        AudioManager.instance.PlayOneShot(FMODEvents.instance.TextBoxPopDisapear, Vector3.zero);
         yield return null;
     }
     
