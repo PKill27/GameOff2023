@@ -16,14 +16,17 @@ public class FMODEvents : MonoBehaviour
     [field: Header("Player SFX")]
     [field: SerializeField] public EventReference RedPandaFootSteps;
     [field: SerializeField] public EventReference LeopardFootSteps;
-    [field: SerializeField] public EventReference PikaFootSteps;
+    [field: SerializeField] public EventReference[] PikaFootSteps;
+   
     [field: SerializeField] public EventReference Eat;
     [field: SerializeField] public EventReference Jump;
+    [field: SerializeField] public EventReference FallDmg;
 
     [field: Header("Survival Meters")]
     [field: SerializeField] public EventReference Health;
     [field: SerializeField] public EventReference Hunger;
     [field: SerializeField] public EventReference Temp;
+    [field: SerializeField] public EventReference CaveWind;
 
     [field: Header("Voices")]
     [field: SerializeField] public EventReference Nathalie;

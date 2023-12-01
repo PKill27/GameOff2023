@@ -31,7 +31,7 @@ public class AudioManager : MonoBehaviour
     private EventInstance walkingInstance2;
     private EventInstance pause;
     private EventInstance cave;
-
+    private EventInstance wind;
     private int instanceWalingNumber = 0;
 
     public static AudioManager instance { get; private set; }
@@ -66,6 +66,10 @@ public class AudioManager : MonoBehaviour
         musicBus.setVolume(musicVolume);
         sfxBus.setVolume(SFXVolume);
     }
+    public void SetParamTemp(float paramValue)
+    {
+        wind.setParameterByName("Intensity", paramValue);
+    }
 
     public void InitializeMusic(EventReference musicEventReference)
     {
@@ -86,10 +90,20 @@ public class AudioManager : MonoBehaviour
         eventInstances.Add(pause);
         if (isCave)
         {
+            EventInstance cavewind = CreateInstance(FMODEvents.instance.CaveWind);
+            eventInstances.Add(cavewind);
+            cavewind.start();
+
             cave = CreateInstance(FMODEvents.instance.Cave);
             eventInstances.Add(cave);
             cave.start(); 
             cave.setParameterByName("In Cave", 1.0f);
+        }
+        else
+        {
+            wind = CreateInstance(FMODEvents.instance.Temp);
+            eventInstances.Add(wind);
+            wind.start();
         }
     }
     public void PausedGame()
@@ -129,8 +143,8 @@ public class AudioManager : MonoBehaviour
     public void PlayOneShotFootstep(Vector3 worldPos)
     {
         //walkingInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
-       //walkingInstance2.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
-        if (instanceWalingNumber == 0)
+        //walkingInstance2.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        /**if (instanceWalingNumber == 0)
         { 
             walkingInstance.start();
             walkingInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
@@ -141,8 +155,9 @@ public class AudioManager : MonoBehaviour
             walkingInstance2.start();
             walkingInstance2.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
             instanceWalingNumber = 0;
-        }
-        
+        }**/
+        RuntimeManager.PlayOneShot(FMODEvents.instance.PikaFootSteps[Player.instance.currentFootsteps], worldPos);
+
         // RuntimeManager.PlayOneShot(sound, worldPos);
     }
     public void PlayOneShot(EventReference sound, Vector3 worldPos)

@@ -632,12 +632,30 @@ MonoBehaviour:
       Data4: -1243565631
     Path: event:/Footsteps/Snow Leopard Steps
   PikaFootSteps:
-    Guid:
-      Data1: -860000458
-      Data2: 1222991285
-      Data3: -483400540
-      Data4: 2120879711
-    Path: event:/Footsteps/Himalayan Pika Steps
+  - Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  - Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  - Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  - Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
   Eat:
     Guid:
       Data1: -310839084

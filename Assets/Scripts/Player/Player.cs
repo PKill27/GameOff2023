@@ -79,6 +79,7 @@ public class Player : MonoBehaviour
     public GroundOption currentGround;
     private bool waitingToRespawn = false;
 
+    public int currentFootsteps; 
     private void Awake()
     {
         if (instance != null)
@@ -90,7 +91,13 @@ public class Player : MonoBehaviour
         instance = this;
        // DontDestroyOnLoad(gameObject);
     }
-
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("climbable"))
+        {
+            currentFootsteps = 3;
+        }
+    }
     protected void Update()
     {
         if (!isTalking && !isGameOver)
@@ -113,11 +120,14 @@ public class Player : MonoBehaviour
     {
         if (isInWater)
         {
-            AudioManager.instance.SetParamWalking(2);
+            currentFootsteps = 2;
+        }else if (SceneManager.GetActiveScene().name.Contains("Cave"))
+        {
+            currentFootsteps = 1;
         }
         else
         {
-            AudioManager.instance.SetParamWalking(0);
+            currentFootsteps = 0;
         }
     }
     private void CheckFallDamage()
@@ -217,7 +227,6 @@ public class Player : MonoBehaviour
                 StartCoroutine(WaitForDeath());
                 
             }else if(isGrounded && !hasStartedEndGame && !hasDied && !canBeSpirit)
-
             {
                 isGameOver = true;
                 hasStartedEndGame = true;
@@ -537,7 +546,7 @@ public class Player : MonoBehaviour
         temp = Mathf.Clamp(temp + Time.deltaTime * freezeRate,0,freezeTemp);
         float amount = 1 - ((freezeTemp - temp) / freezeTemp);
         float clampedFillAmount = Mathf.Clamp(amount, 0f, 1f);
-
+        AudioManager.instance.SetParamTemp(clampedFillAmount);
         tempBar.fillAmount = clampedFillAmount;
 
         SetOverlays();
