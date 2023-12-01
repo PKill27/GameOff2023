@@ -24,6 +24,7 @@ public class MainManager : MonoBehaviour, iDataPersistance
     public bool isRespawn = false;//keeps track if the new load is a respawn or from a tunnel
     public bool playLevelLoader;
     public bool canMove = true;
+    public bool canPickUpTrash;
     public void LoadData(GameData data)
     {
         

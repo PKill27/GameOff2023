@@ -52,7 +52,7 @@ public class MonologueManager : MonoBehaviour
             PlayInnerMono("I should find something to eat...");
            
         }
-            else if (!MainManager.instance.monologues[4] && Player.instance.inRangeOfTrash)
+            else if (!MainManager.instance.monologues[4] && Player.instance.inRangeOfTrash && MainManager.instance.canPickUpTrash)
             {
                 MainManager.instance.monologues[4] = true;
                 PlayInnerMono("This is probably the trash that Nathalie  wanted me to pick up...");

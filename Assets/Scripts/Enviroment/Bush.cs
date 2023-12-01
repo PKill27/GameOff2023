@@ -7,7 +7,7 @@ public class Bush : MonoBehaviour
     //public Sprite noBerriesimage;
     //private SpriteRenderer render;
     public bool isEatable;
-    
+    public iInteractablee e;
     // Start is called before the first frame update
     void Start()
     {
@@ -36,6 +36,7 @@ public class Bush : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            e.StartAnimation();
             isEatable = true;
         }
     }
@@ -43,6 +44,7 @@ public class Bush : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            e.EndAnimation();
             isEatable = false;
         }
     }

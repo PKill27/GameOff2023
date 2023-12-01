@@ -9,6 +9,7 @@ public class PauseMenu : MonoBehaviour
     private GameObject pauseMenuPanel;
     [SerializeField]
     private GameObject settingsPanel;
+    public GameObject pauseMenuPanelParent;
     private void Start()
     {
         pauseMenuPanel = transform.parent.gameObject;
@@ -30,7 +31,7 @@ public class PauseMenu : MonoBehaviour
     {
         Player.instance.isPaused = false;
         Player.instance.UnpauseAllAnimations();
-        pauseMenuPanel.SetActive(false);
+        pauseMenuPanelParent.transform.parent.gameObject.SetActive(false);
         Player.instance.rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         AudioManager.instance.UnPausedGame();
     }

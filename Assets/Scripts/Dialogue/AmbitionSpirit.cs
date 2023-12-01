@@ -17,11 +17,12 @@ public class AmbitionSpirit : MonoBehaviour
     private bool isTalkableTo;
     public Image SpeakerImage;
     public Sprite npcSprite;
-
+    public iInteractablee e;
     protected void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
+            e.StartAnimation();
             textToTalk.SetActive(true);
             isTalkableTo = true;
         }
@@ -31,6 +32,7 @@ public class AmbitionSpirit : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            e.EndAnimation();
             textToTalk.SetActive(false);
             isTalkableTo = false;
         }

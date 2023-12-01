@@ -17,6 +17,8 @@ public class IntroCutscene : MonoBehaviour
     public Animator playerAnimator;
     public GameObject healthBars;
     public Animator textAnimator;
+
+    public Animator controlsAnimator;
     private void Awake()
     {
         instance = this;
@@ -89,6 +91,10 @@ public class IntroCutscene : MonoBehaviour
         
         yield return new WaitForSeconds(.5f);
         MainManager.instance.canMove = true;
+        
+        yield return new WaitForSeconds(1.5f);
+        controlsAnimator.SetTrigger("Start");
+        yield return new WaitForSeconds(5f);
         gameObject.SetActive(false);
 
     }

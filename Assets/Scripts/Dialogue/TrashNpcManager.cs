@@ -5,6 +5,8 @@ using UnityEngine.UI;
 public class TrashNpcManager : MonoBehaviour
 {
     public int[] dialougueList;
+    public iInteractablee e;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +31,7 @@ public class TrashNpcManager : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            e.StartAnimation();
             if (Player.instance.trashCollected >= 1)
             {
                 MainManager.instance.dialogueTracker[0] = 2;
@@ -44,6 +47,7 @@ public class TrashNpcManager : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            e.EndAnimation();
             textToTalk.SetActive(false);
             isTalkableTo = false;
         }
@@ -58,7 +62,7 @@ public class TrashNpcManager : MonoBehaviour
             AudioManager.instance.PlayOneShot(FMODEvents.instance.TextBoxPopUp, Vector3.zero);
             DialogueManager.instance.startDialogue(dialogueNumber, SpeakerImage, npcSprite,Player.instance.sprite,0,"Nathalie");
             isTalkableTo = false;
-            Player.instance.canPickUpTrash = true;
+            MainManager.instance.canPickUpTrash = true;
             textToTalk.SetActive(false);
             if (MainManager.instance.dialogueTracker[0] == 0)
             {
