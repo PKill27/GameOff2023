@@ -205,6 +205,10 @@ public class DialogueManager : MonoBehaviour
             }
             AudioManager.instance.StopDialogue();
             currSpeaker.SetBool("IsTalking", false);
+            if(sentence.Contains("I’m just so tired"))
+            {
+                AmbitionSpirit.instance.acsend();
+            }
             isTyping = false;
             yield return null;
         }

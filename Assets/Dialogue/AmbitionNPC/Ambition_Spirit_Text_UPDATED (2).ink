@@ -74,7 +74,7 @@ then we can finally get a move on.
  Give or take.
  They got upset at me for throwing my food wrappers on the floor and stormed off but,
  I’m sure they'll be back.
- I mean, I paid $50,000 just to be here so he better get return or else the expedition company will be hearing from my lawyer.
+ I mean, I paid $50,000 just to be here so the sherpa better return or else the expedition company will be hearing from my lawyer.
 ->AChoice3
 
 ===DA2===
@@ -138,9 +138,9 @@ Get out of here you stupid pest.
 ===AChoice4===
 #speaker player
 #option Optimistic. ~Inquisitive. ~Dismissive.
-+I don’t think you know what you’re talking about…
-Littering just pollutes the mountain, 
-hurts the animals that inhabit it.
++You think the earth is flat...
+but you're climbing Everest? 
+You understand how little sense that makes, right?
 The trash spirit has been cleaning this mountain forever.
 And it's because of people like you!
 Or, at least, spirits like you.

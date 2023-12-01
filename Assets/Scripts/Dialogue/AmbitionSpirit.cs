@@ -18,6 +18,17 @@ public class AmbitionSpirit : MonoBehaviour
     public Image SpeakerImage;
     public Sprite npcSprite;
     public iInteractablee e;
+    public Animator acending;
+    public static AmbitionSpirit instance;
+
+    private void Awake()
+    {
+        instance = this;
+    }
+    public void acsend()
+    {
+        acending.SetTrigger("Start");
+    }
     protected void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
@@ -27,7 +38,7 @@ public class AmbitionSpirit : MonoBehaviour
             isTalkableTo = true;
         }
     }
-
+    
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))

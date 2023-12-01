@@ -105,7 +105,7 @@ But
 unfortunately...
 I need your help. 
 I heard you saying you’re trying to reach the top of the mountain, right?
-I've trying to clean this place for years,
+I've been trying to clean this place for years,
 but the amount of trash that keeps piling up only seems to grow.
 But, I think I may have a solution to both our problems
 If you can bring me three pieces of trash, then I’ll help you on your journey to the top. 
