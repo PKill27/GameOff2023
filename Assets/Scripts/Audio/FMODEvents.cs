@@ -14,7 +14,6 @@ public class FMODEvents : MonoBehaviour
     [field: SerializeField] public EventReference Music3;
     
     [field: Header("Player SFX")]
-    [field: SerializeField] public EventReference RedPandaFootSteps;
     [field: SerializeField] public EventReference LeopardFootSteps;
     [field: SerializeField] public EventReference[] PikaFootSteps;
    

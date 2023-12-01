@@ -141,21 +141,7 @@ public class AudioManager : MonoBehaviour
         walkingInstance2.setParameterByName("Material", paramValue);
     }
     public void PlayOneShotFootstep(Vector3 worldPos)
-    {
-        //walkingInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
-        //walkingInstance2.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
-        /**if (instanceWalingNumber == 0)
-        { 
-            walkingInstance.start();
-            walkingInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
-            instanceWalingNumber = 1;
-        }
-        else
-        {   
-            walkingInstance2.start();
-            walkingInstance2.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
-            instanceWalingNumber = 0;
-        }**/
+    {  
         RuntimeManager.PlayOneShot(FMODEvents.instance.PikaFootSteps[Player.instance.currentFootsteps], worldPos);
 
         // RuntimeManager.PlayOneShot(sound, worldPos);

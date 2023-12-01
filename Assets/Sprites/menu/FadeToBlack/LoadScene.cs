@@ -16,7 +16,8 @@ public class LoadScene : MonoBehaviour
     }
     private void Start()
     {
-        if(musicToPlay == 0)
+        
+        if (musicToPlay == 0)
         {
             AudioManager.instance.InitializePauseCave(false);
             AudioManager.instance.InitializeMusic(FMODEvents.instance.MusicMenu);
@@ -30,7 +31,7 @@ public class LoadScene : MonoBehaviour
             AudioManager.instance.InitializePauseCave(false);
             AudioManager.instance.InitializeMusic(FMODEvents.instance.Music1);
         }
-        
+        AudioManager.instance.SetParam("Apply Fade Out", 0);
         if (OptionalTitleName != null&& MainManager.instance.playLevelLoader)
         {
             OptionalTitleName.SetTrigger("Start");
@@ -59,6 +60,7 @@ public class LoadScene : MonoBehaviour
     }
     IEnumerator LoadLevelWaiter(string name)
     {
+       
         AudioManager.instance.SetParam("Apply Fade Out", 1);
         transition.SetTrigger("Start");
         

@@ -81,6 +81,9 @@ public class IntroCutscene : MonoBehaviour
         playerAnimator.SetBool("hasFadedIn", true);
         playerAnimator.SetBool("isCutscene", false);
         yield return new WaitForSeconds(1.5f);
+        Player.instance.hp = Player.instance.maxHp;
+        Player.instance.hunger = 0;
+        Player.instance.temp = 0;
         healthBars.SetActive(true);
         MainManager.instance.canMove = true;
         LoadScene.instance.OptionalTitleName.SetTrigger("Start");

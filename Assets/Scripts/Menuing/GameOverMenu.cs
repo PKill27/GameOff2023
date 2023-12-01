@@ -38,7 +38,6 @@ public class GameOverMenu : MonoBehaviour
     }
     public void HoverExit()
     {
-        AudioManager.instance.PlayOneShot(FMODEvents.instance.Highlighted, Vector3.zero);
         image.color = baseColor;
     }
     public void PlaySelectedSound()

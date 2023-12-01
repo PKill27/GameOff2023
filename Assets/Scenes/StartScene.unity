@@ -617,13 +617,6 @@ MonoBehaviour:
       Data3: -1722032255
       Data4: -961254848
     Path: event:/Music/Level 3 Music
-  RedPandaFootSteps:
-    Guid:
-      Data1: 1776714445
-      Data2: 1173505353
-      Data3: 208222357
-      Data4: 719151296
-    Path: event:/Footsteps/Red Panda Steps
   LeopardFootSteps:
     Guid:
       Data1: 1953262728
@@ -633,29 +626,29 @@ MonoBehaviour:
     Path: event:/Footsteps/Snow Leopard Steps
   PikaFootSteps:
   - Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 575957909
+      Data2: 1115449982
+      Data3: -711597686
+      Data4: 2043023022
+    Path: event:/Footsteps/Red Panda/Red Panda Steps Grass
   - Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 50627497
+      Data2: 1175833193
+      Data3: 1821449346
+      Data4: 484277769
+    Path: event:/Footsteps/Red Panda/Red Panda Steps Rock
   - Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 1742114041
+      Data2: 1103728270
+      Data3: 2127239586
+      Data4: 712158780
+    Path: event:/Footsteps/Red Panda/Red Panda Steps Water
   - Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 1266539403
+      Data2: 1335140996
+      Data3: -1238263917
+      Data4: -1670655093
+    Path: event:/Footsteps/Red Panda/Red Panda Steps Leaves
   Eat:
     Guid:
       Data1: -310839084
@@ -670,6 +663,13 @@ MonoBehaviour:
       Data3: 481493416
       Data4: -584170388
     Path: event:/One-Shots/Player/Jump
+  FallDmg:
+    Guid:
+      Data1: -735287612
+      Data2: 1162529700
+      Data3: -49767260
+      Data4: -2004583834
+    Path: event:/One-Shots/Player/Red Panda Hurt
   Health:
     Guid:
       Data1: -997356807
@@ -691,6 +691,13 @@ MonoBehaviour:
       Data3: -1416671838
       Data4: 1464029157
     Path: event:/Survival Meters/Weather
+  CaveWind:
+    Guid:
+      Data1: -570151330
+      Data2: 1123506021
+      Data3: 282688186
+      Data4: -886557369
+    Path: event:/Survival Meters/Cave Wind
   Nathalie:
     Guid:
       Data1: 1275077063

@@ -91,11 +91,16 @@ public class Player : MonoBehaviour
         instance = this;
        // DontDestroyOnLoad(gameObject);
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("climbable"))
+        if (collision.gameObject.CompareTag("Climbable"))
         {
+            
             currentFootsteps = 3;
+        }
+        else if (collision.gameObject.CompareTag("Platform") && !SceneManager.GetActiveScene().name.Contains("Cave"))
+        {
+            currentFootsteps = 1;
         }
     }
     protected void Update()
@@ -125,15 +130,12 @@ public class Player : MonoBehaviour
         {
             currentFootsteps = 1;
         }
-        else
-        {
-            currentFootsteps = 0;
-        }
+        
     }
     private void CheckFallDamage()
     {
-        float fallDamageThreshold = 5f;
-        float fallDamageThresholdEnd = 10f;
+        float fallDamageThreshold = 3.5f;
+        float fallDamageThresholdEnd = 6f;
         if (timeLoaded <= 1)//stops fall damage on loading in
         {
             fallDistance = 0;
@@ -152,6 +154,7 @@ public class Player : MonoBehaviour
             fallDistance = 0;
             startFallDistance = rb.position.y;
             takingFallDamage = true;
+            AudioManager.instance.PlayOneShot(FMODEvents.instance.FallDmg, transform.position);
             StartCoroutine(takeFallDamage());
         }
         else if (isGrounded)
@@ -282,7 +285,6 @@ public class Player : MonoBehaviour
         {
             IntroCutscene.instance.gameObject.SetActive(false);
         }
-        AudioManager.instance.InitializeFootsteps(FMODEvents.instance.RedPandaFootSteps);
         rb = GetComponent<Rigidbody2D>();
         hp = maxHp;
         sprite = GetComponent<SpriteRenderer>().sprite;
@@ -629,7 +631,6 @@ public class Player : MonoBehaviour
             //is on ground
             animator.SetBool("isJumping", false);
             animator.SetBool("landed", true);
-            PlayFootstepSound();
             animator.SetBool("isFalling", false);
             canJump = true;
             fallDistance = startFallDistance - rb.position.y;

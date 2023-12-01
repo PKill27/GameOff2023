@@ -70,6 +70,7 @@ public class DialogueManager : MonoBehaviour
         this.npcName = npcName;
         areChoicess = false;
         AudioManager.instance.PlayOneShot(FMODEvents.instance.TextBoxPopUp, Vector3.zero);
+        AudioManager.instance.SetParam("Text Box is Active", 1);
         if (story.canContinue)
         {
             AdvanceDialogue();
@@ -81,6 +82,7 @@ public class DialogueManager : MonoBehaviour
         else
         {
             Player.instance.isTalking = false;
+            AudioManager.instance.SetParam("Text Box is Active", 0);
             AudioManager.instance.PlayOneShot(FMODEvents.instance.TextBoxPopDisapear, Vector3.zero);
             FinishDialogue();
         }
@@ -100,6 +102,8 @@ public class DialogueManager : MonoBehaviour
 
     private void FinishDialogue()
     {
+        AudioManager.instance.SetParam("Text Box is Active", 0);
+        AudioManager.instance.PlayOneShot(FMODEvents.instance.TextBoxPopDisapear, Vector3.zero);
         DialogueParent.SetActive(false);
         Debug.Log("End of Dialogue!");
     }

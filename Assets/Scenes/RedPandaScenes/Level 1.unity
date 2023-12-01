@@ -53074,10 +53074,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inkFile:
-  - {fileID: 4900000, guid: 176e43229ebab4d4fba9da6a0915f1e3, type: 3}
+  - {fileID: 4900000, guid: f244172f3e5e6404b97dcdb1c9506f1f, type: 3}
   - {fileID: 4900000, guid: 77c0a11aceeb5463cb949bb7656107af, type: 3}
-  - {fileID: 4900000, guid: 5e58209c0f05a4a4a8dd2cd28249d743, type: 3}
-  - {fileID: 4900000, guid: 48dd37e55524447c58217d70618ffbe6, type: 3}
+  - {fileID: 4900000, guid: ef73331a3322b43bfbf5543f8164b4ac, type: 3}
+  - {fileID: 4900000, guid: 34093cc5b60384972a77702e97091eff, type: 3}
   speakerImage: {fileID: 0}
   customButton: {fileID: 7203391979601258412, guid: 57d538738d9a24ca98ac0010ce174576, type: 3}
   optionPanel: {fileID: 1083354192}
