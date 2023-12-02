@@ -26,6 +26,8 @@ public class MainManager : MonoBehaviour, iDataPersistance
     public bool canMove = true;
     public bool canPickUpTrash;
     public bool fullScreen = false;
+    public int trashCollected;
+    public int[] trashPiles; //1 if trash is there 0 otherwise
     public void LoadData(GameData data)
     {
         
@@ -44,9 +46,9 @@ public class MainManager : MonoBehaviour, iDataPersistance
             this.checkPoint = data.checkpoint;
             this.monologues = data.monologues;
             this.dialogueTracker = data.dialogueTracker;
+            this.trashCollected = data.trashCollected;
+            this.trashPiles = data.trashPiles;
         }
-
-        
     }
 
     public void SaveData(ref GameData data)
@@ -57,6 +59,8 @@ public class MainManager : MonoBehaviour, iDataPersistance
         data.checkpoint = this.checkPoint;
         data.monologues = this.monologues;
         data.dialogueTracker = this.dialogueTracker;
+        data.trashCollected = this.trashCollected;
+        data.trashPiles = this.trashPiles;
     }
     private void Awake()
     {
