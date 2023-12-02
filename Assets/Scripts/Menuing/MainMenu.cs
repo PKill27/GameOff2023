@@ -9,6 +9,7 @@ public class MainMenu : MonoBehaviour
     public static bool hasPressed = false;
     private void Start()
     {
+        hasPressed = false;
         print(DataPersistenceManager.instance.gameData);
         DataPersistenceManager.instance.dataHandler = new FileDataHandler(Application.persistentDataPath, DataPersistenceManager.instance.fileName, DataPersistenceManager.instance.useEncryption);
         DataPersistenceManager.instance.dataPersistenceObjects = DataPersistenceManager.instance.FindAllDataPersistenceObjects();

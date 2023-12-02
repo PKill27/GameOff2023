@@ -26,7 +26,6 @@ public class InputManagerPanda : MonoBehaviour
         else if(!player.isPaused)
         {
 
-
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 if (player.canJump&&MainManager.instance.canMove)
@@ -46,6 +45,7 @@ public class InputManagerPanda : MonoBehaviour
             }
             else
             {
+                player.rb.velocityX = player.rb.velocityX/1.05f;
                 player.animator.SetBool("isWalking", false);
                 player.isWalking = false;
 

@@ -181,6 +181,7 @@ MonoBehaviour:
   playLevelLoader: 0
   canMove: 1
   canPickUpTrash: 0
+  fullScreen: 0
 --- !u!1 &232625549
 GameObject:
   m_ObjectHideFlags: 0
@@ -2043,11 +2044,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4947518824741282544, guid: d8e9bdfc0b51e424da28b1a4dc2495d6, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 382
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4947518824741282544, guid: d8e9bdfc0b51e424da28b1a4dc2495d6, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -232
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4947518824741282544, guid: d8e9bdfc0b51e424da28b1a4dc2495d6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

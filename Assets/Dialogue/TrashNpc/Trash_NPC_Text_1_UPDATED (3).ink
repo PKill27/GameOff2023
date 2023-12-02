@@ -5,8 +5,8 @@ and no matter what I do it keeps coming back!
 Oh
 Hello panda
 You're a rare sight around this part of Everest. 
-If you food, you're mostly out of luck. 
-Not many things to eat aroudn here. 
+If you want food, you're mostly out of luck. 
+Not many things to eat around here. 
 Mostly just trash. 
 But I did find a piece of bamboo earlier. 
 You're welcome to have it if you'd like. 

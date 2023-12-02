@@ -32,7 +32,7 @@ public class TrashNpcManager : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             e.StartAnimation();
-            if (Player.instance.trashCollected >= 1)
+            if (Player.instance.trashCollected >= 3)
             {
                 MainManager.instance.dialogueTracker[0] = 2;
                 dialogueNumber = dialougueList[2];
