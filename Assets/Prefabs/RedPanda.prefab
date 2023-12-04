@@ -168,7 +168,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0.5
+  m_GravityScale: 0.75
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -252,6 +252,7 @@ MonoBehaviour:
   temp: 0
   freezeTemp: 400
   freezeRate: 1
+  inRangeOfTrash: 0
   tempBar: {fileID: 0}
   foodBar: {fileID: 0}
   hpBar: {fileID: 0}
@@ -307,6 +308,7 @@ MonoBehaviour:
   isPaused: 0
   canPickUpTrash: 0
   currentGround: 0
+  currentFootsteps: 0
 --- !u!95 &2204606184288482082
 Animator:
   serializedVersion: 7
@@ -363,6 +365,6 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.3184563, y: -0.28663093}
-  m_Size: {x: 0.9743359, y: 0.4312479}
+  m_Offset: {x: -0.25589406, y: -0.23658109}
+  m_Size: {x: 1.0994629, y: 0.5313476}
   m_Direction: 1

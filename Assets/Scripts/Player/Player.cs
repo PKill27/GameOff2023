@@ -78,7 +78,7 @@ public class Player : MonoBehaviour
     public bool canPickUpTrash;
     public GroundOption currentGround;
     private bool waitingToRespawn = false;
-
+    public Vector2 pausedVelocity;
     public int currentFootsteps; 
     private void Awake()
     {
@@ -483,10 +483,8 @@ public class Player : MonoBehaviour
                 {
                     rb.rotation = -Vector2.SignedAngle(hitTrueDown.normal, Vector2.up);
                     rotationResetimer = 0;
-                }
-                
+                }   
             }
-
         }
         if ((Mathf.Abs(sideAngleLeft) >= 70 && !isFacingRight) || (Mathf.Abs(sideAngleRight) >= 70 && isFacingRight))
         {  
@@ -508,7 +506,7 @@ public class Player : MonoBehaviour
 
     public void Jump()
     {
-        if (!aboutToJump && !isTalking && !isGameOver && !isEating&& isGrounded && MainManager.instance.canMove)
+        if (!aboutToJump && !isTalking && !isGameOver && !isEating&& isGrounded&& MainManager.instance.canMove)
         {
             animator.SetBool("isJumping", true);
             animator.SetBool("landed", false);
@@ -518,9 +516,11 @@ public class Player : MonoBehaviour
     IEnumerator DelayJump()
     {
         aboutToJump =  true;
-        yield return new WaitForSeconds(.2f);
+       
+        yield return new WaitForSeconds(0.01f);
+        rb.velocityY = 0f;
         AudioManager.instance.PlayOneShot(FMODEvents.instance.Jump, transform.position);
-        rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
+        rb.AddForce(Vector2.up * jumpPower * 1.3f, ForceMode2D.Impulse);
         isGrounded = false;
         canJump = false;
         isJumping = true;
@@ -659,7 +659,7 @@ public class Player : MonoBehaviour
     }
     IEnumerator WaitTillDoneEating()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(2.5f);
         isEating = false;
         animator.SetBool("isEating", false);
     }

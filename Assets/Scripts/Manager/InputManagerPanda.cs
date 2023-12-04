@@ -20,6 +20,7 @@ public class InputManagerPanda : MonoBehaviour
             player.isPaused = true;
             player.PauseAllAnimations();
             pausePanel.SetActive(true);
+            player.pausedVelocity = player.rb.velocity;
             player.rb.constraints = RigidbodyConstraints2D.FreezeAll;
             AudioManager.instance.PausedGame();
         }

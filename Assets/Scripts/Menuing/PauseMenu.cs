@@ -30,9 +30,11 @@ public class PauseMenu : MonoBehaviour
     public void OnResume()
     {
         Player.instance.isPaused = false;
+       
         Player.instance.UnpauseAllAnimations();
         pauseMenuPanelParent.transform.parent.gameObject.SetActive(false);
         Player.instance.rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        Player.instance.rb.velocity = Player.instance.pausedVelocity;
         AudioManager.instance.UnPausedGame();
     }
     public void OnQuit()

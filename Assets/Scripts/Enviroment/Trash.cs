@@ -16,7 +16,7 @@ public class Trash : MonoBehaviour
     }
     protected void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player") && MainManager.instance.canPickUpTrash)
         {
             e.StartAnimation();
             Player.instance.inRangeOfTrash = true;
@@ -25,7 +25,7 @@ public class Trash : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player") && MainManager.instance.canPickUpTrash)
         {
             e.EndAnimation();
             canPickUp = false;
